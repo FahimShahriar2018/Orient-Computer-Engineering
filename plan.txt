@@ -1,0 +1,195 @@
+# 🚀 Step-by-Step Implementation Plan: Orient Computers & Engineering
+**Tech Stack**: **React (Vite) + Node.js / Express + MongoDB (Mongoose) + Tailwind CSS**
+
+---
+
+## 🏗️ Project Architecture Overview
+
+```
+orient-computers/
+├── server/               # Node.js + Express REST API Backend
+│   ├── config/           # Database connection (MongoDB / Mongoose)
+│   ├── controllers/      # Route controllers (auth, products, orders, etc.)
+│   ├── models/           # Mongoose schemas (User, Product, Category, Order)
+│   ├── middleware/       # JWT Auth & Admin authorization middleware
+│   ├── routes/           # Express API endpoints
+│   ├── utils/            # Seeder scripts & helper functions
+│   └── server.js         # Backend entry point
+│
+└── client/               # React (Vite) Frontend
+    ├── src/
+    │   ├── assets/       # Banners, logos, placeholder images
+    │   ├── components/   # Reusable UI (Header, Footer, ProductCard, SpecsTable, etc.)
+    │   ├── context/      # Global State (AuthContext, CartContext, WishlistContext)
+    │   ├── pages/        # Views (Home, Shop, ProductDetail, Cart, Checkout, Admin)
+    │   ├── services/     # Axios / API client calls
+    │   ├── types/utils/  # Formatting helpers (Currency BDT, date formatters)
+    │   └── App.jsx       # Root router setup
+```
+
+---
+
+## 📌 Phase 1: Environment Setup & Project Initialization
+
+- [x] **Step 1.1: Root & Folder Structure Setup**
+  - Create the dual-folder project structure: `server/` and `client/`.
+  - Set up a root `package.json` for unified scripts (or individual scripts for running both simultaneously).
+- [x] **Step 1.2: Backend Initialization**
+  - Initialize Node.js project in `server/`.
+  - Install dependencies: `express`, `mongoose`, `dotenv`, `cors`, `jsonwebtoken`, `bcryptjs`.
+  - Configure `.env` with `PORT`, `MONGO_URI`, and `JWT_SECRET`.
+  - Connect to MongoDB via Mongoose and verify database connection.
+- [x] **Step 1.3: Frontend Initialization**
+  - Scaffold React application in `client/` using Vite (`npm create vite@latest`).
+  - Install frontend dependencies: `react-router-dom`, `lucide-react` (modern icons), `axios`, `clsx`, `tailwind-merge`.
+  - Configure **Tailwind CSS** with a tech-focused color palette (Navy Blue, Accent Orange/Cyan, Sleek Grays).
+
+---
+
+## 🗄️ Phase 2: MongoDB Schemas & Realistic Tech Data Seeding
+
+- [x] **Step 2.1: User Model**
+  - Fields: `name`, `email`, `password`, `role` (`'customer'` | `'admin'`), `phone`, `address`, `createdAt`.
+- [x] **Step 2.2: Product Model (Tailored for Computer Retail)**
+  - Fields: `title`, `slug`, `brand` (Asus, MSI, Intel, AMD, HP, etc.), `category`, `price`, `discountPrice`, `stock`, `sku`, `images` (array), `shortSpecs` (bullet points), `technicalSpecs` (key-value dictionary for Sockets, TDP, VRAM, Warranty), `rating`, `numReviews`, `isFeatured`, `createdAt`.
+- [x] **Step 2.3: Category Model**
+  - Fields: `name`, `slug`, `icon`, `subcategories` (array).
+- [x] **Step 2.4: Order Model**
+  - Fields: `user`, `orderItems` (array of products with quantity & price), `shippingAddress` (Division, District, Details), `paymentMethod` (COD, bKash, Card), `paymentStatus`, `totalPrice`, `shippingPrice`, `orderStatus` (`'Pending'` ➔ `'Processing'` ➔ `'Shipped'` ➔ `'Delivered'`), `trackingNumber`, `createdAt`.
+- [x] **Step 2.5: Catalog Seeder Script**
+  - Create `seed.js` script to populate MongoDB with authentic **Orient Computers** hardware items (Processors, Laptops, GPUs, Motherboards, Monitors, Networking equipment) and default Admin/Customer accounts.
+
+---
+
+## 🔌 Phase 3: Backend REST API Development
+
+- [ ] **Step 3.1: Authentication & Authorization Middleware**
+  - Implement JWT authentication verification middleware (`protect`).
+  - Implement Admin role verification middleware (`isAdmin`).
+- [ ] **Step 3.2: Auth Endpoints (`/api/auth`)**
+  - `POST /register` – Register new customer with password hashing.
+  - `POST /login` – Authenticate user and return JWT token.
+  - `GET /me` – Fetch logged-in user profile.
+- [ ] **Step 3.3: Product Endpoints (`/api/products`)**
+  - `GET /` – Fetch products with dynamic multi-filtering (category, brand, price range, stock, search keyword, sorting, and pagination).
+  - `GET /featured` – Fetch featured items, flash deals, and new arrivals.
+  - `GET /:id` – Fetch single product with technical specs and reviews.
+  - `POST /` – (Admin only) Create new product.
+  - `PUT /:id` – (Admin only) Update product details/stock/price.
+  - `DELETE /:id` – (Admin only) Delete product.
+- [ ] **Step 3.4: Order Endpoints (`/api/orders`)**
+  - `POST /` – Create new customer order.
+  - `GET /my-orders` – Fetch current user's order history.
+  - `GET /:id` – Fetch specific order details with status timeline.
+  - `GET /` – (Admin only) Fetch all store orders with status filter.
+  - `PUT /:id/status` – (Admin only) Update order fulfillment status.
+
+---
+
+## 🎨 Phase 4: Frontend Layout, Global State & Design System
+
+- [ ] **Step 4.1: Global State Providers**
+  - `AuthContext`: Manage logged-in user, JWT token in `localStorage`, login/logout helpers.
+  - `CartContext`: Manage cart items, quantity increments/decrements, removal, and real-time subtotal calculation stored in `localStorage`.
+  - `WishlistContext`: Add/remove items with active count badge.
+- [ ] **Step 4.2: Global Navigation Header (Amazon-Inspired)**
+  - Top support bar (Helpline, Email, Showroom location).
+  - Search bar with category dropdown and live suggestion dropdown.
+  - Action icons: Wishlist counter badge, Cart counter badge, and User Account menu.
+- [ ] **Step 4.3: Mega Menu & Category Bar**
+  - Horizontal hardware category bar with flyout mega menus (Laptops, Desktop Components, Monitors, Networking, Accessories).
+- [ ] **Step 4.4: Footer**
+  - Company overview, terms of service, official brand warranty assurances, accepted payment icons (bKash, Nagad, Visa, Mastercard), and newsletter form.
+
+---
+
+## 💻 Phase 5: Customer Storefront Experience
+
+- [ ] **Step 5.1: Homepage**
+  - Auto-playing Hero Carousel with promotional graphics and CTA buttons.
+  - Visual Category Grid for quick hardware exploration.
+  - "Deal of the Day" / Flash Sale section with a live countdown timer.
+  - Tabbed or scrolling carousels for *Best Sellers*, *New Arrivals*, and *Gaming Gear*.
+  - Trust Badges section: 100% Genuine, Official Warranty, Fast Shipping across Bangladesh.
+- [ ] **Step 5.2: Shop & Catalog Page (Amazon-Style Filtering)**
+  - Dual layout options: Grid View and List View.
+  - Left Sidebar Filters:
+    - Dynamic Category tree.
+    - Brand checkboxes (Asus, Gigabyte, MSI, Intel, AMD, etc.).
+    - Price Range Slider (in ৳ BDT).
+    - Availability toggle (In Stock vs. All).
+  - Top Sort Dropdown: Price (Low to High / High to Low), Customer Rating, Newest.
+- [ ] **Step 5.3: Product Details Page (PDP)**
+  - High-res image gallery with interactive thumbnail switching and zoom.
+  - Pricing box with savings badge and stock indicator.
+  - Bullet-point quick specifications list.
+  - Full Technical Specification Table (Socket, TDP, Form Factor, Warranty).
+  - "Add to Cart", "Buy Now", and "Add to Wishlist" buttons.
+  - Verified Customer Reviews & Star rating distribution.
+  - "Related Products" recommendation carousel.
+
+---
+
+## 🛒 Phase 6: Cart, Checkout & Order Placement Funnel
+
+- [ ] **Step 6.1: Cart Management**
+  - Slide-out Cart Drawer (quick view from any page) + Dedicated Full Cart Page.
+  - Quantity controls, item removal, price subtotal, VAT/tax, and shipping calculation.
+  - Coupon discount input with mock promo codes.
+- [ ] **Step 6.2: Multi-Step Checkout Flow**
+  - **Step 1: Shipping Details**: Full Name, Phone, Address, Bangladeshi Division/District selection.
+  - **Step 2: Delivery Method**: Standard Delivery (Inside/Outside Dhaka), Express, Store Pickup.
+  - **Step 3: Payment Options**: Cash on Delivery (COD), Mobile Banking (bKash / Nagad simulation), Card Payment.
+- [ ] **Step 6.3: Order Success & Invoice**
+  - Order confirmation screen with unique Tracking ID.
+  - Printable / Downloadable receipt invoice with full order breakdown.
+
+---
+
+## 👤 Phase 7: Customer Account & Order History
+
+- [ ] **Step 7.1: Authentication Modals / Pages**
+  - Clean Login and Registration forms with validation and error toast alerts.
+- [ ] **Step 7.2: Customer Dashboard**
+  - "My Orders" tab with status badges (*Pending, Processing, Shipped, Delivered*).
+  - Order detail view showing timeline and purchased items.
+  - Profile settings and saved shipping addresses.
+
+---
+
+## 🛠️ Phase 8: Admin Management Dashboard
+
+- [ ] **Step 8.1: Admin Analytics Overview**
+  - Metric summary cards: Total Revenue (৳), Total Orders, Total Products in Catalog, Total Customers.
+  - Recent orders quick-view table.
+- [ ] **Step 8.2: Product Inventory Management (CRUD)**
+  - Product list table with search, stock alerts, and quick actions.
+  - "Add New Product" form: title, brand, category, pricing, stock, image URLs, and dynamic technical spec fields.
+  - "Edit Product" modal/page.
+  - "Delete Product" confirmation modal.
+- [ ] **Step 8.3: Order Fulfillment Manager**
+  - Master orders table with status filter (*All, Pending, Processing, Shipped, Delivered*).
+  - Order inspection modal: customer details, items, delivery address, payment method.
+  - Status updater button to advance orders along the delivery pipeline.
+
+---
+
+## 🎯 Phase 9: Testing, Polish & Internship Presentation
+
+- [ ] **Step 9.1: Mobile & Responsive Polish**
+  - Verify all layouts on mobile, tablet, and desktop screens.
+  - Mobile bottom navigation bar / hamburger drawer for seamless browsing.
+- [ ] **Step 9.2: UX Enhancements**
+  - Toast notifications for cart actions and errors.
+  - Loading skeleton placeholders while fetching products.
+- [ ] **Step 9.3: Documentation & Internship Deliverables**
+  - Comprehensive `README.md` with:
+    - Project description & architecture diagram.
+    - Step-by-step local setup instructions.
+    - API documentation table.
+    - Test login credentials (Admin & Customer).
+
+---
+
+## 🚦 Ready to proceed?
+When you are ready to begin implementation, let me know and we will start with **Phase 1: Environment Setup & Project Initialization**!
