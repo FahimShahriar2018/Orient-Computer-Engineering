@@ -88,17 +88,17 @@ orient-computers/
 
 ## 🎨 Phase 4: Frontend Layout, Global State & Design System
 
-- [ ] **Step 4.1: Global State Providers**
+- [x] **Step 4.1: Global State Providers**
   - `AuthContext`: Manage logged-in user, JWT token in `localStorage`, login/logout helpers.
   - `CartContext`: Manage cart items, quantity increments/decrements, removal, and real-time subtotal calculation stored in `localStorage`.
   - `WishlistContext`: Add/remove items with active count badge.
-- [ ] **Step 4.2: Global Navigation Header (Amazon-Inspired)**
+- [x] **Step 4.2: Global Navigation Header (Amazon-Inspired)**
   - Top support bar (Helpline, Email, Showroom location).
   - Search bar with category dropdown and live suggestion dropdown.
   - Action icons: Wishlist counter badge, Cart counter badge, and User Account menu.
-- [ ] **Step 4.3: Mega Menu & Category Bar**
+- [x] **Step 4.3: Mega Menu & Category Bar**
   - Horizontal hardware category bar with flyout mega menus (Laptops, Desktop Components, Monitors, Networking, Accessories).
-- [ ] **Step 4.4: Footer**
+- [x] **Step 4.4: Footer**
   - Company overview, terms of service, official brand warranty assurances, accepted payment icons (bKash, Nagad, Visa, Mastercard), and newsletter form.
 
 ---

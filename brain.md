@@ -6,5 +6,7 @@
 
 - **Phase 3: Backend REST API Development** (JWT auth & role middleware, multi-filtering product catalog endpoints, category tree, order management & admin analytics).
 
+- **Phase 4: Frontend Layout, Global State & Design System** (AuthContext, CartContext, WishlistContext, Amazon-inspired header with live search & mega menu, hardware category bar, slide-out cart drawer, auth modal, and footer).
+
 ## Next
-- **Phase 4: Frontend Layout, Global State & Design System** (AuthContext, CartContext, WishlistContext, Amazon-inspired header with search & mega menu, hardware category bar, footer).
+- **Phase 5: Customer Storefront Experience** (Homepage with hero carousel, flash deals countdown, category grid, Amazon-style catalog filtering sidebar with price slider/brand checkboxes, and rich Product Details Page with full technical specs table & verified reviews).
