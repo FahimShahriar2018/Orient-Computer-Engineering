@@ -22,5 +22,8 @@
     "tailwind"
   ],
   "author": "Orient Computers & Engineering",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^9.9.3"
+  }
 }

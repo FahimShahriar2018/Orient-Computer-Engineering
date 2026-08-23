@@ -13,7 +13,12 @@ dotenv.config();
 
 const importData = async () => {
   try {
-    await connectDB();
+    const conn = await connectDB();
+    if (!conn || mongoose.connection.readyState !== 1) {
+      console.error('\x1b[31m✖ Cannot seed database because MongoDB is not connected.\x1b[0m');
+      console.error('\x1b[33m👉 Please start your local MongoDB service or configure a MongoDB Atlas connection string in server/.env\x1b[0m');
+      process.exit(1);
+    }
 
     console.log('\x1b[33m⏳ Clearing existing database records...\x1b[0m');
     await Order.deleteMany();
@@ -173,7 +178,12 @@ const importData = async () => {
 
 const destroyData = async () => {
   try {
-    await connectDB();
+    const conn = await connectDB();
+    if (!conn || mongoose.connection.readyState !== 1) {
+      console.error('\x1b[31m✖ Cannot clear database because MongoDB is not connected.\x1b[0m');
+      console.error('\x1b[33m👉 Please start your local MongoDB service or configure a MongoDB Atlas connection string in server/.env\x1b[0m');
+      process.exit(1);
+    }
 
     console.log('\x1b[31m⏳ Destroying all Orient Computers database collections...\x1b[0m');
     await Order.deleteMany();

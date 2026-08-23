@@ -63,21 +63,21 @@ orient-computers/
 
 ## 🔌 Phase 3: Backend REST API Development
 
-- [ ] **Step 3.1: Authentication & Authorization Middleware**
+- [x] **Step 3.1: Authentication & Authorization Middleware**
   - Implement JWT authentication verification middleware (`protect`).
   - Implement Admin role verification middleware (`isAdmin`).
-- [ ] **Step 3.2: Auth Endpoints (`/api/auth`)**
+- [x] **Step 3.2: Auth Endpoints (`/api/auth`)**
   - `POST /register` – Register new customer with password hashing.
   - `POST /login` – Authenticate user and return JWT token.
   - `GET /me` – Fetch logged-in user profile.
-- [ ] **Step 3.3: Product Endpoints (`/api/products`)**
+- [x] **Step 3.3: Product Endpoints (`/api/products`)**
   - `GET /` – Fetch products with dynamic multi-filtering (category, brand, price range, stock, search keyword, sorting, and pagination).
   - `GET /featured` – Fetch featured items, flash deals, and new arrivals.
   - `GET /:id` – Fetch single product with technical specs and reviews.
   - `POST /` – (Admin only) Create new product.
   - `PUT /:id` – (Admin only) Update product details/stock/price.
   - `DELETE /:id` – (Admin only) Delete product.
-- [ ] **Step 3.4: Order Endpoints (`/api/orders`)**
+- [x] **Step 3.4: Order Endpoints (`/api/orders`)**
   - `POST /` – Create new customer order.
   - `GET /my-orders` – Fetch current user's order history.
   - `GET /:id` – Fetch specific order details with status timeline.
