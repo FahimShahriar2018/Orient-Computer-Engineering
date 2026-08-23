@@ -17,6 +17,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AccountPage from './pages/AccountPage';
 import OrderDetailPage from './pages/OrderDetailPage';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 export default function App() {
   return (
@@ -45,6 +46,9 @@ export default function App() {
               <Route path="/account" element={<AccountPage />} />
               <Route path="/orders" element={<AccountPage />} />
               <Route path="/order/:id" element={<OrderDetailPage />} />
+
+              {/* Admin Portal */}
+              <Route path="/admin" element={<AdminDashboard />} />
 
               {/* Fallback */}
               <Route path="*" element={<ShopPage />} />
