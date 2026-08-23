@@ -1,10 +1,11 @@
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import User from '../models/User.js';
+import generateToken from '../utils/generateToken.js';
 
 // @desc    Create new customer order
 // @route   POST /api/orders
-// @access  Private
+// @access  Public / Private
 export const createOrder = async (req, res, next) => {
   try {
     const {
@@ -30,8 +31,48 @@ export const createOrder = async (req, res, next) => {
       return next(new Error('Please provide complete shipping address details.'));
     }
 
+    let orderUser = req.user;
+    let autoCreatedToken = null;
+
+    if (!orderUser) {
+      // Handle guest checkout by finding existing user or creating a customer account
+      const cleanPhone = (shippingAddress.phone || '').replace(/[^0-9+]/g, '');
+      const guestEmail = (
+        shippingAddress.email ||
+        `guest_${cleanPhone.replace(/[^0-9]/g, '') || Date.now()}@orientcomputers.com.bd`
+      ).toLowerCase();
+
+      let user = await User.findOne({
+        $or: [
+          { email: guestEmail },
+          ...(cleanPhone ? [{ phone: cleanPhone }] : []),
+        ],
+      });
+
+      if (!user) {
+        const randomSecret = Math.random().toString(36).slice(-8);
+        user = await User.create({
+          name: shippingAddress.fullName,
+          email: guestEmail,
+          password: `Orient#${randomSecret}2026`,
+          phone: cleanPhone || '',
+          address: {
+            division: shippingAddress.division || 'Dhaka',
+            district: shippingAddress.district || 'Dhaka',
+            street: shippingAddress.address || '',
+            postalCode: shippingAddress.postalCode || '',
+            country: 'Bangladesh',
+          },
+          role: 'customer',
+        });
+      }
+
+      orderUser = user;
+      autoCreatedToken = generateToken(user._id);
+    }
+
     const order = new Order({
-      user: req.user._id,
+      user: orderUser._id,
       orderItems,
       shippingAddress,
       deliveryMethod: deliveryMethod || 'standard_inside_dhaka',
@@ -58,11 +99,26 @@ export const createOrder = async (req, res, next) => {
       }
     }
 
-    res.status(201).json({
+    const responsePayload = {
       success: true,
       message: 'Order created successfully',
       order: createdOrder,
-    });
+    };
+
+    if (autoCreatedToken) {
+      responsePayload.token = autoCreatedToken;
+      responsePayload.user = {
+        _id: orderUser._id,
+        name: orderUser.name,
+        email: orderUser.email,
+        role: orderUser.role,
+        phone: orderUser.phone,
+        address: orderUser.address,
+        avatar: orderUser.avatar,
+      };
+    }
+
+    res.status(201).json(responsePayload);
   } catch (error) {
     next(error);
   }

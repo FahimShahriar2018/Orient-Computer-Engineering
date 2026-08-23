@@ -8,12 +8,12 @@ import {
   updateOrderStatus,
   getAdminAnalytics,
 } from '../controllers/orderController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+import { protect, optionalProtect, admin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 router.route('/')
-  .post(protect, createOrder)
+  .post(optionalProtect, createOrder)
   .get(protect, admin, getOrders);
 
 router.route('/my-orders').get(protect, getMyOrders);

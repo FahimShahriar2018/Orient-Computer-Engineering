@@ -15,6 +15,9 @@ import {
   AlertCircle,
   Building,
   Package,
+  Zap,
+  LogIn,
+  UserPlus,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -25,7 +28,7 @@ import api from '../services/api';
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const { cartItems, itemsPrice, clearCart } = useCart();
-  const { user } = useAuth();
+  const { user, openAuthModal, login, setUserSession } = useAuth();
 
   // Multi-step indicator (1: Shipping -> 2: Delivery -> 3: Payment -> 4: Review)
   const [currentStep, setCurrentStep] = useState(1);
@@ -42,6 +45,29 @@ export default function CheckoutPage() {
     address: user?.address?.street || '',
     postalCode: user?.address?.postalCode || '1209',
   });
+
+  // Sync shipping address whenever logged-in user changes
+  useEffect(() => {
+    if (user) {
+      setShippingAddress((prev) => ({
+        fullName: prev.fullName || user.name || '',
+        phone: prev.phone || user.phone || '',
+        email: prev.email || user.email || '',
+        division: prev.division || user.address?.division || 'Dhaka',
+        district: prev.district || user.address?.district || 'Dhaka',
+        address: prev.address || user.address?.street || '',
+        postalCode: prev.postalCode || user.address?.postalCode || '1209',
+      }));
+    }
+  }, [user]);
+
+  const handleQuickDemoLogin = async () => {
+    try {
+      await login('customer@orientcomputers.com.bd', 'customer123');
+    } catch (err) {
+      console.error('Demo login error', err);
+    }
+  };
 
   // Step 2: Delivery Method State
   const [deliveryMethod, setDeliveryMethod] = useState('standard_inside_dhaka');
@@ -150,12 +176,23 @@ export default function CheckoutPage() {
       const res = await api.post('/orders', orderPayload);
 
       if (res.data.success) {
+        // If guest checkout auto-created user session, save it
+        if (res.data.token && res.data.user && !user && setUserSession) {
+          setUserSession({
+            ...res.data.user,
+            token: res.data.token,
+          });
+        }
         clearCart();
         navigate(`/order-success/${res.data.order._id}`);
       }
     } catch (err) {
-      const msg = err.response?.data?.message || 'Error placing order. Please verify your details.';
-      setOrderError(msg);
+      if (err.response?.status === 401) {
+        setOrderError('Session expired or authentication needed. Please sign in or use Demo Login.');
+      } else {
+        const msg = err.response?.data?.message || 'Error placing order. Please verify your details.';
+        setOrderError(msg);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -206,9 +243,64 @@ export default function CheckoutPage() {
         <div className="lg:col-span-8 space-y-6">
           {/* Error Banner */}
           {orderError && (
-            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center space-x-2">
-              <AlertCircle className="h-4 w-4 flex-shrink-0" />
-              <span>{orderError}</span>
+            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                <span>{orderError}</span>
+              </div>
+              {!user && (
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('login')}
+                  className="px-3 py-1 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-semibold rounded-lg text-[11px] transition-colors ml-2 flex-shrink-0"
+                >
+                  Sign In Now
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Guest Checkout & Fast Sign-in Banner (Shown when not authenticated) */}
+          {!user && (
+            <div className="p-4 sm:p-5 rounded-2xl bg-blue-950/40 border border-blue-800/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1 text-xs">
+                <div className="flex items-center space-x-2 text-blue-400 font-bold">
+                  <Zap className="h-4 w-4" />
+                  <span>Have an Orient Computers Account?</span>
+                </div>
+                <p className="text-slate-300 text-[11px]">
+                  Sign in to autofill your address, track shipments with live SMS, and manage warranty claims.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={handleQuickDemoLogin}
+                  className="px-3 py-1.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-blue-300 font-semibold text-xs transition-colors flex items-center space-x-1"
+                >
+                  <Zap className="h-3 w-3" />
+                  <span>1-Click Demo Login</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('login')}
+                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-xs transition-colors flex items-center space-x-1"
+                >
+                  <LogIn className="h-3 w-3" />
+                  <span>Sign In</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Logged in User Badge */}
+          {user && (
+            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+              <div className="flex items-center space-x-2 text-slate-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Checking out as: <strong className="text-white">{user.name}</strong> ({user.email})</span>
+              </div>
+              <span className="text-[11px] text-blue-400 font-medium">Logged In Customer</span>
             </div>
           )}
 

@@ -1,3 +1,5 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import users from '../data/users.js';
@@ -9,7 +11,9 @@ import Product from '../models/Product.js';
 import Order from '../models/Order.js';
 import connectDB from '../config/db.js';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const importData = async () => {
   try {

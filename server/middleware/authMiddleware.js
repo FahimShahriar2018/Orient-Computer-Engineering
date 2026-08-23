@@ -37,6 +37,34 @@ export const protect = async (req, res, next) => {
   }
 };
 
+// Middleware for optional authentication (populates req.user if token is present, but allows guests)
+export const optionalProtect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(
+        token,
+        process.env.JWT_SECRET || 'orient_jwt_secret_key_2026'
+      );
+
+      const user = await User.findById(decoded.id).select('-password');
+      if (user) {
+        req.user = user;
+      }
+    } catch (error) {
+      // Ignore token verification errors for optional routes, req.user remains undefined
+      req.user = null;
+    }
+  }
+
+  return next();
+};
+
 // Middleware to verify Administrator privileges
 export const admin = (req, res, next) => {
   if (req.user && req.user.role === 'admin') {
@@ -45,3 +73,4 @@ export const admin = (req, res, next) => {
   res.status(403);
   return next(new Error('Access denied. Administrator privileges required.'));
 };
+

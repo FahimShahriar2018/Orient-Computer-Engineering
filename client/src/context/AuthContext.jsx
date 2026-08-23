@@ -100,6 +100,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const setUserSession = (userData) => {
+    setUser(userData);
+    if (userData) {
+      localStorage.setItem('userInfo', JSON.stringify(userData));
+    } else {
+      localStorage.removeItem('userInfo');
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -115,6 +124,7 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         updateProfile,
+        setUserSession,
         isAdmin: user?.role === 'admin',
       }}
     >
