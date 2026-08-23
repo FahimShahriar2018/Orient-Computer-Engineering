@@ -8,5 +8,7 @@
 
 - **Phase 4: Frontend Layout, Global State & Design System** (AuthContext, CartContext, WishlistContext, Amazon-inspired header with live search & mega menu, hardware category bar, slide-out cart drawer, auth modal, and footer).
 
+- **Phase 5: Customer Storefront Experience** (Homepage with auto-sliding hero carousel, department category grid, live flash deals countdown, tabbed collections, Amazon-style Shop catalog with multi-facet sidebar filtering & Grid/List view modes, Product Details Page with thumbnail switcher, comprehensive technical specs table, verified customer reviews, and wishlist page).
+
 ## Next
-- **Phase 5: Customer Storefront Experience** (Homepage with hero carousel, flash deals countdown, category grid, Amazon-style catalog filtering sidebar with price slider/brand checkboxes, and rich Product Details Page with full technical specs table & verified reviews).
+- **Phase 6: Cart, Checkout & Order Placement Funnel** (Full cart page with quantity controls & promo discount vouchers, multi-step checkout with Bangladeshi divisions/districts shipping selector, and bKash / Nagad / COD payment simulation with instant invoice receipts).
