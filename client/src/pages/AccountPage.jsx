@@ -128,9 +128,9 @@ export default function AccountPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Top Welcome Banner */}
-      <div className="rounded-3xl bg-gradient-to-r from-[#0F172A] via-[#111A30] to-[#0A101D] border border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-2xl">
+      <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
         <div className="flex items-center space-x-4">
-          <div className="h-16 w-16 rounded-2xl bg-cyan-600/20 border border-cyan-500/40 text-cyan-400 font-heading font-extrabold text-2xl flex items-center justify-center shadow-lg shadow-cyan-600/20">
+          <div className="h-16 w-16 rounded-2xl bg-blue-600 text-white font-heading font-extrabold text-2xl flex items-center justify-center shadow-md">
             {user?.name?.charAt(0) || 'U'}
           </div>
           <div>
@@ -139,7 +139,7 @@ export default function AccountPage() {
                 {user?.name}
               </h1>
               {user?.role === 'admin' && (
-                <span className="px-2 py-0.5 rounded bg-orange-500/20 border border-orange-500/40 text-orange-400 text-[10px] font-extrabold uppercase">
+                <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold uppercase">
                   Admin
                 </span>
               )}
@@ -152,7 +152,7 @@ export default function AccountPage() {
           {user?.role === 'admin' && (
             <Link
               to="/admin"
-              className="px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-bold text-xs shadow-lg shadow-orange-500/25 transition-all"
+              className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors"
             >
               Admin Dashboard
             </Link>
@@ -173,12 +173,12 @@ export default function AccountPage() {
       {/* Main Grid: Tabs Sidebar (4 cols) & Tab Content (8 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Navigation Sidebar */}
-        <div className="lg:col-span-4 rounded-2xl bg-[#0F172A] border border-slate-800 p-4 space-y-2 shadow-xl sticky top-28">
+        <div className="lg:col-span-4 rounded-2xl bg-[#0F172A] border border-slate-800 p-4 space-y-2 shadow-sm sticky top-28">
           <button
             onClick={() => handleTabChange('orders')}
-            className={`w-full p-3 rounded-xl text-left text-xs font-bold flex items-center justify-between transition-all ${
+            className={`w-full p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition-all ${
               activeTab === 'orders'
-                ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/30'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:bg-slate-800/80 hover:text-white'
             }`}
           >
@@ -191,9 +191,9 @@ export default function AccountPage() {
 
           <button
             onClick={() => handleTabChange('profile')}
-            className={`w-full p-3 rounded-xl text-left text-xs font-bold flex items-center justify-between transition-all ${
+            className={`w-full p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition-all ${
               activeTab === 'profile'
-                ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/30'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:bg-slate-800/80 hover:text-white'
             }`}
           >
@@ -206,9 +206,9 @@ export default function AccountPage() {
 
           <button
             onClick={() => handleTabChange('address')}
-            className={`w-full p-3 rounded-xl text-left text-xs font-bold flex items-center justify-between transition-all ${
+            className={`w-full p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition-all ${
               activeTab === 'address'
-                ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/30'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:bg-slate-800/80 hover:text-white'
             }`}
           >
@@ -243,7 +243,7 @@ export default function AccountPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <h2 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-                  <Package className="h-5 w-5 text-cyan-400" />
+                  <Package className="h-5 w-5 text-blue-400" />
                   <span>Order Purchase History</span>
                 </h2>
                 <span className="text-xs text-slate-400">Total {myOrders.length} orders</span>
@@ -252,7 +252,7 @@ export default function AccountPage() {
               {loadingOrders ? (
                 <div className="p-8 text-center text-slate-400 text-xs">Loading order history...</div>
               ) : myOrders.length === 0 ? (
-                <div className="p-12 rounded-3xl bg-[#0F172A] border border-slate-800 text-center space-y-4 shadow-xl">
+                <div className="p-12 rounded-3xl bg-[#0F172A] border border-slate-800 text-center space-y-4 shadow-sm">
                   <Package className="h-12 w-12 text-slate-600 mx-auto" />
                   <div className="space-y-1">
                     <h3 className="font-heading font-bold text-white">No Orders Placed Yet</h3>
@@ -260,7 +260,7 @@ export default function AccountPage() {
                   </div>
                   <Link
                     to="/shop"
-                    className="inline-block px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs"
+                    className="inline-block px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors"
                   >
                     Start Shopping
                   </Link>
@@ -270,14 +270,14 @@ export default function AccountPage() {
                   {myOrders.map((order) => (
                     <div
                       key={order._id}
-                      className="p-5 rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 transition-all space-y-4 shadow-xl"
+                      className="p-5 rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 transition-all space-y-4 shadow-sm"
                     >
                       {/* Order Header */}
                       <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800 text-xs">
                         <div>
                           <div className="flex items-center space-x-2">
                             <span className="text-slate-400">Tracking:</span>
-                            <span className="font-mono font-bold text-cyan-400">{order.trackingNumber}</span>
+                            <span className="font-mono font-semibold text-blue-400">{order.trackingNumber}</span>
                           </div>
                           <div className="text-[11px] text-slate-500 mt-0.5">
                             Placed on {formatDate(order.createdAt)}
@@ -286,12 +286,12 @@ export default function AccountPage() {
 
                         <div className="flex items-center space-x-3">
                           <span
-                            className={`px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider ${
+                            className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
                               order.orderStatus === 'Delivered'
                                 ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
                                 : order.orderStatus === 'Shipped'
-                                ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                                : 'bg-orange-500/10 text-orange-400 border border-orange-500/30'
+                                ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                                : 'bg-slate-800 text-slate-300 border border-slate-700'
                             }`}
                           >
                             {order.orderStatus}
@@ -305,7 +305,7 @@ export default function AccountPage() {
                       {/* Items Thumbnails */}
                       <div className="flex items-center space-x-3 overflow-x-auto py-1">
                         {order.orderItems?.map((item, idx) => (
-                          <div key={idx} className="flex items-center space-x-2 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex-shrink-0">
+                          <div key={idx} className="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl p-2 flex-shrink-0">
                             <img src={item.image} alt={item.title} className="w-9 h-9 object-cover rounded-lg bg-slate-800" />
                             <div className="text-[11px]">
                               <span className="text-white font-medium truncate max-w-[150px] block">{item.title}</span>
@@ -324,7 +324,7 @@ export default function AccountPage() {
                         <div className="flex items-center space-x-2">
                           <Link
                             to={`/track-order/${order.trackingNumber}`}
-                            className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-xs flex items-center space-x-1"
+                            className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-blue-400 font-semibold text-xs flex items-center space-x-1 transition-colors"
                           >
                             <Truck className="h-3.5 w-3.5" />
                             <span>Track Status</span>
@@ -332,9 +332,9 @@ export default function AccountPage() {
 
                           <Link
                             to={`/order-success/${order._id}`}
-                            className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center space-x-1"
+                            className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center space-x-1 transition-colors"
                           >
-                            <Printer className="h-3.5 w-3.5 text-orange-400" />
+                            <Printer className="h-3.5 w-3.5 text-slate-400" />
                             <span>View Invoice</span>
                           </Link>
                         </div>
@@ -350,10 +350,10 @@ export default function AccountPage() {
           {/* TAB 2: PROFILE SETTINGS */}
           {/* ==================================================== */}
           {activeTab === 'profile' && (
-            <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-xl">
+            <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-sm">
               <div className="border-b border-slate-800 pb-3">
                 <h2 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-                  <User className="h-5 w-5 text-cyan-400" />
+                  <User className="h-5 w-5 text-blue-400" />
                   <span>Personal Profile & Security</span>
                 </h2>
                 <p className="text-xs text-slate-400">Update your account credentials and contact details.</p>
@@ -368,7 +368,7 @@ export default function AccountPage() {
                       required
                       value={profileData.name}
                       onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
 
@@ -378,7 +378,7 @@ export default function AccountPage() {
                       type="text"
                       value={profileData.phone}
                       onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
                 </div>
@@ -402,7 +402,7 @@ export default function AccountPage() {
                       value={profileData.newPassword}
                       onChange={(e) => setProfileData({ ...profileData, newPassword: e.target.value })}
                       placeholder="Enter at least 6 characters"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
                 </div>
@@ -410,7 +410,7 @@ export default function AccountPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-all disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors disabled:opacity-50"
                 >
                   {saving ? 'Saving...' : 'Save Profile Changes'}
                 </button>
@@ -422,10 +422,10 @@ export default function AccountPage() {
           {/* TAB 3: SAVED ADDRESS */}
           {/* ==================================================== */}
           {activeTab === 'address' && (
-            <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-xl">
+            <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-sm">
               <div className="border-b border-slate-800 pb-3">
                 <h2 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-cyan-400" />
+                  <MapPin className="h-5 w-5 text-blue-400" />
                   <span>Default Shipping Address</span>
                 </h2>
                 <p className="text-xs text-slate-400">Pre-fills during checkout for faster hardware ordering.</p>
@@ -442,7 +442,7 @@ export default function AccountPage() {
                         const dists = getDistrictsByDivision(div);
                         setAddressData({ ...addressData, division: div, district: dists[0] || '' });
                       }}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                     >
                       {BANGLADESH_DIVISIONS.map((d) => (
                         <option key={d.name} value={d.name}>{d.name} Division</option>
@@ -455,7 +455,7 @@ export default function AccountPage() {
                     <select
                       value={addressData.district}
                       onChange={(e) => setAddressData({ ...addressData, district: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                     >
                       {availableDistricts.map((dist) => (
                         <option key={dist} value={dist}>{dist}</option>
@@ -471,14 +471,14 @@ export default function AccountPage() {
                     value={addressData.street}
                     onChange={(e) => setAddressData({ ...addressData, street: e.target.value })}
                     placeholder="House #42, Road #11, Dhanmondi R/A"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-all disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors disabled:opacity-50"
                 >
                   {saving ? 'Saving...' : 'Save Default Address'}
                 </button>

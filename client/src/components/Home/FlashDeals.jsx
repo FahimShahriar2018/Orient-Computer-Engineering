@@ -61,17 +61,13 @@ export default function FlashDeals({ dealProduct }) {
   const discountPercent = Math.round((savings / product.price) * 100);
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#181124] via-[#0F172A] to-[#0A1224] border border-orange-500/30 p-6 sm:p-10 shadow-2xl">
-      {/* Decorative Glow */}
-      <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 bg-orange-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-80 h-80 bg-rose-500/15 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="relative overflow-hidden rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-10 shadow-sm">
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left Col: Header & Countdown Clock */}
         <div className="lg:col-span-5 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-extrabold uppercase tracking-wider">
-              <Flame className="h-4 w-4 text-orange-400 animate-bounce" />
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
+              <Flame className="h-4 w-4 text-amber-400" />
               <span>Deal of the Day • Flash Offer</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
@@ -83,26 +79,26 @@ export default function FlashDeals({ dealProduct }) {
           </div>
 
           {/* Real-time Countdown Timer Box */}
-          <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
             <div className="flex items-center space-x-2 text-xs font-semibold text-slate-400">
-              <Clock className="h-4 w-4 text-orange-400" />
+              <Clock className="h-4 w-4 text-blue-400" />
               <span>OFFER EXPIRES IN:</span>
             </div>
             <div className="grid grid-cols-3 gap-3 text-center">
-              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
                 <div className="font-heading font-extrabold text-2xl sm:text-3xl text-white">
                   {String(timeLeft.hours).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Hours</div>
               </div>
-              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                <div className="font-heading font-extrabold text-2xl sm:text-3xl text-cyan-400">
+              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+                <div className="font-heading font-extrabold text-2xl sm:text-3xl text-blue-400">
                   {String(timeLeft.minutes).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Mins</div>
               </div>
-              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                <div className="font-heading font-extrabold text-2xl sm:text-3xl text-orange-400">
+              <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+                <div className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-200">
                   {String(timeLeft.seconds).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Secs</div>
@@ -112,10 +108,10 @@ export default function FlashDeals({ dealProduct }) {
         </div>
 
         {/* Right Col: Flash Deal Product Showcase */}
-        <div className="lg:col-span-7 rounded-2xl bg-[#0F172A]/90 border border-slate-700/80 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center shadow-xl">
+        <div className="lg:col-span-7 rounded-2xl bg-slate-900 border border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center shadow-sm">
           {/* Product Image with Discount Badge */}
-          <div className="relative w-full sm:w-56 h-56 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center p-3 flex-shrink-0">
-            <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-orange-500 text-white text-xs font-extrabold shadow-lg shadow-orange-500/40">
+          <div className="relative w-full sm:w-56 h-56 rounded-xl bg-slate-950 overflow-hidden flex items-center justify-center p-3 flex-shrink-0">
+            <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold shadow-sm">
               Save {formatPrice(savings)}
             </span>
             <img
@@ -128,7 +124,7 @@ export default function FlashDeals({ dealProduct }) {
           {/* Product Details & Purchase Controls */}
           <div className="flex-1 space-y-3 w-full">
             <div className="flex items-center space-x-2 text-xs">
-              <span className="font-bold text-cyan-400 uppercase tracking-wider">{product.brand}</span>
+              <span className="font-bold text-blue-400 uppercase tracking-wider">{product.brand}</span>
               <span className="text-slate-600">•</span>
               <div className="flex items-center text-amber-400">
                 <Star className="h-3.5 w-3.5 fill-amber-400" />
@@ -139,7 +135,7 @@ export default function FlashDeals({ dealProduct }) {
 
             <Link
               to={`/product/${product.slug}`}
-              className="block font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-400 transition-colors line-clamp-2 leading-snug"
+              className="block font-heading font-bold text-base sm:text-lg text-white hover:text-blue-400 transition-colors line-clamp-2 leading-snug"
             >
               {product.title}
             </Link>
@@ -148,7 +144,7 @@ export default function FlashDeals({ dealProduct }) {
             <ul className="text-xs text-slate-300 space-y-1">
               {product.shortSpecs?.slice(0, 2).map((spec, i) => (
                 <li key={i} className="flex items-center space-x-2">
-                  <Zap className="h-3 w-3 text-cyan-400 flex-shrink-0" />
+                  <Zap className="h-3 w-3 text-blue-400 flex-shrink-0" />
                   <span className="truncate">{spec}</span>
                 </li>
               ))}
@@ -156,7 +152,7 @@ export default function FlashDeals({ dealProduct }) {
 
             {/* Price Box */}
             <div className="pt-2 flex items-baseline space-x-3">
-              <span className="text-2xl font-extrabold text-orange-400">
+              <span className="text-2xl font-extrabold text-white">
                 {formatPrice(product.discountPrice)}
               </span>
               <span className="text-sm text-slate-500 line-through">
@@ -171,10 +167,10 @@ export default function FlashDeals({ dealProduct }) {
             <div className="space-y-1">
               <div className="flex justify-between text-[11px] text-slate-400">
                 <span>Hurry, only {product.stock} units remaining!</span>
-                <span className="text-orange-400 font-bold">85% Claimed</span>
+                <span className="text-blue-400 font-semibold">85% Claimed</span>
               </div>
               <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
-                <div className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 w-[85%]" />
+                <div className="h-full rounded-full bg-blue-600 w-[85%]" />
               </div>
             </div>
 
@@ -182,7 +178,7 @@ export default function FlashDeals({ dealProduct }) {
             <div className="pt-2 flex items-center space-x-3">
               <button
                 onClick={() => addToCart(product, 1, true)}
-                className="flex-1 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-xs shadow-lg shadow-orange-500/25 flex items-center justify-center space-x-2 transition-all active:scale-95"
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md flex items-center justify-center space-x-2 transition-colors active:scale-95"
               >
                 <ShoppingCart className="h-4 w-4" />
                 <span>Claim Deal Now</span>

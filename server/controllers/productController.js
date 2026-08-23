@@ -29,16 +29,20 @@ export const getProducts = async (req, res, next) => {
       if (mongoose.Types.ObjectId.isValid(req.query.category)) {
         query.category = req.query.category;
       } else {
-        const foundCategory = await Category.findOne({ slug: req.query.category.toLowerCase() });
+        const catSlug = req.query.category.trim().toLowerCase();
+        const foundCategory = await Category.findOne({ slug: catSlug });
         if (foundCategory) {
           query.category = foundCategory._id;
+        } else {
+          query.category = new mongoose.Types.ObjectId();
         }
       }
     }
 
     // 3. Subcategory filtering
     if (req.query.subcategory) {
-      query.subcategory = req.query.subcategory.toLowerCase();
+      const subSlug = req.query.subcategory.trim().toLowerCase();
+      query.subcategory = { $regex: new RegExp(`^${subSlug}$`, 'i') };
     }
 
     // 4. Brand filtering (supports single or comma-separated list: "Asus,MSI,Intel")
@@ -149,7 +153,7 @@ export const getFeaturedProducts = async (req, res, next) => {
 export const getProductFilterMeta = async (req, res, next) => {
   try {
     const brands = await Product.distinct('brand');
-    const categories = await Category.find({}).select('name slug icon');
+    const categories = await Category.find({}).sort({ orderIndex: 1, name: 1 });
 
     const priceBounds = await Product.aggregate([
       {

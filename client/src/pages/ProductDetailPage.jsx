@@ -69,20 +69,20 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center text-slate-400">
-        <div className="h-12 w-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-sm">Loading authentic hardware specifications...</p>
+      <div className="max-w-7xl mx-auto px-4 py-20 text-center text-slate-400">
+        <div className="h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-xs">Loading hardware specifications & reviews...</p>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center space-y-4">
-        <h2 className="text-2xl font-bold font-heading text-white">Product Not Found</h2>
-        <p className="text-sm text-slate-400">The requested computer hardware item does not exist or has been discontinued.</p>
-        <Link to="/shop" className="inline-block px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl">
-          Back to Store Catalog
+      <div className="max-w-7xl mx-auto px-4 py-20 text-center space-y-4">
+        <h2 className="text-2xl font-bold text-white">Hardware Product Not Found</h2>
+        <p className="text-xs text-slate-400">The product you are looking for is currently out of stock or discontinued.</p>
+        <Link to="/shop" className="inline-block px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-xl shadow-sm transition-colors">
+          Browse Hardware Catalog
         </Link>
       </div>
     );
@@ -143,13 +143,13 @@ export default function ProductDetailPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       {/* Breadcrumb */}
       <div className="flex items-center space-x-2 text-xs text-slate-400">
-        <Link to="/" className="hover:text-cyan-400">Home</Link>
+        <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
         <ChevronRight className="h-3 w-3 text-slate-600" />
-        <Link to="/shop" className="hover:text-cyan-400">Hardware Catalog</Link>
+        <Link to="/shop" className="hover:text-blue-400 transition-colors">Hardware Catalog</Link>
         {product.category?.name && (
           <>
             <ChevronRight className="h-3 w-3 text-slate-600" />
-            <Link to={`/shop?category=${product.category.slug}`} className="hover:text-cyan-400">
+            <Link to={`/shop?category=${product.category.slug}`} className="hover:text-blue-400 transition-colors">
               {product.category.name}
             </Link>
           </>
@@ -162,9 +162,9 @@ export default function ProductDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Col: High-Res Image Gallery (5 Cols) */}
         <div className="lg:col-span-5 space-y-4 sticky top-28">
-          <div className="h-80 sm:h-96 w-full rounded-2xl bg-slate-900 border border-slate-800 p-6 flex items-center justify-center relative overflow-hidden shadow-xl">
+          <div className="h-80 sm:h-96 w-full rounded-2xl bg-slate-900 border border-slate-800 p-6 flex items-center justify-center relative overflow-hidden shadow-sm">
             {product.badge && (
-              <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-md bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-extrabold uppercase tracking-wider">
+              <span className="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
                 {product.badge}
               </span>
             )}
@@ -184,7 +184,7 @@ export default function ProductDetailPage() {
                   onClick={() => setSelectedImage(img)}
                   className={`w-20 h-20 rounded-xl p-1 bg-slate-900 border transition-all flex-shrink-0 flex items-center justify-center ${
                     selectedImage === img
-                      ? 'border-cyan-500 ring-2 ring-cyan-500/30'
+                      ? 'border-blue-500 ring-2 ring-blue-500/30'
                       : 'border-slate-800 hover:border-slate-700'
                   }`}
                 >
@@ -201,7 +201,7 @@ export default function ProductDetailPage() {
             {/* Brand & SKU */}
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center space-x-2">
-                <span className="font-extrabold text-cyan-400 uppercase tracking-wider">{product.brand}</span>
+                <span className="font-bold text-blue-400 uppercase tracking-wider">{product.brand}</span>
                 <span className="text-slate-600">•</span>
                 <span className="text-slate-400 font-mono">SKU: {product.sku}</span>
               </div>
@@ -234,7 +234,7 @@ export default function ProductDetailPage() {
               </div>
 
               <div className="flex items-center space-x-2">
-                <span className={`h-2.5 w-2.5 rounded-full ${inStock ? 'bg-emerald-400 animate-pulse' : 'bg-rose-500'}`} />
+                <span className={`h-2.5 w-2.5 rounded-full ${inStock ? 'bg-emerald-400' : 'bg-rose-500'}`} />
                 <span className={`font-semibold ${inStock ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {inStock ? `In Stock (${product.stock} units available)` : 'Currently Out of Stock'}
                 </span>
@@ -243,9 +243,9 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Pricing Box */}
-          <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
             <div className="flex flex-wrap items-baseline gap-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-orange-400">
+              <span className="text-3xl sm:text-4xl font-extrabold text-white">
                 {formatPrice(finalPrice)}
               </span>
               {savings > 0 && (
@@ -253,7 +253,7 @@ export default function ProductDetailPage() {
                   <span className="text-sm sm:text-base text-slate-500 line-through">
                     Regular: {formatPrice(product.price)}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-extrabold">
+                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
                     Save {formatPrice(savings)} ({discountPercent}% OFF)
                   </span>
                 </>
@@ -266,13 +266,13 @@ export default function ProductDetailPage() {
           {product.shortSpecs && product.shortSpecs.length > 0 && (
             <div className="space-y-2.5">
               <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                <Sparkles className="h-3.5 w-3.5 text-blue-400" />
                 <span>Key Hardware Highlights</span>
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
                 {product.shortSpecs.map((spec, i) => (
                   <li key={i} className="flex items-start space-x-2 p-2 rounded-lg bg-slate-900/60 border border-slate-800/80">
-                    <Check className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    <Check className="h-4 w-4 text-blue-400 flex-shrink-0 mt-0.5" />
                     <span>{spec}</span>
                   </li>
                 ))}
@@ -307,16 +307,16 @@ export default function ProductDetailPage() {
               <button
                 disabled={!inStock}
                 onClick={handleAddToCart}
-                className="py-3.5 px-6 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm shadow-xl shadow-cyan-600/25 flex items-center justify-center space-x-2 transition-all disabled:opacity-40"
+                className="py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
               >
-                <ShoppingCart className="h-4 w-4" />
+                <ShoppingCart className="h-4 w-4 text-blue-400" />
                 <span>Add to Cart</span>
               </button>
 
               <button
                 disabled={!inStock}
                 onClick={handleBuyNow}
-                className="py-3.5 px-6 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-sm shadow-xl shadow-orange-500/25 flex items-center justify-center space-x-2 transition-all disabled:opacity-40"
+                className="py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
               >
                 <Zap className="h-4 w-4" />
                 <span>Buy Now (Instant Checkout)</span>
@@ -327,11 +327,11 @@ export default function ProductDetailPage() {
           {/* Official Warranty & Assurances Banner */}
           <div className="p-4 rounded-xl bg-[#0B1120] border border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300">
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="h-4 w-4 text-cyan-400 flex-shrink-0" />
+              <ShieldCheck className="h-4 w-4 text-blue-400 flex-shrink-0" />
               <span>{product.warranty || 'Official Brand Warranty'}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Truck className="h-4 w-4 text-orange-400 flex-shrink-0" />
+              <Truck className="h-4 w-4 text-slate-400 flex-shrink-0" />
               <span>Fast Shipping in BD</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -348,20 +348,20 @@ export default function ProductDetailPage() {
         <div className="flex items-center space-x-2 border-b border-slate-800 pb-2">
           <button
             onClick={() => setActiveTab('specs')}
-            className={`px-5 py-2.5 rounded-xl font-heading font-bold text-sm transition-all ${
+            className={`px-5 py-2.5 rounded-xl font-heading font-semibold text-sm transition-all ${
               activeTab === 'specs'
-                ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white bg-slate-900/60'
             }`}
           >
-            Technical Specifications Table
+            Technical Specifications
           </button>
 
           <button
             onClick={() => setActiveTab('reviews')}
-            className={`px-5 py-2.5 rounded-xl font-heading font-bold text-sm transition-all ${
+            className={`px-5 py-2.5 rounded-xl font-heading font-semibold text-sm transition-all ${
               activeTab === 'reviews'
-                ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white bg-slate-900/60'
             }`}
           >
@@ -371,10 +371,10 @@ export default function ProductDetailPage() {
 
         {/* Tab 1: Comprehensive Technical Specifications Table */}
         {activeTab === 'specs' && (
-          <div className="rounded-2xl bg-[#0F172A] border border-slate-800 p-6 shadow-xl space-y-4">
+          <div className="rounded-2xl bg-[#0F172A] border border-slate-800 p-6 shadow-sm space-y-4">
             <h3 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-              <Cpu className="h-5 w-5 text-cyan-400" />
-              <span>Complete Hardware Technical Data</span>
+              <Cpu className="h-5 w-5 text-blue-400" />
+              <span>Hardware Technical Specifications</span>
             </h3>
 
             {product.technicalSpecs && Object.keys(product.technicalSpecs).length > 0 ? (
@@ -383,7 +383,7 @@ export default function ProductDetailPage() {
                   <tbody className="divide-y divide-slate-800">
                     {Object.entries(product.technicalSpecs).map(([key, val], idx) => (
                       <tr key={key} className={idx % 2 === 0 ? 'bg-slate-900/80' : 'bg-[#0F172A]'}>
-                        <td className="py-3 px-4 font-bold text-cyan-300 w-1/3 border-r border-slate-800">
+                        <td className="py-3 px-4 font-semibold text-slate-300 w-1/3 border-r border-slate-800">
                           {key}
                         </td>
                         <td className="py-3 px-4 text-slate-200">{String(val)}</td>
@@ -415,7 +415,7 @@ export default function ProductDetailPage() {
                     <div key={i} className="p-4 rounded-xl bg-[#0F172A] border border-slate-800 space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="h-7 w-7 rounded-lg bg-cyan-600/20 text-cyan-400 flex items-center justify-center font-bold text-xs">
+                          <div className="h-7 w-7 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-xs">
                             {rev.name?.charAt(0) || 'U'}
                           </div>
                           <div>
@@ -467,7 +467,7 @@ export default function ProductDetailPage() {
                   <select
                     value={rating}
                     onChange={(e) => setRating(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-blue-500"
                   >
                     <option value={5}>5 Stars - Outstanding Performance</option>
                     <option value={4}>4 Stars - Great Hardware</option>
@@ -485,14 +485,14 @@ export default function ProductDetailPage() {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Describe build quality, temperatures, framerates, delivery speed..."
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submittingReview}
-                  className="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition-all disabled:opacity-50"
+                  className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors disabled:opacity-50"
                 >
                   {submittingReview ? 'Submitting...' : 'Post Review'}
                 </button>
@@ -507,7 +507,7 @@ export default function ProductDetailPage() {
         <div className="space-y-6 pt-8 border-t border-slate-800">
           <div>
             <h3 className="text-xl font-heading font-bold text-white flex items-center space-x-2">
-              <Sparkles className="h-5 w-5 text-cyan-400" />
+              <Sparkles className="h-5 w-5 text-blue-500" />
               <span>Frequently Bought Together & Related Gear</span>
             </h3>
             <p className="text-xs text-slate-400">Compatible components recommended for this configuration.</p>

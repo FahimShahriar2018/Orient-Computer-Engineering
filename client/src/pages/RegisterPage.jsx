@@ -67,14 +67,14 @@ export default function RegisterPage() {
   return (
     <div className="max-w-xl mx-auto px-4 py-12 space-y-6">
       <div className="text-center space-y-2">
-        <div className="h-12 w-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/20">
+        <div className="h-12 w-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto shadow-sm">
           <UserPlus className="h-6 w-6" />
         </div>
         <h1 className="text-2xl font-heading font-extrabold text-white">Create Your Account</h1>
         <p className="text-xs text-slate-400">Join Orient Computers for faster checkout, order tracking & exclusive member discounts.</p>
       </div>
 
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#0F172A] border border-slate-800 shadow-2xl space-y-5">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#0F172A] border border-slate-800 shadow-sm space-y-5">
         {error && (
           <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center space-x-2">
             <AlertCircle className="h-4 w-4 flex-shrink-0" />
@@ -95,7 +95,7 @@ export default function RegisterPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Fahim Shahriar"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function RegisterPage() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+880 1812-345678"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -127,7 +127,7 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@example.com"
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   placeholder="Min 6 characters"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function RegisterPage() {
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   placeholder="Repeat password"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function RegisterPage() {
                   const dists = getDistrictsByDivision(div);
                   setFormData({ ...formData, division: div, district: dists[0] || '' });
                 }}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
               >
                 {BANGLADESH_DIVISIONS.map((d) => (
                   <option key={d.name} value={d.name}>{d.name} Division</option>
@@ -189,7 +189,7 @@ export default function RegisterPage() {
               <select
                 value={formData.district}
                 onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
               >
                 {availableDistricts.map((dist) => (
                   <option key={dist} value={dist}>{dist}</option>
@@ -201,7 +201,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+            className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
           >
             <span>{loading ? 'Creating Account...' : 'Complete Registration'}</span>
             <ArrowRight className="h-4 w-4" />
@@ -210,7 +210,7 @@ export default function RegisterPage() {
 
         <div className="text-center pt-2 text-xs text-slate-400">
           Already have an account?{' '}
-          <Link to="/login" className="text-cyan-400 hover:underline font-bold">
+          <Link to="/login" className="text-blue-400 hover:underline font-semibold">
             Sign In Here
           </Link>
         </div>

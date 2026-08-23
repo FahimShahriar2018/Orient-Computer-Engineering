@@ -344,8 +344,8 @@ export default function AdminDashboard() {
         <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-900 border border-slate-800">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-              activeTab === 'overview' ? 'bg-cyan-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+              activeTab === 'overview' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             <BarChart3 className="h-3.5 w-3.5" />
@@ -354,8 +354,8 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => setActiveTab('products')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-              activeTab === 'products' ? 'bg-cyan-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+              activeTab === 'products' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Package className="h-3.5 w-3.5" />
@@ -364,8 +364,8 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => setActiveTab('orders')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-              activeTab === 'orders' ? 'bg-cyan-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+              activeTab === 'orders' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Truck className="h-3.5 w-3.5" />
@@ -374,8 +374,8 @@ export default function AdminDashboard() {
 
           <button
             onClick={() => setActiveTab('users')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-              activeTab === 'users' ? 'bg-cyan-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+              activeTab === 'users' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Users className="h-3.5 w-3.5" />
@@ -392,9 +392,9 @@ export default function AdminDashboard() {
           {/* KPI Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {/* Total Revenue */}
-            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-xl relative overflow-hidden group">
+            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-sm relative overflow-hidden group">
               <div className="flex items-center justify-between text-xs text-slate-400">
-                <span className="font-bold uppercase tracking-wider text-emerald-400">Total Revenue</span>
+                <span className="font-semibold uppercase tracking-wider text-emerald-400">Total Revenue</span>
                 <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
                   <TrendingUp className="h-4 w-4" />
                 </div>
@@ -406,10 +406,10 @@ export default function AdminDashboard() {
             </div>
 
             {/* Total Orders */}
-            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-xl relative overflow-hidden">
+            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between text-xs text-slate-400">
-                <span className="font-bold uppercase tracking-wider text-cyan-400">Total Orders</span>
-                <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">
+                <span className="font-semibold uppercase tracking-wider text-blue-400">Total Orders</span>
+                <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400">
                   <ShoppingCart className="h-4 w-4" />
                 </div>
               </div>
@@ -422,10 +422,10 @@ export default function AdminDashboard() {
             </div>
 
             {/* Hardware in Catalog */}
-            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-xl relative overflow-hidden">
+            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between text-xs text-slate-400">
-                <span className="font-bold uppercase tracking-wider text-orange-400">Catalog SKUs</span>
-                <div className="p-2 rounded-xl bg-orange-500/10 text-orange-400">
+                <span className="font-semibold uppercase tracking-wider text-slate-300">Catalog SKUs</span>
+                <div className="p-2 rounded-xl bg-slate-800 text-slate-300">
                   <Package className="h-4 w-4" />
                 </div>
               </div>
@@ -436,10 +436,10 @@ export default function AdminDashboard() {
             </div>
 
             {/* Registered Customers */}
-            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-xl relative overflow-hidden">
+            <div className="p-6 rounded-3xl bg-[#0F172A] border border-slate-800 space-y-2 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between text-xs text-slate-400">
-                <span className="font-bold uppercase tracking-wider text-purple-400">Customers</span>
-                <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400">
+                <span className="font-semibold uppercase tracking-wider text-slate-300">Customers</span>
+                <div className="p-2 rounded-xl bg-slate-800 text-slate-300">
                   <Users className="h-4 w-4" />
                 </div>
               </div>
@@ -451,15 +451,15 @@ export default function AdminDashboard() {
           </div>
 
           {/* Recent Orders Quick Feed */}
-          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 space-y-4 shadow-xl">
+          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 space-y-4 shadow-sm">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="font-heading font-bold text-base text-white flex items-center space-x-2">
-                <Clock className="h-4 w-4 text-cyan-400" />
+                <Clock className="h-4 w-4 text-blue-400" />
                 <span>Recent Storefront Orders</span>
               </h3>
               <button
                 onClick={() => setActiveTab('orders')}
-                className="text-xs text-cyan-400 hover:underline font-semibold"
+                className="text-xs text-blue-400 hover:underline font-semibold"
               >
                 View All Orders →
               </button>
@@ -480,12 +480,12 @@ export default function AdminDashboard() {
                 <tbody className="divide-y divide-slate-800/60">
                   {orders.slice(0, 5).map((ord) => (
                     <tr key={ord._id} className="hover:bg-slate-900/50 transition-colors">
-                      <td className="py-3 px-3 font-mono font-bold text-cyan-400">{ord.trackingNumber}</td>
+                      <td className="py-3 px-3 font-mono font-semibold text-blue-400">{ord.trackingNumber}</td>
                       <td className="py-3 px-3 font-medium text-white">{ord.shippingAddress?.fullName}</td>
                       <td className="py-3 px-3 text-slate-400">{formatDate(ord.createdAt)}</td>
-                      <td className="py-3 px-3 font-extrabold text-orange-400">{formatPrice(ord.totalPrice)}</td>
+                      <td className="py-3 px-3 font-extrabold text-white">{formatPrice(ord.totalPrice)}</td>
                       <td className="py-3 px-3">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-slate-800 text-slate-300">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300">
                           {ord.orderStatus}
                         </span>
                       </td>
@@ -495,7 +495,7 @@ export default function AdminDashboard() {
                             setSelectedOrder(ord);
                             setActiveTab('orders');
                           }}
-                          className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-[11px]"
+                          className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-blue-400 font-semibold text-[11px] transition-colors"
                         >
                           Inspect
                         </button>
@@ -523,13 +523,13 @@ export default function AdminDashboard() {
                 value={productSearch}
                 onChange={(e) => setProductSearch(e.target.value)}
                 placeholder="Search by title, brand, SKU..."
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
 
             <button
               onClick={handleOpenAddProduct}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-xs shadow-lg shadow-orange-500/25 flex items-center space-x-2 transition-all"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center space-x-2 transition-colors"
             >
               <Plus className="h-4 w-4" />
               <span>Add New Hardware SKU</span>
@@ -537,7 +537,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Products Table */}
-          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-2xl">
+          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
@@ -561,10 +561,10 @@ export default function AdminDashboard() {
                         />
                         <span className="font-bold text-white truncate block">{prod.title}</span>
                       </td>
-                      <td className="py-3.5 px-4 text-cyan-400 font-semibold">{prod.brand}</td>
+                      <td className="py-3.5 px-4 text-blue-400 font-semibold">{prod.brand}</td>
                       <td className="py-3.5 px-4 font-mono text-slate-400">{prod.sku}</td>
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-orange-400">{formatPrice(prod.discountPrice || prod.price)}</div>
+                        <div className="font-bold text-white">{formatPrice(prod.discountPrice || prod.price)}</div>
                         {prod.discountPrice && (
                           <div className="text-[10px] text-slate-500 line-through">{formatPrice(prod.price)}</div>
                         )}
@@ -585,7 +585,7 @@ export default function AdminDashboard() {
                       <td className="py-3.5 px-4 text-right space-x-2">
                         <button
                           onClick={() => handleOpenEditProduct(prod)}
-                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-400 transition-colors"
+                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-blue-500/20 text-slate-300 hover:text-blue-400 transition-colors"
                           title="Edit product"
                         >
                           <Edit2 className="h-3.5 w-3.5" />
@@ -621,9 +621,9 @@ export default function AdminDashboard() {
               <button
                 key={st}
                 onClick={() => setOrderStatusFilter(st)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                   orderStatusFilter.toLowerCase() === st.toLowerCase()
-                    ? 'bg-cyan-600 text-white shadow-md'
+                    ? 'bg-blue-600 text-white shadow-sm'
                     : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
                 }`}
               >
@@ -633,7 +633,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Orders Master Table */}
-          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-2xl">
+          <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
@@ -649,7 +649,7 @@ export default function AdminDashboard() {
                 <tbody className="divide-y divide-slate-800">
                   {filteredOrders.map((ord) => (
                     <tr key={ord._id} className="hover:bg-slate-900/50 transition-colors">
-                      <td className="py-3.5 px-4 font-mono font-bold text-cyan-400">{ord.trackingNumber}</td>
+                      <td className="py-3.5 px-4 font-mono font-semibold text-blue-400">{ord.trackingNumber}</td>
                       <td className="py-3.5 px-4">
                         <div className="font-bold text-white">{ord.shippingAddress?.fullName}</div>
                         <div className="text-[10px] text-slate-400">{ord.shippingAddress?.district}</div>
@@ -657,15 +657,15 @@ export default function AdminDashboard() {
                       <td className="py-3.5 px-4 uppercase font-semibold text-slate-300">
                         {ord.paymentMethod}
                       </td>
-                      <td className="py-3.5 px-4 font-extrabold text-orange-400">{formatPrice(ord.totalPrice)}</td>
+                      <td className="py-3.5 px-4 font-extrabold text-white">{formatPrice(ord.totalPrice)}</td>
                       <td className="py-3.5 px-4">
                         <span
-                          className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${
+                          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${
                             ord.orderStatus === 'Delivered'
                               ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
                               : ord.orderStatus === 'Shipped'
-                              ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                              : 'bg-orange-500/10 text-orange-400 border border-orange-500/30'
+                              ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                              : 'bg-slate-800 text-slate-300 border border-slate-700'
                           }`}
                         >
                           {ord.orderStatus}
@@ -675,7 +675,7 @@ export default function AdminDashboard() {
                         {ord.orderStatus === 'Pending' && (
                           <button
                             onClick={() => handleUpdateOrderStatus(ord._id, 'Confirmed')}
-                            className="px-2.5 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-[11px]"
+                            className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] transition-colors"
                           >
                             Confirm Order
                           </button>
@@ -683,7 +683,7 @@ export default function AdminDashboard() {
                         {ord.orderStatus === 'Confirmed' && (
                           <button
                             onClick={() => handleUpdateOrderStatus(ord._id, 'Processing')}
-                            className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold text-[11px]"
+                            className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] transition-colors"
                           >
                             Mark Processing
                           </button>
@@ -691,7 +691,7 @@ export default function AdminDashboard() {
                         {ord.orderStatus === 'Processing' && (
                           <button
                             onClick={() => handleUpdateOrderStatus(ord._id, 'Shipped')}
-                            className="px-2.5 py-1 rounded bg-purple-600 hover:bg-purple-500 text-white font-bold text-[11px]"
+                            className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] transition-colors"
                           >
                             Dispatch Courier
                           </button>
@@ -699,7 +699,7 @@ export default function AdminDashboard() {
                         {ord.orderStatus === 'Shipped' && (
                           <button
                             onClick={() => handleUpdateOrderStatus(ord._id, 'Delivered')}
-                            className="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px]"
+                            className="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-[11px] transition-colors"
                           >
                             Mark Delivered
                           </button>
@@ -718,7 +718,7 @@ export default function AdminDashboard() {
       {/* TAB 4: CUSTOMER ACCOUNTS DIRECTORY */}
       {/* ==================================================== */}
       {activeTab === 'users' && (
-        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-2xl animate-in fade-in">
+        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 overflow-hidden shadow-sm animate-in fade-in">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
@@ -737,12 +737,12 @@ export default function AdminDashboard() {
                     <td className="py-3.5 px-4 font-bold text-white">{u.name}</td>
                     <td className="py-3.5 px-4 text-slate-300">{u.email}</td>
                     <td className="py-3.5 px-4 text-slate-400">{u.phone || 'N/A'}</td>
-                    <td className="py-3.5 px-4 text-cyan-400">{u.address?.division || 'Dhaka'}</td>
+                    <td className="py-3.5 px-4 text-blue-400">{u.address?.division || 'Dhaka'}</td>
                     <td className="py-3.5 px-4">
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
                           u.role === 'admin'
-                            ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                            ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
                             : 'bg-slate-800 text-slate-300'
                         }`}
                       >
@@ -766,10 +766,10 @@ export default function AdminDashboard() {
           <div className="w-full max-w-2xl bg-[#0F172A] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-                <Package className="h-5 w-5 text-cyan-400" />
+                <Package className="h-5 w-5 text-blue-400" />
                 <span>{selectedProduct ? 'Edit Hardware Product' : 'Add New Hardware to Catalog'}</span>
               </h3>
-              <button onClick={() => setShowProductModal(false)} className="p-1 rounded-lg bg-slate-800 text-slate-400">
+              <button onClick={() => setShowProductModal(false)} className="p-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -783,7 +783,7 @@ export default function AdminDashboard() {
                   value={productForm.title}
                   onChange={(e) => setProductForm({ ...productForm, title: e.target.value })}
                   placeholder="e.g. NVIDIA GeForce RTX 4080 Super 16GB"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -796,7 +796,7 @@ export default function AdminDashboard() {
                     value={productForm.brand}
                     onChange={(e) => setProductForm({ ...productForm, brand: e.target.value })}
                     placeholder="ASUS, MSI, Intel"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -806,7 +806,7 @@ export default function AdminDashboard() {
                     required
                     value={productForm.category}
                     onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                   >
                     {categories.map((c) => (
                       <option key={c._id} value={c._id}>{c.name}</option>
@@ -821,7 +821,7 @@ export default function AdminDashboard() {
                     required
                     value={productForm.sku}
                     onChange={(e) => setProductForm({ ...productForm, sku: e.target.value })}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -835,7 +835,7 @@ export default function AdminDashboard() {
                     value={productForm.price}
                     onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
                     placeholder="85000"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -846,7 +846,7 @@ export default function AdminDashboard() {
                     value={productForm.discountPrice}
                     onChange={(e) => setProductForm({ ...productForm, discountPrice: e.target.value })}
                     placeholder="79900"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -858,7 +858,7 @@ export default function AdminDashboard() {
                     value={productForm.stock}
                     onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
                     placeholder="15"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -870,7 +870,7 @@ export default function AdminDashboard() {
                   value={productForm.images}
                   onChange={(e) => setProductForm({ ...productForm, images: e.target.value })}
                   placeholder="https://images.unsplash.com/..."
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -881,7 +881,7 @@ export default function AdminDashboard() {
                   value={productForm.shortSpecs}
                   onChange={(e) => setProductForm({ ...productForm, shortSpecs: e.target.value })}
                   placeholder="16GB GDDR6X VRAM&#10;Boost Clock 2640 MHz"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -897,7 +897,7 @@ export default function AdminDashboard() {
                         techSpecsList: [...productForm.techSpecsList, { key: '', value: '' }],
                       })
                     }
-                    className="text-xs text-cyan-400 hover:underline font-bold"
+                    className="text-xs text-blue-400 hover:underline font-semibold"
                   >
                     + Add Spec Row
                   </button>
@@ -913,7 +913,7 @@ export default function AdminDashboard() {
                         updated[idx].key = e.target.value;
                         setProductForm({ ...productForm, techSpecsList: updated });
                       }}
-                      className="w-1/3 bg-slate-900 border border-slate-700 rounded-lg p-2 text-white"
+                      className="w-1/3 bg-slate-900 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-blue-500"
                     />
                     <input
                       type="text"
@@ -924,7 +924,7 @@ export default function AdminDashboard() {
                         updated[idx].value = e.target.value;
                         setProductForm({ ...productForm, techSpecsList: updated });
                       }}
-                      className="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-2 text-white"
+                      className="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
                 ))}
@@ -934,14 +934,14 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setShowProductModal(false)}
-                  className="px-5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold"
+                  className="px-5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold disabled:opacity-50"
+                  className="px-6 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm disabled:opacity-50 transition-colors"
                 >
                   {loading ? 'Saving...' : 'Save Product'}
                 </button>

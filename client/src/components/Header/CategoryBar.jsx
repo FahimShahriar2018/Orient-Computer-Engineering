@@ -54,9 +54,9 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
             {/* All Products / Catalog Hub */}
             <Link
               to="/shop"
-              className="flex items-center space-x-2 px-3.5 py-3 text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60 rounded-t-lg transition-colors font-semibold"
+              className="flex items-center space-x-2 px-3.5 py-3 text-slate-200 hover:text-blue-400 hover:bg-slate-800/60 rounded-t-lg transition-colors font-semibold"
             >
-              <Grid className="h-4 w-4 text-cyan-400" />
+              <Grid className="h-4 w-4 text-blue-500" />
               <span>All Products</span>
             </Link>
 
@@ -76,11 +76,11 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                     to={`/shop?category=${cat.slug}`}
                     className={`flex items-center space-x-1.5 px-3 py-3 rounded-t-lg transition-colors ${
                       isHovered
-                        ? 'bg-slate-800 text-cyan-400'
-                        : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40'
+                        ? 'bg-slate-800 text-blue-400'
+                        : 'text-slate-300 hover:text-blue-400 hover:bg-slate-800/40'
                     }`}
                   >
-                    <IconComponent className="h-3.5 w-3.5 text-cyan-500" />
+                    <IconComponent className="h-3.5 w-3.5 text-blue-500" />
                     <span>{cat.name}</span>
                     {cat.subcategories?.length > 0 && (
                       <ChevronDown className="h-3 w-3 text-slate-500 ml-0.5" />
@@ -90,9 +90,9 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                   {/* Mega Menu Flyout */}
                   {isHovered && cat.subcategories?.length > 0 && (
                     <div className="absolute top-full left-0 w-80 bg-[#0F172A] border border-slate-700 rounded-b-xl shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-1">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-cyan-400 mb-2.5 pb-1 border-b border-slate-800 flex items-center justify-between">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-blue-400 mb-2.5 pb-1 border-b border-slate-800 flex items-center justify-between">
                         <span>{cat.name} Subcategories</span>
-                        <Sparkles className="h-3 w-3 text-orange-400" />
+                        <Sparkles className="h-3 w-3 text-blue-400" />
                       </div>
 
                       <div className="space-y-1">
@@ -102,10 +102,10 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                             to={`/shop?category=${cat.slug}&subcategory=${sub.slug}`}
                             className="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors group"
                           >
-                            <span className="text-xs group-hover:text-cyan-400 transition-colors">
+                            <span className="text-xs group-hover:text-blue-400 transition-colors">
                               {sub.name}
                             </span>
-                            <ChevronRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                            <ChevronRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-blue-400 transition-colors" />
                           </Link>
                         ))}
                       </div>
@@ -113,7 +113,7 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                       <div className="mt-3 pt-2.5 border-t border-slate-800 flex justify-between items-center text-[11px]">
                         <Link
                           to={`/shop?category=${cat.slug}`}
-                          className="text-orange-400 hover:text-orange-300 font-semibold flex items-center space-x-1"
+                          className="text-blue-400 hover:text-blue-300 font-semibold flex items-center space-x-1"
                         >
                           <span>Explore All in {cat.name}</span>
                           <ChevronRight className="h-3 w-3" />
@@ -126,21 +126,21 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
             })}
           </div>
 
-          {/* Right Promotional Highlights */}
+          {/* Right Highlights */}
           <div className="flex items-center space-x-2">
             <Link
               to="/shop?deals=true"
-              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs font-semibold transition-colors"
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
             >
-              <Flame className="h-3.5 w-3.5 text-orange-400 animate-pulse" />
+              <Flame className="h-3.5 w-3.5 text-amber-400" />
               <span>Flash Deals</span>
             </Link>
 
             <Link
               to="/shop?new=true"
-              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-semibold transition-colors"
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs font-semibold transition-colors"
             >
-              <Zap className="h-3.5 w-3.5 text-cyan-400" />
+              <Zap className="h-3.5 w-3.5 text-blue-400" />
               <span>New Arrivals</span>
             </Link>
           </div>
@@ -154,10 +154,10 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 rounded-lg bg-cyan-600 flex items-center justify-center text-white">
+                  <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                     <Cpu className="h-5 w-5" />
                   </div>
-                  <span className="font-heading font-bold text-lg text-white">Categories</span>
+                  <span className="font-heading font-bold text-lg text-white">Departments</span>
                 </div>
                 <button
                   onClick={onCloseMobileMenu}
@@ -172,9 +172,9 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                 <Link
                   to="/shop"
                   onClick={onCloseMobileMenu}
-                  className="flex items-center space-x-3 p-2.5 rounded-xl text-slate-200 hover:bg-slate-800 hover:text-cyan-400 font-semibold"
+                  className="flex items-center space-x-3 p-2.5 rounded-xl text-slate-200 hover:bg-slate-800 hover:text-blue-400 font-semibold"
                 >
-                  <Grid className="h-4 w-4 text-cyan-400" />
+                  <Grid className="h-4 w-4 text-blue-500" />
                   <span>All Products</span>
                 </Link>
 
@@ -185,10 +185,10 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                       <Link
                         to={`/shop?category=${cat.slug}`}
                         onClick={onCloseMobileMenu}
-                        className="flex items-center justify-between p-2.5 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-cyan-400"
+                        className="flex items-center justify-between p-2.5 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-blue-400"
                       >
                         <div className="flex items-center space-x-3">
-                          <IconComponent className="h-4 w-4 text-cyan-500" />
+                          <IconComponent className="h-4 w-4 text-blue-500" />
                           <span className="font-medium text-sm">{cat.name}</span>
                         </div>
                         <ChevronRight className="h-4 w-4 text-slate-600" />
@@ -203,18 +203,18 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                 <Link
                   to="/shop?deals=true"
                   onClick={onCloseMobileMenu}
-                  className="flex items-center space-x-2.5 p-2 rounded-lg text-orange-400 bg-orange-500/10 font-semibold text-xs"
+                  className="flex items-center space-x-2.5 p-2 rounded-lg text-slate-200 hover:text-white bg-slate-800 font-semibold text-xs"
                 >
-                  <Flame className="h-4 w-4 text-orange-400" />
+                  <Flame className="h-4 w-4 text-amber-400" />
                   <span>Flash Deals & Offers</span>
                 </Link>
 
                 <Link
                   to="/track-order"
                   onClick={onCloseMobileMenu}
-                  className="flex items-center space-x-2.5 p-2 rounded-lg text-cyan-400 bg-cyan-500/10 font-semibold text-xs"
+                  className="flex items-center space-x-2.5 p-2 rounded-lg text-blue-400 bg-blue-500/10 font-semibold text-xs"
                 >
-                  <Shield className="h-4 w-4 text-cyan-400" />
+                  <Shield className="h-4 w-4 text-blue-400" />
                   <span>Track My Order</span>
                 </Link>
               </div>

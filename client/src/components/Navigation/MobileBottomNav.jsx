@@ -18,8 +18,8 @@ export default function MobileBottomNav() {
       {/* 1. Home */}
       <Link
         to="/"
-        className={`flex flex-col items-center space-y-1 text-[10px] font-semibold transition-colors ${
-          pathname === '/' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-white'
+        className={`flex flex-col items-center space-y-1 text-[10px] font-medium transition-colors ${
+          pathname === '/' ? 'text-blue-400 font-bold' : 'text-slate-400 hover:text-white'
         }`}
       >
         <Home className="h-4 w-4" />
@@ -29,8 +29,8 @@ export default function MobileBottomNav() {
       {/* 2. Shop Catalog */}
       <Link
         to="/shop"
-        className={`flex flex-col items-center space-y-1 text-[10px] font-semibold transition-colors ${
-          pathname.startsWith('/shop') ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-white'
+        className={`flex flex-col items-center space-y-1 text-[10px] font-medium transition-colors ${
+          pathname.startsWith('/shop') ? 'text-blue-400 font-bold' : 'text-slate-400 hover:text-white'
         }`}
       >
         <Compass className="h-4 w-4" />
@@ -40,14 +40,14 @@ export default function MobileBottomNav() {
       {/* 3. Wishlist */}
       <Link
         to="/wishlist"
-        className={`relative flex flex-col items-center space-y-1 text-[10px] font-semibold transition-colors ${
-          pathname === '/wishlist' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-white'
+        className={`relative flex flex-col items-center space-y-1 text-[10px] font-medium transition-colors ${
+          pathname === '/wishlist' ? 'text-blue-400 font-bold' : 'text-slate-400 hover:text-white'
         }`}
       >
         <div className="relative">
           <Heart className="h-4 w-4" />
           {wishlistCount > 0 && (
-            <span className="absolute -top-1.5 -right-2 h-3.5 w-3.5 rounded-full bg-rose-500 text-white text-[8px] font-extrabold flex items-center justify-center">
+            <span className="absolute -top-1.5 -right-2 h-3.5 w-3.5 rounded-full bg-rose-600 text-white text-[8px] font-bold flex items-center justify-center">
               {wishlistCount}
             </span>
           )}
@@ -58,26 +58,26 @@ export default function MobileBottomNav() {
       {/* 4. Cart Drawer Toggle */}
       <button
         onClick={openCartDrawer}
-        className="relative flex flex-col items-center space-y-1 text-[10px] font-semibold text-slate-400 hover:text-cyan-400 transition-colors"
+        className="relative flex flex-col items-center space-y-1 text-[10px] font-medium text-slate-400 hover:text-white transition-colors"
       >
         <div className="relative">
-          <ShoppingBag className="h-4 w-4 text-orange-400" />
+          <ShoppingBag className="h-4 w-4" />
           {totalItems > 0 && (
-            <span className="absolute -top-1.5 -right-2 h-3.5 w-3.5 rounded-full bg-orange-500 text-white text-[8px] font-extrabold flex items-center justify-center">
+            <span className="absolute -top-1.5 -right-2 h-3.5 w-3.5 rounded-full bg-blue-600 text-white text-[8px] font-bold flex items-center justify-center">
               {totalItems}
             </span>
           )}
         </div>
-        <span className="text-orange-400">Cart</span>
+        <span>Cart</span>
       </button>
 
       {/* 5. Customer / Admin Account */}
       {user ? (
         <Link
           to={user.role === 'admin' ? '/admin' : '/account'}
-          className={`flex flex-col items-center space-y-1 text-[10px] font-semibold transition-colors ${
+          className={`flex flex-col items-center space-y-1 text-[10px] font-medium transition-colors ${
             pathname.startsWith('/account') || pathname.startsWith('/admin')
-              ? 'text-cyan-400 font-bold'
+              ? 'text-blue-400 font-bold'
               : 'text-slate-400 hover:text-white'
           }`}
         >

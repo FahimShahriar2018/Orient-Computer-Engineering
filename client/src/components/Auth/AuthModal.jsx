@@ -95,9 +95,9 @@ export default function AuthModal() {
         </div>
 
         {/* Demo Fast Login Autofill Bar */}
-        <div className="mb-6 p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+        <div className="mb-6 p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
           <div className="flex items-center justify-between text-[11px] text-slate-400">
-            <span className="font-semibold text-cyan-400 flex items-center space-x-1">
+            <span className="font-semibold text-blue-400 flex items-center space-x-1">
               <Zap className="h-3 w-3" />
               <span>Quick Test Credentials:</span>
             </span>
@@ -113,7 +113,7 @@ export default function AuthModal() {
             <button
               type="button"
               onClick={() => handleAutofill('admin')}
-              className="px-2.5 py-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/30 text-[11px] text-orange-400 font-medium transition-colors text-center truncate"
+              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] text-blue-400 font-medium transition-colors text-center truncate"
             >
               🛡️ Admin Account
             </button>
@@ -127,7 +127,7 @@ export default function AuthModal() {
             onClick={() => setAuthModalTab('login')}
             className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
               authModalTab === 'login'
-                ? 'bg-cyan-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -138,7 +138,7 @@ export default function AuthModal() {
             onClick={() => setAuthModalTab('register')}
             className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
               authModalTab === 'register'
-                ? 'bg-cyan-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -169,7 +169,7 @@ export default function AuthModal() {
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   placeholder="name@orientcomputers.com.bd"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function AuthModal() {
                 <label className="block text-xs font-medium text-slate-300">
                   Password
                 </label>
-                <span className="text-[11px] text-cyan-400 hover:underline cursor-pointer">
+                <span className="text-[11px] text-blue-400 hover:underline cursor-pointer">
                   Forgot?
                 </span>
               </div>
@@ -191,7 +191,7 @@ export default function AuthModal() {
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function AuthModal() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
+              className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-50"
             >
               {loading ? (
                 <span>Authenticating...</span>
@@ -226,7 +226,7 @@ export default function AuthModal() {
                   value={regName}
                   onChange={(e) => setRegName(e.target.value)}
                   placeholder="Fahim Shahriar"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function AuthModal() {
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
                   placeholder="fahim@example.com"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function AuthModal() {
                   value={regPhone}
                   onChange={(e) => setRegPhone(e.target.value)}
                   placeholder="+880 1812-345678"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -277,7 +277,7 @@ export default function AuthModal() {
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -285,7 +285,7 @@ export default function AuthModal() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 flex items-center justify-center space-x-2 transition-all disabled:opacity-50 mt-2"
+              className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-50 mt-2"
             >
               {loading ? (
                 <span>Creating Account...</span>

@@ -43,7 +43,7 @@ export default function LoginPage() {
   return (
     <div className="max-w-md mx-auto px-4 py-16 space-y-6">
       <div className="text-center space-y-2">
-        <div className="h-12 w-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/20">
+        <div className="h-12 w-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto shadow-sm">
           <LogIn className="h-6 w-6" />
         </div>
         <h1 className="text-2xl font-heading font-extrabold text-white">Sign In to Your Account</h1>
@@ -52,7 +52,7 @@ export default function LoginPage() {
 
       {/* 1-Click Quick Demo Login Autofill */}
       <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-        <div className="flex items-center space-x-1.5 text-[11px] font-bold text-cyan-400 uppercase tracking-wider">
+        <div className="flex items-center space-x-1.5 text-[11px] font-semibold text-blue-400 uppercase tracking-wider">
           <Sparkles className="h-3.5 w-3.5" />
           <span>Quick Demo Logins</span>
         </div>
@@ -70,14 +70,14 @@ export default function LoginPage() {
             onClick={() => handleQuickLogin('admin@orient.com.bd', 'orient123456')}
             className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold transition-colors text-left"
           >
-            <div className="text-orange-400 font-bold">🛡️ Admin Portal</div>
+            <div className="text-blue-400 font-bold">🛡️ Admin Portal</div>
             <div className="text-[10px] text-slate-400 truncate">admin@orient...</div>
           </button>
         </div>
       </div>
 
       {/* Login Form */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#0F172A] border border-slate-800 shadow-2xl space-y-5">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#0F172A] border border-slate-800 shadow-sm space-y-5">
         {error && (
           <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center space-x-2">
             <AlertCircle className="h-4 w-4 flex-shrink-0" />
@@ -96,7 +96,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@orient.com.bd"
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+            className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
           >
             <span>{loading ? 'Authenticating...' : 'Sign In to Account'}</span>
             <ArrowRight className="h-4 w-4" />
@@ -128,7 +128,7 @@ export default function LoginPage() {
 
         <div className="text-center pt-2 text-xs text-slate-400">
           Don't have an account?{' '}
-          <Link to="/register" className="text-cyan-400 hover:underline font-bold">
+          <Link to="/register" className="text-blue-400 hover:underline font-semibold">
             Create an Account
           </Link>
         </div>

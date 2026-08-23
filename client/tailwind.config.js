@@ -12,14 +12,15 @@ export default {
           dark: '#0B1120',
           navy: '#0F172A',
           slate: '#1E293B',
-          card: '#182234',
+          card: '#111827',
           border: '#334155',
-          accent: '#06B6D4',
-          'accent-hover': '#0891B2',
-          orange: '#F97316',
-          'orange-hover': '#EA580C',
+          primary: '#2563EB',
+          'primary-hover': '#1D4ED8',
+          accent: '#3B82F6',
+          'accent-hover': '#2563EB',
           amber: '#F59E0B',
-          gold: '#EAB308',
+          emerald: '#10B981',
+          rose: '#F43F5E',
         }
       },
       fontFamily: {
@@ -27,8 +28,7 @@ export default {
         heading: ['Outfit', 'Inter', 'sans-serif'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 20px -5px rgba(6, 182, 212, 0.3)',
-        'glow-orange': '0 0 20px -5px rgba(249, 115, 22, 0.3)',
+        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.25)',
       }
     },
   },

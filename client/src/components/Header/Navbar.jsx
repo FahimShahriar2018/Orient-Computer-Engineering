@@ -125,14 +125,14 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
             </button>
 
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="h-11 w-11 rounded-xl bg-gradient-to-tr from-cyan-600 via-sky-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 ring-1 ring-white/20 group-hover:scale-105 transition-transform">
-                <Cpu className="h-6 w-6 text-white" />
+              <div className="h-10 w-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-md ring-1 ring-white/10 group-hover:bg-blue-500 transition-colors">
+                <Cpu className="h-5 w-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-extrabold text-xl sm:text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-white">
+                <span className="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-white">
                   ORIENT
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-orange-400 -mt-1">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 -mt-1">
                   Computers & Engineering
                 </span>
               </div>
@@ -142,14 +142,14 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
           {/* 2. Amazon-Inspired Global Search Bar */}
           <div ref={searchRef} className="flex-1 max-w-2xl hidden md:block relative">
             <form onSubmit={handleSearchSubmit} className="flex items-center">
-              <div className="relative flex items-center w-full rounded-xl bg-slate-900/90 border border-slate-700 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/20 shadow-inner transition-all overflow-hidden">
+              <div className="relative flex items-center w-full rounded-xl bg-slate-900/90 border border-slate-700 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 shadow-inner transition-all overflow-hidden">
                 {/* Category Dropdown inside Search Bar */}
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="h-11 bg-slate-800/90 text-slate-300 text-xs font-medium px-3.5 border-r border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700/80 transition-colors"
                 >
-                  <option value="">All Categories</option>
+                  <option value="">All Departments</option>
                   {categories.map((cat) => (
                     <option key={cat._id} value={cat.slug}>
                       {cat.name}
@@ -170,7 +170,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                 {/* Search Submit Button */}
                 <button
                   type="submit"
-                  className="h-11 px-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-medium flex items-center justify-center transition-all shadow-md"
+                  className="h-11 px-5 bg-blue-600 hover:bg-blue-500 text-white font-medium flex items-center justify-center transition-colors"
                   aria-label="Search"
                 >
                   <Search className="h-4 w-4" />
@@ -182,7 +182,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
             {showSuggestions && suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-[#0F172A] border border-slate-700 rounded-xl shadow-2xl overflow-hidden z-50 divide-y divide-slate-800 animate-in fade-in slide-in-from-top-2">
                 <div className="px-4 py-2 bg-slate-900/90 flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-semibold uppercase tracking-wider text-[11px] text-cyan-400">
+                  <span className="font-semibold uppercase tracking-wider text-[11px] text-blue-400">
                     Suggested Products
                   </span>
                   <span>{suggestions.length} results</span>
@@ -200,13 +200,13 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                       className="w-11 h-11 object-cover rounded-lg bg-slate-800 border border-slate-700 flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium text-slate-200 group-hover:text-cyan-400 truncate">
+                      <h4 className="text-sm font-medium text-slate-200 group-hover:text-blue-400 truncate">
                         {item.title}
                       </h4>
                       <div className="flex items-center space-x-2 text-xs mt-0.5">
                         <span className="text-slate-400">{item.brand}</span>
                         <span className="text-slate-600">•</span>
-                        <span className="text-orange-400 font-bold">
+                        <span className="text-white font-bold">
                           {formatPrice(item.discountPrice || item.price)}
                         </span>
                         {item.discountPrice > 0 && item.discountPrice < item.price && (
@@ -216,13 +216,13 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                         )}
                       </div>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-slate-500 group-hover:text-cyan-400 transition-colors opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                    <ArrowRight className="h-4 w-4 text-slate-500 group-hover:text-blue-400 transition-colors opacity-0 group-hover:opacity-100 flex-shrink-0" />
                   </button>
                 ))}
 
                 <button
                   onClick={handleSearchSubmit}
-                  className="w-full px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-center text-cyan-400 transition-colors flex items-center justify-center space-x-1.5"
+                  className="w-full px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-center text-blue-400 transition-colors flex items-center justify-center space-x-1.5"
                 >
                   <span>View all search results for "{keyword}"</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -241,7 +241,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                     onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                     className="flex items-center space-x-2 p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs text-slate-200 transition-colors"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-600 to-blue-500 flex items-center justify-center text-white font-bold text-xs">
+                    <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
                       {user.name?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="hidden xl:flex flex-col text-left">
@@ -260,7 +260,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                         <p className="text-xs font-semibold text-slate-200 truncate">{user.name}</p>
                         <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
                         {isAdmin && (
-                          <span className="inline-block mt-1 px-2 py-0.5 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-[10px] font-bold rounded">
+                          <span className="inline-block mt-1 px-2 py-0.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold rounded">
                             STORE ADMIN
                           </span>
                         )}
@@ -270,18 +270,18 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                         <Link
                           to="/account"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition-colors"
+                          className="flex items-center px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-blue-400 transition-colors"
                         >
-                          <User className="h-4 w-4 mr-2.5 text-cyan-400" />
+                          <User className="h-4 w-4 mr-2.5 text-blue-400" />
                           <span>My Profile & Settings</span>
                         </Link>
 
                         <Link
                           to="/orders"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition-colors"
+                          className="flex items-center px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-blue-400 transition-colors"
                         >
-                          <Package className="h-4 w-4 mr-2.5 text-emerald-400" />
+                          <Package className="h-4 w-4 mr-2.5 text-slate-400" />
                           <span>My Orders & Invoices</span>
                         </Link>
 
@@ -289,9 +289,9 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
                           <Link
                             to="/admin"
                             onClick={() => setUserDropdownOpen(false)}
-                            className="flex items-center px-4 py-2 text-xs text-orange-400 hover:bg-orange-500/10 transition-colors font-semibold"
+                            className="flex items-center px-4 py-2 text-xs text-blue-400 hover:bg-blue-500/10 transition-colors font-semibold"
                           >
-                            <Shield className="h-4 w-4 mr-2.5 text-orange-400" />
+                            <Shield className="h-4 w-4 mr-2.5 text-blue-400" />
                             <span>Admin Dashboard</span>
                           </Link>
                         )}
@@ -315,9 +315,9 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
               ) : (
                 <button
                   onClick={() => openAuthModal('login')}
-                  className="flex items-center space-x-2 px-3 sm:px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-medium text-slate-200 transition-all hover:border-cyan-500/40"
+                  className="flex items-center space-x-2 px-3 sm:px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-medium text-slate-200 transition-all hover:border-blue-500/40"
                 >
-                  <User className="h-4 w-4 text-cyan-400" />
+                  <User className="h-4 w-4 text-blue-400" />
                   <div className="hidden sm:flex flex-col text-left leading-tight">
                     <span className="text-[10px] text-slate-400">Account</span>
                     <span className="font-semibold text-white">Sign In</span>
@@ -335,7 +335,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
             >
               <Heart className="h-5 w-5" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-rose-500 text-white font-extrabold text-[10px] flex items-center justify-center shadow-lg shadow-rose-500/30">
+                <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-rose-600 text-white font-bold text-[10px] flex items-center justify-center shadow-sm">
                   {wishlistCount}
                 </span>
               )}
@@ -344,20 +344,20 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
             {/* Cart Trigger Button with Slide-out Drawer */}
             <button
               onClick={openDrawer}
-              className="relative flex items-center space-x-2.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-500/15 to-amber-500/15 hover:from-orange-500/25 hover:to-amber-500/25 border border-orange-500/30 text-slate-100 transition-all group"
+              className="relative flex items-center space-x-2.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700/90 border border-slate-700 text-slate-100 transition-all group"
               aria-label="Shopping Cart"
             >
               <div className="relative">
-                <ShoppingCart className="h-5 w-5 text-orange-400 group-hover:scale-110 transition-transform" />
+                <ShoppingCart className="h-5 w-5 text-blue-400 group-hover:scale-105 transition-transform" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-2.5 -right-2.5 h-5 w-5 rounded-full bg-orange-500 text-white font-extrabold text-[10px] flex items-center justify-center shadow-md shadow-orange-500/40">
+                  <span className="absolute -top-2.5 -right-2.5 h-5 w-5 rounded-full bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center shadow-sm">
                     {totalItems}
                   </span>
                 )}
               </div>
               <div className="hidden lg:flex flex-col text-left leading-tight">
                 <span className="text-[10px] text-slate-400 font-medium">Cart</span>
-                <span className="text-xs font-bold text-orange-400">
+                <span className="text-xs font-bold text-white">
                   {formatPrice(itemsPrice)}
                 </span>
               </div>
@@ -378,7 +378,7 @@ export default function Navbar({ onToggleMobileMenu, isMobileMenuOpen }) {
               />
               <button
                 type="submit"
-                className="h-10 px-4 bg-cyan-600 hover:bg-cyan-500 text-white flex items-center justify-center"
+                className="h-10 px-4 bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center"
               >
                 <Search className="h-3.5 w-3.5" />
               </button>

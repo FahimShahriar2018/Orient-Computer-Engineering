@@ -32,7 +32,7 @@ const HERO_SLIDES = [
     priceBadge: 'Up to 15% OFF',
     link: '/shop?category=processors',
     ctaText: 'Shop Processors',
-    badgeColor: 'cyan',
+    badgeColor: 'blue',
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=1200&auto=format&fit=crop&q=80',
   },
   {
@@ -94,22 +94,18 @@ export default function HeroBanner() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent" />
       </div>
 
-      {/* Decorative Glow Orbs */}
-      <div className="absolute top-0 right-1/4 -mt-20 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-10 -mb-20 w-80 h-80 bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
-
       {/* Slide Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 py-16 sm:py-20 lg:py-24 flex flex-col justify-between min-h-[460px] sm:min-h-[500px]">
         <div className="max-w-2xl space-y-4">
           {/* Tag & Offer Badge */}
           <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-xs font-extrabold uppercase tracking-wider">
+            <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="h-3.5 w-3.5" />
               <span>{slide.tag}</span>
             </span>
 
-            <span className="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-400 text-xs font-bold">
-              <Flame className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold">
+              <Flame className="h-3.5 w-3.5 text-amber-400" />
               <span>{slide.priceBadge}</span>
             </span>
           </div>
@@ -128,7 +124,7 @@ export default function HeroBanner() {
           <div className="pt-4 flex flex-wrap items-center gap-3">
             <Link
               to={slide.link}
-              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-sm shadow-xl shadow-orange-500/25 flex items-center space-x-2 transition-all transform active:scale-95"
+              className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-md flex items-center space-x-2 transition-colors active:scale-95"
             >
               <span>{slide.ctaText}</span>
               <ArrowRight className="h-4 w-4" />
@@ -136,9 +132,9 @@ export default function HeroBanner() {
 
             <Link
               to="/shop"
-              className="px-5 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-semibold text-sm transition-colors"
+              className="px-5 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm transition-colors"
             >
-              Browse All Products
+              Browse All Hardware
             </Link>
           </div>
         </div>
@@ -151,8 +147,8 @@ export default function HeroBanner() {
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
-                className={`h-2.5 rounded-full transition-all ${
-                  currentSlide === idx ? 'w-8 bg-cyan-400' : 'w-2.5 bg-slate-700 hover:bg-slate-600'
+                className={`h-2 rounded-full transition-all ${
+                  currentSlide === idx ? 'w-8 bg-blue-500' : 'w-2 bg-slate-700 hover:bg-slate-600'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />

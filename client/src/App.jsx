@@ -26,7 +26,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <AppProviders>
-        <div className="min-h-screen bg-[#0B1120] text-slate-100 flex flex-col justify-between selection:bg-cyan-500 selection:text-white pb-14 sm:pb-0">
+        <div className="min-h-screen bg-[#0B1120] text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white pb-14 sm:pb-0">
           <Header />
           <div className="flex-1 w-full">
             <Routes>

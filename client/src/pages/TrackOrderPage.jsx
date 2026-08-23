@@ -68,7 +68,7 @@ export default function TrackOrderPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Header */}
       <div className="text-center space-y-3">
-        <div className="h-14 w-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/20">
+        <div className="h-14 w-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto shadow-sm">
           <Truck className="h-7 w-7" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white">
@@ -81,7 +81,7 @@ export default function TrackOrderPage() {
 
       {/* Search Bar */}
       <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto">
-        <div className="relative flex items-center rounded-2xl bg-slate-900 border border-slate-700 p-1.5 focus-within:border-cyan-500 shadow-xl overflow-hidden">
+        <div className="relative flex items-center rounded-2xl bg-slate-900 border border-slate-700 p-1.5 focus-within:border-blue-500 shadow-sm overflow-hidden">
           <input
             type="text"
             required
@@ -93,7 +93,7 @@ export default function TrackOrderPage() {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5 disabled:opacity-50"
+            className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors flex items-center space-x-1.5 disabled:opacity-50"
           >
             <Search className="h-4 w-4" />
             <span>{loading ? 'Searching...' : 'Track'}</span>
@@ -111,11 +111,11 @@ export default function TrackOrderPage() {
 
       {/* Order Status Display */}
       {order && (
-        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-8 shadow-2xl animate-in fade-in">
+        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-8 shadow-sm animate-in fade-in">
           {/* Top Status Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-6 border-b border-slate-800 gap-4">
             <div>
-              <div className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">
+              <div className="text-[11px] font-semibold text-blue-400 uppercase tracking-wider">
                 Tracking Reference
               </div>
               <div className="font-mono font-extrabold text-xl sm:text-2xl text-white">
@@ -127,7 +127,7 @@ export default function TrackOrderPage() {
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-extrabold text-xs uppercase tracking-wider">
+              <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs uppercase tracking-wider">
                 Status: {order.orderStatus}
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function TrackOrderPage() {
                     <div
                       className={`h-10 w-10 sm:h-12 sm:w-12 rounded-2xl flex items-center justify-center font-bold text-xs transition-all ${
                         isCurrent
-                          ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/40 ring-4 ring-cyan-500/20'
+                          ? 'bg-blue-600 text-white shadow-md ring-4 ring-blue-500/20'
                           : isPassed
                           ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                           : 'bg-slate-900 border border-slate-800 text-slate-600'
@@ -168,9 +168,9 @@ export default function TrackOrderPage() {
           </div>
 
           {/* Activity / Status History Log */}
-          <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
             <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-2">
-              <Clock className="h-4 w-4 text-orange-400" />
+              <Clock className="h-4 w-4 text-slate-400" />
               <span>Live Timeline Log</span>
             </h4>
 
@@ -178,7 +178,7 @@ export default function TrackOrderPage() {
               {order.statusHistory?.map((h, i) => (
                 <div key={i} className="pt-3 first:pt-0 flex items-start justify-between text-xs">
                   <div className="space-y-0.5">
-                    <div className="font-bold text-cyan-400">{h.status}</div>
+                    <div className="font-semibold text-blue-400">{h.status}</div>
                     <div className="text-slate-300">{h.note}</div>
                   </div>
                   <div className="text-[11px] text-slate-500">{formatDate(h.timestamp)}</div>
@@ -196,7 +196,7 @@ export default function TrackOrderPage() {
               {order.orderItems?.map((item, idx) => (
                 <div key={idx} className="pt-2 first:pt-0 flex items-center justify-between text-xs">
                   <span className="text-white font-medium truncate max-w-md">{item.title}</span>
-                  <span className="text-orange-400 font-bold ml-2">Qty: {item.qty}</span>
+                  <span className="text-slate-300 font-semibold ml-2">Qty: {item.qty}</span>
                 </div>
               ))}
             </div>

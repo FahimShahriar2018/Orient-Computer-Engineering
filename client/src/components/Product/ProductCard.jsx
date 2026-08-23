@@ -39,11 +39,11 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
   // ----------------------------------------------------
   if (viewMode === 'list') {
     return (
-      <div className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-5 flex flex-col sm:flex-row gap-5 transition-all hover:shadow-2xl group relative overflow-hidden">
+      <div className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-5 flex flex-col sm:flex-row gap-5 transition-all hover:shadow-md group relative overflow-hidden">
         {/* Thumbnail with Wishlist & Badge */}
         <div className="relative w-full sm:w-56 h-48 sm:h-auto rounded-xl bg-slate-900 overflow-hidden flex-shrink-0 flex items-center justify-center p-3">
           {product.badge && (
-            <span className="absolute top-3 left-3 z-10 px-2.5 py-0.5 rounded-md bg-orange-500/20 border border-orange-500/40 text-orange-400 text-[10px] font-extrabold uppercase tracking-wider">
+            <span className="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold uppercase tracking-wider">
               {product.badge}
             </span>
           )}
@@ -73,7 +73,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
         <div className="flex-1 flex flex-col justify-between space-y-3">
           <div>
             <div className="flex items-center space-x-2 text-xs text-slate-400">
-              <span className="font-bold text-cyan-400 uppercase tracking-wider">{product.brand}</span>
+              <span className="font-semibold text-blue-400 uppercase tracking-wider">{product.brand}</span>
               {product.category?.name && (
                 <>
                   <span>•</span>
@@ -84,7 +84,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
 
             <Link
               to={`/product/${product.slug || product._id}`}
-              className="text-base sm:text-lg font-heading font-bold text-white hover:text-cyan-400 transition-colors line-clamp-2 mt-1"
+              className="text-base sm:text-lg font-heading font-bold text-white hover:text-blue-400 transition-colors line-clamp-2 mt-1"
             >
               {product.title}
             </Link>
@@ -101,7 +101,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
               <span className="text-slate-600">•</span>
               <div className="flex items-center space-x-1 text-xs">
                 <span className={`h-2 w-2 rounded-full ${inStock ? 'bg-emerald-400' : 'bg-rose-500'}`} />
-                <span className={inStock ? 'text-emerald-400' : 'text-rose-400'}>
+                <span className={inStock ? 'text-emerald-400 font-medium' : 'text-rose-400 font-medium'}>
                   {inStock ? `${product.stock} in stock` : 'Out of Stock'}
                 </span>
               </div>
@@ -112,7 +112,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
               <ul className="text-xs text-slate-300 space-y-1 mt-3">
                 {product.shortSpecs.slice(0, 3).map((spec, idx) => (
                   <li key={idx} className="flex items-center space-x-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400 flex-shrink-0" />
                     <span className="truncate">{spec}</span>
                   </li>
                 ))}
@@ -124,7 +124,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
           <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-800">
             <div className="space-y-0.5">
               <div className="flex items-center space-x-2">
-                <span className="text-xl font-extrabold text-orange-400">
+                <span className="text-xl font-extrabold text-white">
                   {formatPrice(finalPrice)}
                 </span>
                 {discountPercent > 0 && (
@@ -150,7 +150,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
               <button
                 disabled={!inStock}
                 onClick={() => addToCart(product, 1, true)}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-xs shadow-lg shadow-orange-500/25 flex items-center space-x-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center space-x-2 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <ShoppingCart className="h-4 w-4" />
                 <span>{inStock ? 'Add to Cart' : 'Out of Stock'}</span>
@@ -166,11 +166,11 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
   // GRID VIEW LAYOUT (DEFAULT)
   // ----------------------------------------------------
   return (
-    <div className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-4 sm:p-5 flex flex-col justify-between space-y-4 transition-all hover:shadow-2xl group relative overflow-hidden">
+    <div className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-4 sm:p-5 flex flex-col justify-between space-y-4 transition-all hover:shadow-md group relative overflow-hidden">
       {/* Badge Top Left */}
       {product.badge && (
         <div className="absolute top-3 left-3 z-10">
-          <span className="px-2.5 py-0.5 rounded-md bg-orange-500/20 border border-orange-500/40 text-orange-400 text-[10px] font-extrabold uppercase tracking-wider">
+          <span className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold uppercase tracking-wider">
             {product.badge}
           </span>
         </div>
@@ -203,7 +203,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
       {/* Product Details */}
       <div className="space-y-2 flex-1">
         <div className="flex items-center justify-between text-[11px] text-slate-400">
-          <span className="font-bold text-cyan-400 uppercase tracking-wider">{product.brand}</span>
+          <span className="font-semibold text-blue-400 uppercase tracking-wider">{product.brand}</span>
           <div className="flex items-center space-x-1">
             <span className={`h-1.5 w-1.5 rounded-full ${inStock ? 'bg-emerald-400' : 'bg-rose-500'}`} />
             <span className={inStock ? 'text-emerald-400 font-medium' : 'text-rose-400 font-medium'}>
@@ -214,7 +214,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
 
         <Link
           to={`/product/${product.slug || product._id}`}
-          className="text-sm font-heading font-bold text-slate-100 hover:text-cyan-400 transition-colors line-clamp-2 leading-snug"
+          className="text-sm font-heading font-bold text-slate-100 hover:text-blue-400 transition-colors line-clamp-2 leading-snug"
         >
           {product.title}
         </Link>
@@ -235,7 +235,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
           <ul className="text-[11px] text-slate-400 space-y-1 pt-1">
             {product.shortSpecs.slice(0, 2).map((spec, idx) => (
               <li key={idx} className="flex items-center space-x-1.5">
-                <span className="h-1 w-1 rounded-full bg-cyan-400 flex-shrink-0" />
+                <span className="h-1 w-1 rounded-full bg-blue-400 flex-shrink-0" />
                 <span className="truncate">{spec}</span>
               </li>
             ))}
@@ -247,7 +247,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
       <div className="pt-3 border-t border-slate-800 space-y-3">
         <div className="flex items-baseline justify-between">
           <div>
-            <div className="text-lg font-extrabold text-orange-400">
+            <div className="text-lg font-extrabold text-white">
               {formatPrice(finalPrice)}
             </div>
             {discountPercent > 0 && (
@@ -267,7 +267,7 @@ export default function ProductCard({ product, viewMode = 'grid' }) {
         <button
           disabled={!inStock}
           onClick={() => addToCart(product, 1, true)}
-          className="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed transform active:scale-[0.98]"
+          className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40 disabled:cursor-not-allowed transform active:scale-[0.98]"
         >
           <ShoppingCart className="h-3.5 w-3.5" />
           <span>{inStock ? 'Add to Cart' : 'Out of Stock'}</span>

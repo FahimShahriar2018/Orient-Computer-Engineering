@@ -26,7 +26,7 @@ export default function ProductTabSection({ featured = [], bestSellers = [], new
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-white flex items-center space-x-2">
-            <Sparkles className="h-5 w-5 text-cyan-400" />
+            <Sparkles className="h-5 w-5 text-blue-500" />
             <span>Featured Hardware Showcase</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -40,7 +40,7 @@ export default function ProductTabSection({ featured = [], bestSellers = [], new
             onClick={() => setActiveTab('featured')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'featured'
-                ? 'bg-cyan-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -50,7 +50,7 @@ export default function ProductTabSection({ featured = [], bestSellers = [], new
             onClick={() => setActiveTab('bestSellers')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'bestSellers'
-                ? 'bg-cyan-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -60,7 +60,7 @@ export default function ProductTabSection({ featured = [], bestSellers = [], new
             onClick={() => setActiveTab('newArrivals')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'newArrivals'
-                ? 'bg-cyan-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -86,7 +86,7 @@ export default function ProductTabSection({ featured = [], bestSellers = [], new
       <div className="text-center pt-4">
         <Link
           to="/shop"
-          className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-cyan-400 font-semibold text-xs transition-all shadow-lg"
+          className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-blue-400 font-semibold text-xs transition-colors shadow-sm"
         >
           <span>View All Hardware in Store Catalog</span>
           <ArrowRight className="h-4 w-4" />

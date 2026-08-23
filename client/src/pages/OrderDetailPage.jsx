@@ -38,7 +38,7 @@ export default function OrderDetailPage() {
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center text-slate-400">
-        <div className="h-10 w-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <div className="h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
         <p className="text-xs">Loading order details...</p>
       </div>
     );
@@ -48,7 +48,7 @@ export default function OrderDetailPage() {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-4">
         <h2 className="text-xl font-bold text-white">Order Not Found</h2>
-        <Link to="/account" className="inline-block px-6 py-2.5 bg-cyan-600 text-white font-bold text-xs rounded-xl">
+        <Link to="/account" className="inline-block px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-xl shadow-sm transition-colors">
           Return to My Account
         </Link>
       </div>
@@ -59,18 +59,18 @@ export default function OrderDetailPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Breadcrumb */}
       <div className="flex items-center space-x-2 text-xs text-slate-400">
-        <Link to="/" className="hover:text-cyan-400">Home</Link>
+        <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
         <ChevronRight className="h-3 w-3 text-slate-600" />
-        <Link to="/account" className="hover:text-cyan-400">My Account</Link>
+        <Link to="/account" className="hover:text-blue-400 transition-colors">My Account</Link>
         <ChevronRight className="h-3 w-3 text-slate-600" />
-        <span className="text-slate-200">Order {order.trackingNumber}</span>
+        <span className="text-slate-200 font-medium">Order {order.trackingNumber}</span>
       </div>
 
       {/* Main Order Card */}
-      <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-2xl">
+      <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-6 border-b border-slate-800 gap-4">
           <div>
-            <div className="text-xs text-cyan-400 font-bold uppercase tracking-wider">
+            <div className="text-xs text-blue-400 font-semibold uppercase tracking-wider">
               Order Reference
             </div>
             <h1 className="font-mono font-extrabold text-2xl text-white">
@@ -85,9 +85,9 @@ export default function OrderDetailPage() {
             </span>
             <Link
               to={`/order-success/${order._id}`}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center space-x-1.5 transition-colors"
             >
-              <Printer className="h-4 w-4 text-orange-400" />
+              <Printer className="h-4 w-4 text-slate-400" />
               <span>Print Invoice</span>
             </Link>
           </div>
@@ -96,14 +96,14 @@ export default function OrderDetailPage() {
         {/* Shipping & Payment Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-            <div className="text-cyan-400 font-bold uppercase text-[11px]">Delivery Recipient</div>
+            <div className="text-blue-400 font-bold uppercase text-[11px]">Delivery Recipient</div>
             <div className="text-white font-bold">{order.shippingAddress?.fullName}</div>
             <div className="text-slate-400">{order.shippingAddress?.phone}</div>
             <div className="text-slate-400">{order.shippingAddress?.address}, {order.shippingAddress?.district}, {order.shippingAddress?.division}</div>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-            <div className="text-orange-400 font-bold uppercase text-[11px]">Payment & Delivery</div>
+            <div className="text-slate-300 font-bold uppercase text-[11px]">Payment & Delivery</div>
             <div className="text-white font-bold uppercase">{order.paymentMethod} Payment</div>
             <div className="text-slate-400 capitalize">Method: {order.deliveryMethod?.replace(/_/g, ' ')}</div>
             <div className="text-emerald-400 font-semibold">{order.isPaid ? '✔ Paid' : '⏳ Payment Pending'}</div>
@@ -125,7 +125,7 @@ export default function OrderDetailPage() {
                     <span className="text-slate-500 font-mono">Qty: {item.qty} × {formatPrice(item.price)}</span>
                   </div>
                 </div>
-                <span className="font-extrabold text-orange-400 text-sm">{formatPrice(item.price * item.qty)}</span>
+                <span className="font-extrabold text-white text-sm">{formatPrice(item.price * item.qty)}</span>
               </div>
             ))}
           </div>
@@ -144,7 +144,7 @@ export default function OrderDetailPage() {
             </div>
             <div className="flex justify-between text-base font-bold pt-2 border-t border-slate-800 text-white">
               <span>Total Paid:</span>
-              <span className="font-extrabold text-orange-400 text-lg">{formatPrice(order.totalPrice)}</span>
+              <span className="font-extrabold text-white text-lg">{formatPrice(order.totalPrice)}</span>
             </div>
           </div>
         </div>

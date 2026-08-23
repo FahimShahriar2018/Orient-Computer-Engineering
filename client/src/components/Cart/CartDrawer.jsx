@@ -50,9 +50,9 @@ export default function CartDrawer() {
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
         <div className="w-screen max-w-md bg-[#0F172A] border-l border-slate-800 text-slate-100 flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
           {/* Drawer Header */}
-          <div className="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
+          <div className="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900">
             <div className="flex items-center space-x-2.5">
-              <div className="h-9 w-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400">
+              <div className="h-9 w-9 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
                 <ShoppingCart className="h-5 w-5" />
               </div>
               <div>
@@ -89,7 +89,7 @@ export default function CartDrawer() {
                     closeDrawer();
                     navigate('/shop');
                   }}
-                  className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-xs shadow-lg shadow-cyan-600/25 transition-all"
+                  className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors"
                 >
                   <span>Explore Hardware Store</span>
                   <ArrowRight className="h-4 w-4" />
@@ -112,7 +112,7 @@ export default function CartDrawer() {
                         <Link
                           to={`/product/${item.slug}`}
                           onClick={closeDrawer}
-                          className="text-xs sm:text-sm font-medium text-slate-200 hover:text-cyan-400 line-clamp-2 transition-colors"
+                          className="text-xs sm:text-sm font-medium text-slate-200 hover:text-blue-400 line-clamp-2 transition-colors"
                         >
                           {item.title}
                         </Link>
@@ -129,7 +129,7 @@ export default function CartDrawer() {
 
                     <div className="flex items-center justify-between mt-3">
                       {/* Stepper */}
-                      <div className="flex items-center space-x-2 bg-slate-800/90 border border-slate-700 rounded-lg p-0.5">
+                      <div className="flex items-center space-x-2 bg-slate-800 border border-slate-700 rounded-lg p-0.5">
                         <button
                           onClick={() => updateQuantity(item.product, item.qty - 1)}
                           className="p-1 text-slate-300 hover:text-white hover:bg-slate-700 rounded transition-colors"
@@ -151,7 +151,7 @@ export default function CartDrawer() {
 
                       {/* Price */}
                       <div className="text-right">
-                        <div className="text-xs sm:text-sm font-bold text-orange-400">
+                        <div className="text-xs sm:text-sm font-bold text-white">
                           {formatPrice(item.price * item.qty)}
                         </div>
                         {item.qty > 1 && (
@@ -177,14 +177,14 @@ export default function CartDrawer() {
                 </div>
                 <div className="flex justify-between text-slate-400">
                   <span className="flex items-center space-x-1">
-                    <Truck className="h-3.5 w-3.5 text-cyan-400" />
+                    <Truck className="h-3.5 w-3.5 text-slate-400" />
                     <span>Estimated Shipping</span>
                   </span>
                   <span>{shippingPrice === 0 ? <span className="text-emerald-400 font-bold">FREE</span> : formatPrice(shippingPrice)}</span>
                 </div>
                 <div className="pt-2 border-t border-slate-800 flex justify-between text-sm">
                   <span className="font-bold text-white">Estimated Total</span>
-                  <span className="font-extrabold text-orange-400 text-base">
+                  <span className="font-extrabold text-white text-base">
                     {formatPrice(totalPrice)}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function CartDrawer() {
               <div className="space-y-2 pt-1">
                 <button
                   onClick={handleCheckoutClick}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white font-bold text-sm shadow-xl shadow-orange-500/25 flex items-center justify-center space-x-2 transition-all transform active:scale-[0.99]"
+                  className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors transform active:scale-[0.99]"
                 >
                   <span>Proceed to Checkout</span>
                   <ArrowRight className="h-4 w-4" />
@@ -201,7 +201,7 @@ export default function CartDrawer() {
 
                 <button
                   onClick={handleViewCartClick}
-                  className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-medium text-xs transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium text-xs transition-colors"
                 >
                   View Full Cart & Apply Coupon
                 </button>

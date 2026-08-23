@@ -32,7 +32,7 @@ export default function WishlistPage() {
       </div>
 
       {wishlistItems.length === 0 ? (
-        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-12 text-center space-y-5 shadow-2xl">
+        <div className="rounded-3xl bg-[#0F172A] border border-slate-800 p-12 text-center space-y-5 shadow-sm">
           <div className="h-20 w-20 rounded-2xl bg-slate-800/80 mx-auto flex items-center justify-center text-slate-500">
             <Heart className="h-10 w-10" />
           </div>
@@ -44,7 +44,7 @@ export default function WishlistPage() {
           </div>
           <Link
             to="/shop"
-            className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/25 transition-all"
+            className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-colors"
           >
             <span>Explore Hardware Catalog</span>
             <ArrowRight className="h-4 w-4" />
@@ -55,7 +55,7 @@ export default function WishlistPage() {
           {wishlistItems.map((item) => (
             <div
               key={item._id || item.product}
-              className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-4 flex flex-col justify-between space-y-4 shadow-xl transition-all"
+              className="rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-4 flex flex-col justify-between space-y-4 shadow-sm transition-all"
             >
               <div className="relative h-48 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center p-3">
                 <Link to={`/product/${item.slug || item._id}`}>
@@ -75,23 +75,23 @@ export default function WishlistPage() {
               </div>
 
               <div className="space-y-2 flex-1">
-                <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-blue-400 uppercase tracking-wider">
                   {item.brand}
                 </span>
                 <Link
                   to={`/product/${item.slug || item._id}`}
-                  className="block text-sm font-heading font-bold text-slate-100 hover:text-cyan-400 transition-colors line-clamp-2"
+                  className="block text-sm font-heading font-bold text-slate-100 hover:text-blue-400 transition-colors line-clamp-2"
                 >
                   {item.title}
                 </Link>
-                <div className="text-base font-extrabold text-orange-400">
+                <div className="text-base font-extrabold text-white">
                   {formatPrice(item.price)}
                 </div>
               </div>
 
               <button
                 onClick={() => handleMoveToCart(item)}
-                className="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center space-x-2 transition-all"
+                className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center space-x-2 transition-colors"
               >
                 <ShoppingCart className="h-3.5 w-3.5" />
                 <span>Move to Cart</span>

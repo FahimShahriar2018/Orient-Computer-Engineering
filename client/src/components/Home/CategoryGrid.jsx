@@ -28,7 +28,7 @@ const DEFAULT_CATEGORIES = [
     description: 'Intel 14th Gen & AMD Ryzen 7000/9000',
     icon: 'Cpu',
     image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&auto=format&fit=crop&q=80',
-    color: 'from-cyan-600/20 to-blue-600/10 border-cyan-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
   {
     name: 'Graphics Cards (GPUs)',
@@ -36,7 +36,7 @@ const DEFAULT_CATEGORIES = [
     description: 'NVIDIA RTX 40-Series & AMD Radeon RX',
     icon: 'Layers',
     image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80',
-    color: 'from-orange-600/20 to-amber-600/10 border-orange-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
   {
     name: 'Motherboards',
@@ -44,7 +44,7 @@ const DEFAULT_CATEGORIES = [
     description: 'Intel Z790/B760 & AMD AM5 X670/B650',
     icon: 'HardDrive',
     image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=600&auto=format&fit=crop&q=80',
-    color: 'from-emerald-600/20 to-teal-600/10 border-emerald-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
   {
     name: 'Laptops & Ultrabooks',
@@ -52,7 +52,7 @@ const DEFAULT_CATEGORIES = [
     description: 'ASUS ROG, Lenovo Legion & Creator Series',
     icon: 'Laptop',
     image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80',
-    color: 'from-purple-600/20 to-indigo-600/10 border-purple-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
   {
     name: 'Monitors & Displays',
@@ -60,7 +60,7 @@ const DEFAULT_CATEGORIES = [
     description: '4K UHD, 240Hz OLED & Ultrawide Curved',
     icon: 'Monitor',
     image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&auto=format&fit=crop&q=80',
-    color: 'from-sky-600/20 to-cyan-600/10 border-sky-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
   {
     name: 'Networking & IT Security',
@@ -68,7 +68,7 @@ const DEFAULT_CATEGORIES = [
     description: 'MikroTik Switches, WiFi 6 & 4K CCTV',
     icon: 'Network',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
-    color: 'from-rose-600/20 to-pink-600/10 border-rose-500/30',
+    color: 'border-slate-800 hover:border-blue-500/50',
   },
 ];
 
@@ -100,7 +100,7 @@ export default function CategoryGrid() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-white flex items-center space-x-2">
-            <Sparkles className="h-5 w-5 text-cyan-400" />
+            <Sparkles className="h-5 w-5 text-blue-500" />
             <span>Explore Hardware Departments</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -110,7 +110,7 @@ export default function CategoryGrid() {
 
         <Link
           to="/shop"
-          className="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+          className="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
         >
           <span>View All Departments</span>
           <ArrowRight className="h-3.5 w-3.5" />
@@ -124,25 +124,22 @@ export default function CategoryGrid() {
             <Link
               key={cat.slug || cat.name}
               to={`/shop?category=${cat.slug}`}
-              className="relative overflow-hidden rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-5 flex items-center justify-between group transition-all hover:shadow-xl hover:-translate-y-1"
+              className="relative overflow-hidden rounded-2xl bg-[#0F172A] border border-slate-800 hover:border-slate-700 p-5 flex items-center justify-between group transition-all hover:shadow-md hover:-translate-y-0.5"
             >
-              {/* Background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-900/60 pointer-events-none" />
-
               <div className="relative z-10 space-y-2 max-w-[65%]">
-                <div className="h-10 w-10 rounded-xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all">
+                <div className="h-10 w-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-400 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all">
                   <IconComponent className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-base text-white group-hover:text-cyan-400 transition-colors">
+                  <h3 className="font-heading font-bold text-base text-white group-hover:text-blue-400 transition-colors">
                     {cat.name}
                   </h3>
                   <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
                     {cat.description || 'Explore official models & specs'}
                   </p>
                 </div>
-                <div className="inline-flex items-center space-x-1 text-xs font-semibold text-orange-400 group-hover:text-orange-300 transition-colors pt-1">
-                  <span>Shop Category</span>
+                <div className="inline-flex items-center space-x-1 text-xs font-medium text-blue-400 group-hover:text-blue-300 transition-colors pt-1">
+                  <span>Shop Department</span>
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -152,7 +149,7 @@ export default function CategoryGrid() {
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </Link>
