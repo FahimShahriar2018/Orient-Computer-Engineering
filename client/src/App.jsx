@@ -9,6 +9,10 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import WishlistPage from './pages/WishlistPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderSuccessPage from './pages/OrderSuccessPage';
+import TrackOrderPage from './pages/TrackOrderPage';
 
 export default function App() {
   return (
@@ -18,11 +22,20 @@ export default function App() {
           <Header />
           <div className="flex-1 w-full">
             <Routes>
+              {/* Storefront Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/shop" element={<ShopPage />} />
               <Route path="/product/:idOrSlug" element={<ProductDetailPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
-              {/* Fallback to ShopPage */}
+
+              {/* Cart & Checkout Funnel */}
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/order-success/:id" element={<OrderSuccessPage />} />
+              <Route path="/track-order" element={<TrackOrderPage />} />
+              <Route path="/track-order/:trackingNumber" element={<TrackOrderPage />} />
+
+              {/* Fallback */}
               <Route path="*" element={<ShopPage />} />
             </Routes>
           </div>

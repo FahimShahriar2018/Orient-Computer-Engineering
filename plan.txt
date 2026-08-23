@@ -132,15 +132,15 @@ orient-computers/
 
 ## 🛒 Phase 6: Cart, Checkout & Order Placement Funnel
 
-- [ ] **Step 6.1: Cart Management**
+- [x] **Step 6.1: Cart Management**
   - Slide-out Cart Drawer (quick view from any page) + Dedicated Full Cart Page.
   - Quantity controls, item removal, price subtotal, VAT/tax, and shipping calculation.
   - Coupon discount input with mock promo codes.
-- [ ] **Step 6.2: Multi-Step Checkout Flow**
+- [x] **Step 6.2: Multi-Step Checkout Flow**
   - **Step 1: Shipping Details**: Full Name, Phone, Address, Bangladeshi Division/District selection.
   - **Step 2: Delivery Method**: Standard Delivery (Inside/Outside Dhaka), Express, Store Pickup.
   - **Step 3: Payment Options**: Cash on Delivery (COD), Mobile Banking (bKash / Nagad simulation), Card Payment.
-- [ ] **Step 6.3: Order Success & Invoice**
+- [x] **Step 6.3: Order Success & Invoice**
   - Order confirmation screen with unique Tracking ID.
   - Printable / Downloadable receipt invoice with full order breakdown.
 
