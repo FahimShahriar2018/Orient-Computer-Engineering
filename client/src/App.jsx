@@ -13,6 +13,10 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
 import TrackOrderPage from './pages/TrackOrderPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import AccountPage from './pages/AccountPage';
+import OrderDetailPage from './pages/OrderDetailPage';
 
 export default function App() {
   return (
@@ -34,6 +38,13 @@ export default function App() {
               <Route path="/order-success/:id" element={<OrderSuccessPage />} />
               <Route path="/track-order" element={<TrackOrderPage />} />
               <Route path="/track-order/:trackingNumber" element={<TrackOrderPage />} />
+
+              {/* Customer Account & Authentication */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/orders" element={<AccountPage />} />
+              <Route path="/order/:id" element={<OrderDetailPage />} />
 
               {/* Fallback */}
               <Route path="*" element={<ShopPage />} />

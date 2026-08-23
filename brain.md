@@ -12,5 +12,7 @@
 
 - **Phase 6: Cart, Checkout & Order Placement Funnel** (Full cart page with quantity controls & promo discount vouchers, multi-step checkout with Bangladeshi divisions/districts shipping selector, and bKash / Nagad / COD payment simulation with instant invoice receipts and tracking pipeline).
 
+- **Phase 7: Customer Account & Order History** (Dedicated Login & Register pages with demo credentials autofill, Customer Account portal with profile management, saved Bangladeshi delivery addresses, and "My Orders" purchase history with live tracking & invoice access).
+
 ## Next
-- **Phase 7: Customer Account & Order History** (Customer profile settings, saved shipping addresses, and past order history with tracking links and printable invoices).
+- **Phase 8: Admin Management Dashboard** (Executive analytics overview cards, product inventory management with full CRUD modal forms, and multi-status order fulfillment manager).

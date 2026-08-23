@@ -148,9 +148,9 @@ orient-computers/
 
 ## 👤 Phase 7: Customer Account & Order History
 
-- [ ] **Step 7.1: Authentication Modals / Pages**
+- [x] **Step 7.1: Authentication Modals / Pages**
   - Clean Login and Registration forms with validation and error toast alerts.
-- [ ] **Step 7.2: Customer Dashboard**
+- [x] **Step 7.2: Customer Dashboard**
   - "My Orders" tab with status badges (*Pending, Processing, Shipped, Delivered*).
   - Order detail view showing timeline and purchased items.
   - Profile settings and saved shipping addresses.
