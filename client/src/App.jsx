@@ -5,6 +5,8 @@ import Header from './components/Header/Header';
 import CartDrawer from './components/Cart/CartDrawer';
 import AuthModal from './components/Auth/AuthModal';
 import Footer from './components/Footer/Footer';
+import MobileBottomNav from './components/Navigation/MobileBottomNav';
+import ScrollToTop from './components/Common/ScrollToTop';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
@@ -22,8 +24,9 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppProviders>
-        <div className="min-h-screen bg-[#0B1120] text-slate-100 flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+        <div className="min-h-screen bg-[#0B1120] text-slate-100 flex flex-col justify-between selection:bg-cyan-500 selection:text-white pb-14 sm:pb-0">
           <Header />
           <div className="flex-1 w-full">
             <Routes>
@@ -54,6 +57,7 @@ export default function App() {
               <Route path="*" element={<ShopPage />} />
             </Routes>
           </div>
+          <MobileBottomNav />
           <CartDrawer />
           <AuthModal />
           <Footer />
