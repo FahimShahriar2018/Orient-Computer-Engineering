@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock, ShieldCheck, Truck } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, Truck, Building, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function TopBar() {
@@ -9,32 +9,35 @@ export default function TopBar() {
         {/* Left: Contact & Showroom details */}
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <a
-            href="tel:+8801711000001"
-            className="inline-flex items-center space-x-1.5 hover:text-blue-400 transition-colors"
+            href="tel:09642222224"
+            className="inline-flex items-center space-x-1.5 text-slate-200 hover:text-blue-400 font-semibold transition-colors"
           >
-            <Phone className="h-3.5 w-3.5 text-blue-500" />
-            <span>Hotline: +880 1711-000001</span>
+            <Phone className="h-3.5 w-3.5 text-blue-400" />
+            <span>Hotline: 09642222224</span>
           </a>
 
-          <a
-            href="mailto:support@orientcomputers.com.bd"
-            className="hidden md:inline-flex items-center space-x-1.5 hover:text-blue-400 transition-colors"
+          <Link
+            to="/branch"
+            className="hidden sm:inline-flex items-center space-x-1.5 hover:text-blue-400 transition-colors"
           >
-            <Mail className="h-3.5 w-3.5 text-slate-400" />
-            <span>support@orientcomputers.com.bd</span>
-          </a>
+            <Building className="h-3.5 w-3.5 text-slate-400" />
+            <span>Branches & Showrooms</span>
+          </Link>
 
-          <div className="hidden lg:inline-flex items-center space-x-1.5 text-slate-400">
-            <MapPin className="h-3.5 w-3.5 text-slate-400" />
-            <span>Showroom: Motijheel C/A, Dhaka-1000</span>
-          </div>
+          <Link
+            to="/complain"
+            className="hidden md:inline-flex items-center space-x-1.5 text-slate-400 hover:text-red-400 transition-colors"
+          >
+            <AlertCircle className="h-3.5 w-3.5 text-red-400" />
+            <span>Complain Box</span>
+          </Link>
         </div>
 
         {/* Right: Value Props & Tracking link */}
         <div className="flex items-center space-x-4 sm:space-x-6 ml-auto">
           <div className="hidden sm:inline-flex items-center space-x-1.5 text-slate-300">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-            <span>100% Genuine & Official Warranty</span>
+            <span>100% Genuine Importer Warranty</span>
           </div>
 
           <Link
@@ -49,3 +52,4 @@ export default function TopBar() {
     </div>
   );
 }
+

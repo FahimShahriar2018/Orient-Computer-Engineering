@@ -123,9 +123,13 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isCallForPrice: {
+      type: Boolean,
+      default: false,
+    },
     badge: {
       type: String,
-      enum: ['', 'HOT', 'SALE', 'NEW', 'GAMING', 'OFFER', 'FEATURED'],
+      enum: ['', 'HOT', 'SALE', 'NEW', 'GAMING', 'OFFER', 'FEATURED', 'CALL FOR PRICE', 'ENTERPRISE', 'UPCOMING'],
       default: '',
     },
   },

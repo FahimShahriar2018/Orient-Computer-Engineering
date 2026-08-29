@@ -188,7 +188,7 @@ I am grateful for the opportunity to complete this internship and produce the pr
 My academic supervisor, \textbf{\academicSupervisor}, provided clear direction and asked the right questions at each review milestone. Without those check-ins the project would have drifted in several unhelpful directions.
 
 \vspace{0.4cm}
-I also thank the team at \textbf{\industryCompany}, particularly \textbf{\industrySupervisor}, for explaining the business requirements honestly, including the complex domain workflows: how orders are fulfilled, how district-wise delivery charges operate in Bangladesh, and how manual bKash and Nagad payment verifications are handled. His mentorship motivated me to surpass expectations.
+I also thank the team at \textbf{\industryCompany}, particularly \textbf{\industrySupervisor}, for explaining the business requirements honestly. He helped me understand how orders are fulfilled, how district-wise delivery charges work in Bangladesh, and how manual bKash and Nagad payment verification is handled. His guidance encouraged me to work more carefully and confidently.
 
 \vspace{0.4cm}
 I express my sincere gratitude to the faculty members of the \departmentName\ at \universityName\ for establishing strong foundational concepts in web application design, data structures, and database management systems.
@@ -219,7 +219,7 @@ I am submitting my Internship Report as part of the Bachelor Program in Computer
 The project involved designing and building a full-stack e-commerce web application for Orient Computer, a computer hardware and electronics retailer based in Dhaka, Bangladesh. The application lets customers browse products, place orders, and pay using Cash on Delivery, bKash, or Nagad. An administrative dashboard allows staff to manage the full order lifecycle including payment verification, product cataloging, stock control, and localized shipping fees.
 
 \vspace{0.3cm}
-I have documented the architectural decisions made, technical challenges encountered, and solutions engineered. If any section requires further clarification, I am pleased to discuss it.
+I have tried to document the work clearly, including the decisions I made, the problems I faced, and how I solved them. If any section needs clarification, I would be happy to discuss it.
 
 \vspace{0.3cm}
 Thank you for your valuable guidance and consideration.
@@ -298,13 +298,13 @@ ID: \studentId \\
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-This report documents the design and implementation of a full-stack e-commerce web platform for Orient Computer, a prominent retailer in Dhaka, Bangladesh, specializing in PC components, UPS/IPS power backup systems, industrial batteries, solar equipment, and office technology. Prior to this project, the enterprise operated solely via brick-and-mortar showrooms and phone inquiries, lacking an integrated digital sales and order management channel.
+This report describes my work on designing and developing a full-stack e-commerce website for Orient Computer, a technology retailer in Dhaka, Bangladesh. The company sells PC components, UPS/IPS power backup systems, industrial batteries, solar equipment, and office technology. Before this project, most sales activity depended on showroom visits, phone inquiries, and manual order handling, so there was a clear need for a more organized online sales and order management system.
 
 \vspace{0.3cm}
-The system is constructed upon a three-tier architecture utilizing the MERN stack (MongoDB Atlas, Express.js, React 18 with Vite, and Node.js) styled with Tailwind CSS. The customer-facing frontend facilitates dynamic catalog browsing, multi-criteria filtering, parametric search, persistent cart migration, and a multi-step checkout workflow. Tailored to local business context, the application natively supports Cash on Delivery (COD) as well as manual Mobile Financial Services (MFS) via bKash and Nagad with transaction proof submission.
+The system was built using a three-tier MERN stack architecture: MongoDB Atlas for the database, Express.js and Node.js for the backend API, and React 18 with Vite for the frontend. Tailwind CSS was used for styling. The customer side of the application supports product browsing, category and brand filtering, search, cart management, and checkout. Since the project was built for the Bangladeshi market, the checkout process includes Cash on Delivery (COD), bKash, and Nagad payment options with transaction proof submission.
 
 \vspace{0.3cm}
-A dedicated administration portal empowers staff to manage catalog hierarchies, stock levels, district-wise delivery charges, promotional coupons, customer reviews, and order fulfillment states. Security measures include bcrypt password hashing, stateless JSON Web Token (JWT) authorization, role-based access control, input sanitization, and strict server-side price/stock validation to prevent tampering. Comprehensive unit, integration, and security testing confirm the robustness, responsiveness, and operational viability of the software solution.
+An admin dashboard was also developed so staff can manage categories, products, stock, delivery charges, coupons, customer reviews, and order status updates. Security was handled through bcrypt password hashing, JSON Web Token (JWT) authentication, role-based access control, input sanitization, and server-side validation of prices and stock. Testing was carried out on the main customer and admin workflows to check that the system worked reliably across the most important use cases.
 
 \vspace{0.8cm}
 \noindent
@@ -338,24 +338,24 @@ A dedicated administration portal empowers staff to manage catalog hierarchies, 
 \chapter{Introduction}
 
 \section{Overview and Background}
-Practical internship experience plays an essential role in bridging the gap between theoretical classroom learning and real-world engineering problem solving. As part of the graduation requirements for the Bachelor of Science in Computer Science at \universityName, this three-month internship was completed at \industryCompany.
+This internship gave me the opportunity to connect classroom learning with a real software project. As part of the graduation requirements for the Bachelor of Science in Computer Science at \universityName, I completed a three-month internship at \industryCompany.
 
-\industryCompany\ is an established technology and electronics provider based in Dhaka, Bangladesh. The company's official website lists product categories including PC components, renewable energy products, UPS, IPS, batteries, telecom equipment, audio-visual products, and office equipment \cite{orient_official}. Historically, business operations relied on physical retail interactions and manual phone consultations.
+\industryCompany\ is a technology and electronics provider based in Dhaka, Bangladesh. The company's official website lists product categories including PC components, renewable energy products, UPS, IPS, batteries, telecom equipment, audio-visual products, and office equipment \cite{orient_official}. Although the business already had a strong product range, much of the sales process still depended on physical retail interactions and manual phone consultations.
 
-Transitioning retail operations into the digital domain within the Bangladeshi market presents unique engineering and infrastructural considerations. International card payment gateways exhibit limited penetration, necessitating direct support for Mobile Financial Services (MFS) like bKash and Nagad alongside Cash on Delivery (COD). Furthermore, shipping logistics vary considerably between inside Dhaka metropolitan zones and outer districts. This project aims to engineer an end-to-end e-commerce solution addressing these specific operational needs.
+Moving this type of retail operation online is not only a matter of creating product pages. In Bangladesh, many customers still prefer Cash on Delivery or Mobile Financial Services (MFS) such as bKash and Nagad instead of international card payments. Delivery charges also differ between Dhaka and other districts. For that reason, I designed the project around the actual business process rather than copying a generic e-commerce template.
 
 \section{Objectives}
 The primary objectives of the internship project were to:
 \begin{enumerate}[label=\textbf{\arabic*.}]
-    \item \textbf{Design and Develop a Responsive Customer Storefront:} Create an intuitive interface allowing customers to search, filter, inspect technical specifications, and manage shopping carts across desktop and mobile viewports.
-    \item \textbf{Implement Localized Payment \& Checkout Processing:} Build a secure checkout pipeline calculating dynamic delivery fees by district and handling COD, bKash, and Nagad payments.
-    \item \textbf{Create an Administrative Operations Dashboard:} Provide store administrators with tools for inventory tracking, category hierarchy management, customer oversight, coupon management, and order status updates.
-    \item \textbf{Engineer a Payment Verification Workflow:} Implement administrative review functionality for manual MFS transactions with screenshot validation and state tracking.
-    \item \textbf{Enforce Enterprise-Grade Security and Integrity:} Employ bcrypt password hashing, stateless JWT authentication, role-based route guards, and server-side price freezing to prevent client-side tampering.
+    \item \textbf{Design and Develop a Responsive Customer Storefront:} Create a clear interface where customers can search, filter, view technical specifications, and manage carts on both desktop and mobile devices.
+    \item \textbf{Implement Localized Payment \& Checkout Processing:} Build a checkout flow that calculates delivery fees by district and supports COD, bKash, and Nagad payments.
+    \item \textbf{Create an Administrative Operations Dashboard:} Give administrators tools for inventory tracking, category management, customer oversight, coupon management, and order status updates.
+    \item \textbf{Build a Payment Verification Workflow:} Add admin review features for manual MFS transactions, including screenshot checking and payment state tracking.
+    \item \textbf{Maintain Security and Data Integrity:} Use bcrypt password hashing, JWT authentication, role-based route guards, and server-side price validation to reduce the risk of client-side tampering.
 \end{enumerate}
 
 \section{Scope}
-The scope of the project encompasses:
+The scope of the project includes:
 \begin{itemize}
     \item User authentication, profile management, and persistent shipping addresses.
     \item Product catalog with full-text indexing, multi-level categorization, brand filtering, and real-time stock indicators.
@@ -363,7 +363,7 @@ The scope of the project encompasses:
     \item Order creation with atomic stock decrement and server-side price verification.
     \item Anonymous order tracking by order tracking number and phone number.
     \item Customer product reviews and wishlist management.
-    \item Full-featured admin panel with analytics, low-stock warnings, and transaction moderation.
+    \item Admin panel with analytics, low-stock warnings, and transaction moderation.
 \end{itemize}
 \textit{Out-of-scope items} include third-party automated merchant aggregator APIs (e.g., SSLCommerz), automated SMS gateways, and interactive PC builder compatibility tools, which are reserved for subsequent release phases.
 
@@ -373,20 +373,20 @@ The scope of the project encompasses:
 \chapter{Literature Review}
 
 \section{Relationship with Undergraduate Studies}
-The Orient Computer e-commerce platform is not only an industrial software artifact; it is also a practical application of several undergraduate computing concepts. The project required requirements analysis, interface design, database modeling, API construction, authentication, and security controls. These areas connect directly with the academic preparation received throughout the Bachelor of Science in Computer Science program.
+The Orient Computer e-commerce platform was a practical way for me to use many of the topics I studied during my undergraduate program. The project required requirements analysis, interface design, database modeling, API development, authentication, and basic security controls. These areas connect closely with several courses from the Bachelor of Science in Computer Science program.
 
 \begin{itemize}
-    \item \textbf{CSE309 (Web Application Development):} The course concepts of client-server communication, asynchronous JavaScript, RESTful API design, and component-based frontend construction directly influenced the React and Express implementation. The use of React for reusable interface components and Express for route-based server logic follows the design guidance commonly documented for these technologies \cite{react,express}.
-    \item \textbf{CSE307 (System Analysis and Design):} Requirements gathering, use-case modeling, rich pictures, and software requirements specification (SRS) practices were applied before implementation. This was important because Orient Computer's workflow involved both customer-facing shopping behavior and internal administrative operations.
-    \item \textbf{CSE303 (Database Management):} Although the project uses MongoDB rather than a relational database, database design knowledge remained essential. Entity relationships, normalization principles, indexing, and query design helped determine when information should be embedded in a document and when it should be referenced through separate collections. Mongoose was used to enforce schema rules and validation at the application layer \cite{mongoose}.
-    \item \textbf{CSE211 (Object-Oriented Programming):} Modular programming concepts shaped the separation of backend models, controllers, middleware, and utility functions. This separation reduced duplication and made the codebase easier to test, maintain, and extend.
-    \item \textbf{CSE403 (Information Security):} Security coursework informed the use of password hashing, JWT-based authentication, role-based access control, server-side validation, and rate limiting. These decisions align with OWASP guidance on common web application risks such as broken access control, injection, and authentication weaknesses \cite{owasp}.
+    \item \textbf{CSE309 (Web Application Development):} This course helped me understand client-server communication, asynchronous JavaScript, RESTful API design, and component-based frontend development. These ideas were used directly while building the React frontend and Express backend \cite{react,express}.
+    \item \textbf{CSE307 (System Analysis and Design):} Requirements gathering, use-case modeling, rich pictures, and software requirements specification (SRS) work were useful before writing code. This helped me understand both the customer shopping flow and the internal admin workflow.
+    \item \textbf{CSE303 (Database Management):} Even though this project uses MongoDB instead of a relational database, the database design concepts from the course were still important. Entity relationships, indexing, and query design helped me decide where to embed data and where to use references. Mongoose was used to add schema validation at the application level \cite{mongoose}.
+    \item \textbf{CSE211 (Object-Oriented Programming):} Modular programming ideas helped me separate backend models, controllers, middleware, and utility functions. This made the project easier to understand and maintain.
+    \item \textbf{CSE403 (Information Security):} This course helped me think about password hashing, JWT authentication, role-based access control, server-side validation, and rate limiting. These decisions also match OWASP guidance on common web application risks \cite{owasp}.
 \end{itemize}
 
 \section{E-Commerce Context in Bangladesh}
-E-commerce adoption in Bangladesh has grown alongside wider internet access, smartphone usage, and digital payment awareness. Government digital transformation initiatives have encouraged online service delivery and digital transactions, while private retailers have responded by building web-based sales channels \cite{a2i}. For a computer and electronics retailer such as Orient Computer, an online platform must support more than a simple product list. Customers expect searchable catalogues, accurate technical specifications, visible stock information, delivery options, and payment methods that reflect local habits.
+E-commerce in Bangladesh has grown with wider internet access, smartphone use, and greater awareness of digital payment services. Government digital transformation initiatives have encouraged online service delivery and digital transactions, while private retailers have responded by building web-based sales channels \cite{a2i}. For a computer and electronics retailer such as Orient Computer, an online platform needs more than a simple product list. Customers expect searchable catalogues, accurate technical specifications, visible stock information, delivery options, and payment methods that match local habits.
 
-Payment behavior is a particularly important design factor in the Bangladeshi market. Cash on Delivery remains familiar to many customers, while Mobile Financial Services (MFS) such as bKash and Nagad are widely used for person-to-person and merchant payments. Bangladesh Bank recognizes MFS as part of the country's payment infrastructure, and local retailers commonly combine mobile payments with branch, delivery, or order-verification processes \cite{bangladesh_bank}. This context influenced the decision to include COD, bKash, and Nagad rather than relying only on international card-based checkout flows.
+Payment behavior is especially important in the Bangladeshi market. Cash on Delivery is still familiar to many customers, while Mobile Financial Services (MFS) such as bKash and Nagad are widely used for person-to-person and merchant payments. Bangladesh Bank recognizes MFS as part of the country's payment infrastructure, and local retailers often combine mobile payments with branch, delivery, or order-verification processes \cite{bangladesh_bank}. This is why the project includes COD, bKash, and Nagad instead of depending only on card-based checkout.
 
 \section{Related Works and Technical Landscape}
 Existing Bangladeshi technology retailers provide useful reference points for this project. Star Tech presents itself as a major computer, laptop, and gadget e-commerce and retail shop in Bangladesh, with online shopping support for desktops, laptops, office equipment, components, accessories, and related products \cite{startech}. Ryans Computers similarly operates an e-commerce platform and publishes payment method information that includes cash, bKash, Nagad, Rocket, and card options \cite{ryans}. These competitors show that successful technology retail platforms in Bangladesh generally need deep category navigation, specification-heavy product pages, search and filtering, and locally appropriate payment support.
@@ -396,9 +396,9 @@ The Orient Computer platform adapts these market-validated patterns to the compa
 \section{Existing Website Analysis}
 An analysis of the official Orient Computers \& Engineering website helped identify strengths that should be preserved and gaps that the internship project could address \cite{orient_official}. The existing website already presents Orient as a wholesale and retail technology store in Bangladesh and shows a wide product range across PC components, AVR, renewable energy, UPS, IPS, batteries, telecom products, audio-visual products, and office equipment. Its category structure is strong because the main navigation separates technical product groups clearly and uses subcategories such as online/offline UPS, solar inverters, solar panels, energy storage systems, and different battery types.
 
-The website also demonstrates several useful e-commerce and marketing practices. Product prices are displayed in Bangladeshi Taka, while high-value or business-oriented products may use ``Call For Price,'' which is appropriate for items that require quotation or consultation. The homepage includes featured categories, new-arrival and upcoming-product sections, live search with product previews, brand partner visibility, a phone number, a physical address, and social media links. These elements support product discovery and customer trust, so the new platform was designed to retain similar browsing and contact patterns while improving order processing and administrative control.
+The website also shows several useful e-commerce and marketing practices. Product prices are displayed in Bangladeshi Taka, while high-value or business-oriented products may use ``Call For Price,'' which makes sense for items that require quotation or consultation. The homepage includes featured categories, new-arrival and upcoming-product sections, live search with product previews, brand partner visibility, a phone number, a physical address, and social media links. These elements support product discovery and customer trust, so I treated them as useful reference points while designing the new platform.
 
-The review also revealed improvement opportunities. Some technical SEO elements appeared incomplete or inconsistent, such as empty metadata fields, weak social card configuration, and structured-data issues. From a user-experience perspective, the site would benefit from stronger product rating visibility, more consistent add-to-cart actions, completed company information, and clearer support pages such as FAQ, return policy, terms, and refund policy. These observations informed the project scope by emphasizing not only product display, but also trust-building content, reliable search, mobile-friendly navigation, and maintainable metadata.
+The review also showed some areas that could be improved. Some technical SEO elements appeared incomplete or inconsistent, such as empty metadata fields, weak social card configuration, and structured-data issues. From a user-experience perspective, the site would benefit from stronger product rating visibility, more consistent add-to-cart actions, completed company information, and clearer support pages such as FAQ, return policy, terms, and refund policy. These observations helped shape the project scope by showing that the system needed good product display, reliable search, mobile-friendly navigation, and better support for trust-building content.
 
 \begin{table}[H]
 \centering
@@ -435,14 +435,14 @@ Improvement needs & SEO metadata, structured data, product reviews, policy pages
     \label{fig:tech_landscape}
 \end{figure}
 
-Figure~\ref{fig:tech_landscape} illustrates the conceptual three-tier architecture used by the project: a React single-page application, an Express/Node.js API layer, and a MongoDB database tier. The MERN stack was selected because it offers a unified JavaScript development model across the frontend and backend, which is practical for an internship project implemented by a small development team \cite{mern}. React supports reusable UI components for product cards, filters, forms, dashboards, and checkout screens \cite{react}. Express provides lightweight routing and middleware patterns for authentication, validation, and REST API endpoints \cite{express}. MongoDB supports flexible document structures, which is useful for product categories whose technical specifications vary by item type \cite{mongoose}.
+Figure~\ref{fig:tech_landscape} shows the three-tier architecture used in the project: a React single-page application, an Express/Node.js API layer, and a MongoDB database tier. I selected the MERN stack because it keeps both frontend and backend development in JavaScript, which was practical for a small internship project \cite{mern}. React supports reusable UI components for product cards, filters, forms, dashboards, and checkout screens \cite{react}. Express provides simple routing and middleware patterns for authentication, validation, and REST API endpoints \cite{express}. MongoDB supports flexible document structures, which is useful because product specifications vary across categories \cite{mongoose}.
 
-Authentication and authorization were also important parts of the technical landscape. JSON Web Tokens (JWTs) are a common mechanism for stateless authentication in REST APIs, allowing the server to verify signed claims without storing session state for every request \cite{jwt}. In this project, JWTs are combined with role-based middleware so that customer routes and administrator routes remain separated. Passwords are protected using bcrypt-style hashing, a password storage approach designed to be computationally expensive and adaptable as hardware improves \cite{bcrypt}. These mechanisms are supported by server-side validation so that critical business rules, such as price calculation, stock decrement, and order status transitions, cannot be bypassed from the browser.
+Authentication and authorization were also important. JSON Web Tokens (JWTs) are commonly used for stateless authentication in REST APIs because the server can verify signed claims without keeping session state for every request \cite{jwt}. In this project, JWTs are combined with role-based middleware so customer routes and admin routes stay separate. Passwords are protected using bcrypt-style hashing, which is designed to be computationally expensive and adaptable as hardware improves \cite{bcrypt}. I also kept price calculation, stock decrement, and order status transitions on the server so they could not be changed from the browser.
 
 \section{Competitive Analysis}
-The competitive review suggests that Orient Computer should not attempt to compete only through visual design. Established retailers already provide product breadth, brand recognition, and online ordering. Instead, the project focuses on maintainability, localized workflow fit, and administrative efficiency. The platform includes customer-facing features such as search, cart persistence, checkout, order tracking, wishlist, and reviews, while also supporting staff-facing features such as inventory monitoring, order moderation, coupon control, dashboard analytics, and manual MFS payment verification.
+The competitive review suggests that Orient Computer should not try to compete only through visual design. Larger retailers already have product range, brand recognition, and online ordering. For this project, the more realistic goal was to build a maintainable system that fits Orient Computer's daily workflow. The platform includes customer-facing features such as search, cart persistence, checkout, order tracking, wishlist, and reviews, while also supporting staff-facing features such as inventory monitoring, order moderation, coupon control, dashboard analytics, and manual MFS payment verification.
 
-This focus is important because Orient Computer's operational problem is not limited to publishing products online. The business must reliably convert browsing into verified orders, handle district-based delivery cost differences, manage changing stock, and review customer-submitted mobile payment evidence. The literature and market review therefore support three design priorities for the project: a familiar e-commerce interface for customers, a secure API and database foundation for transaction integrity, and an admin panel that reflects the actual workflow of a Bangladeshi electronics retailer.
+This focus is important because Orient Computer's problem is not limited to publishing products online. The business also needs to turn browsing into verified orders, handle district-based delivery costs, manage stock changes, and review customer-submitted mobile payment evidence. The literature and market review therefore support three design priorities for the project: a familiar e-commerce interface for customers, a secure API and database foundation, and an admin panel that matches the real workflow of a Bangladeshi electronics retailer.
 
 % ---------------------------------------------------------
 % CHAPTER 3: PROJECT MANAGEMENT & FINANCING
@@ -450,7 +450,7 @@ This focus is important because Orient Computer's operational problem is not lim
 \chapter{Project Management and Financing}
 
 \section{Work Breakdown Structure}
-The engineering lifecycle was organized into six distinct phases. Figure~\ref{fig:wbs} illustrates the hierarchical decomposition of project activities.
+I organized the project into six main phases. Figure~\ref{fig:wbs} shows how the work was divided.
 
 \begin{figure}[H]
     \centering
@@ -495,7 +495,7 @@ Phase 6: Extras and Final Polish & 8 & 10 \\
 \end{table}
 
 \section{Gantt Chart}
-Figure~\ref{fig:gantt} illustrates the timeline schedule and phase overlaps during project execution.
+Figure~\ref{fig:gantt} shows the project timeline and the overlap between different phases.
 
 \begin{figure}[H]
 \centering
@@ -551,7 +551,7 @@ Internet and Connectivity (3 Months Development) & $\sim 3{,}000$ \\
 \chapter{Methodology}
 
 \section{Architecture Overview}
-The software solution adopts a decoupled three-tier client-server architecture. The browser client interacts strictly through stateless REST endpoints exposed by the Node.js/Express application layer, which performs validation and interfaces with MongoDB Atlas via Mongoose schemas. Figure~\ref{fig:detailed_arch} shows the detailed component communication flow.
+The application uses a three-tier client-server architecture. The browser communicates with the Node.js/Express backend through REST API endpoints. The backend handles validation and then communicates with MongoDB Atlas through Mongoose schemas. Figure~\ref{fig:detailed_arch} shows how the main components communicate with each other.
 
 \begin{figure}[H]
 \centering
@@ -598,22 +598,22 @@ The software solution adopts a decoupled three-tier client-server architecture. 
 \end{figure}
 
 \section{Technology Stack}
-Table~\ref{tab:tech_stack} details the software libraries and tools selected for the implementation.
+Table~\ref{tab:tech_stack} lists the main libraries and tools used in the project.
 
 \begin{table}[H]
 \centering
-\caption{Comprehensive Technology Stack}
+\caption{Technology Stack}
 \label{tab:tech_stack}
 \begin{tabularx}{\textwidth}{lp{4cm}X}
 \toprule
 \textbf{Layer} & \textbf{Technology} & \textbf{Rationale \& Purpose} \\
 \midrule
-Frontend & React 18 with Vite & High rendering efficiency, component modularity, and fast HMR bundling. \\
+Frontend & React 18 with Vite & Component-based UI development and fast local development builds. \\
 Routing & React Router 6 & Declarative client-side routing with nested layout support. \\
-Styling & Tailwind CSS 3 & Utility-first, mobile-responsive layout management. \\
-State \& API & Context API + Axios & Global auth/cart state and centralized HTTP interceptor management. \\
-Backend & Node.js + Express.js & Asynchronous event-driven I/O and organized middleware pipelines. \\
-Database & MongoDB Atlas & Schema flexibility for variable electronic technical specifications. \\
+Styling & Tailwind CSS 3 & Utility-first styling for responsive layouts. \\
+State \& API & Context API + Axios & Shared auth/cart state and reusable HTTP request handling. \\
+Backend & Node.js + Express.js & API routing, middleware, and backend business logic. \\
+Database & MongoDB Atlas & Flexible schema support for different electronic product specifications. \\
 Security & JWT + bcryptjs & Stateless authorization tokens and salted password hashing. \\
 Sanitization & Helmet, Mongo-Sanitize & HTTP security headers and NoSQL query injection prevention. \\
 \bottomrule
@@ -621,7 +621,7 @@ Sanitization & Helmet, Mongo-Sanitize & HTTP security headers and NoSQL query in
 \end{table}
 
 \section{Database Design and API Structure}
-Orders embed point-in-time snapshots of purchased product data (title, unit price, SKU) rather than relying exclusively on dynamic references. This ensures that retroactive catalogue modifications or price adjustments do not compromise historical financial records.
+Orders store point-in-time snapshots of purchased product data, such as title, unit price, and SKU. This means old orders remain accurate even if a product title, price, or catalogue entry is changed later.
 
 \begin{table}[H]
 \centering
@@ -650,10 +650,10 @@ Orders embed point-in-time snapshots of purchased product data (title, unit pric
 \chapter{Body of the Project}
 
 \section{Work Description}
-The core implementation involved full-stack construction across frontend components, Express controller logic, database schema design, and deployment pipelines. Significant effort was dedicated to designing an idempotent order checkout workflow, ensuring atomic inventory decrements and reliable state transitions.
+The main implementation work covered frontend components, Express controller logic, database schema design, and deployment preparation. One of the most important parts was the checkout flow, because it needed to create orders, reduce stock correctly, and keep the order status consistent.
 
 \section{Requirement Analysis}
-Figure~\ref{fig:rich_picture} depicts the system rich picture, illustrating the operational boundaries between customer actors, administrative personnel, and system components.
+Figure~\ref{fig:rich_picture} shows the system rich picture, including the main users, admin staff, and system components.
 
 \begin{figure}[H]
 \centering
@@ -704,10 +704,10 @@ The application satisfies the following core functional requirements:
 \end{enumerate}
 
 \section{System Analysis and Feasibility}
-Technical feasibility is validated by the mature ecosystem supporting React, Node.js, and MongoDB. Operational feasibility is satisfied by mirroring existing showroom fulfillment procedures within the intuitive admin interface. Financial feasibility is demonstrated by low cloud infrastructure costs offset by automated operational efficiency.
+The project was technically feasible because React, Node.js, and MongoDB all have mature ecosystems and strong community support. It was also operationally feasible because the admin interface follows the existing showroom fulfillment process instead of forcing staff to learn a completely different workflow. Financially, the project is reasonable because the required cloud hosting cost is low compared with the value of automating product, order, and payment management.
 
 \section{System Design and Data Modeling}
-Figure~\ref{fig:erd} illustrates the entity relationship model of the database collections.
+Figure~\ref{fig:erd} shows the entity relationship model for the database collections.
 
 \begin{figure}[H]
 \centering
@@ -756,7 +756,7 @@ Figure~\ref{fig:erd} illustrates the entity relationship model of the database c
 
 \section{UI Page Mockups}
 
-The following figures present screenshots of the implemented application screens. Each figure includes a description after the image to explain the purpose and visible interaction areas.
+The following figures show screenshots from the completed application. I added a short description under each screenshot to explain the purpose of the screen and the main visible features.
 
 % --- Homepage Screenshot ---
 \begin{figure}[H]
@@ -839,7 +839,7 @@ The following figures present screenshots of the implemented application screens
 \end{figure}
 
 \section{Order State Machine}
-Figure~\ref{fig:state_machine} depicts the deterministic finite-state machine governing order lifecycle transitions enforced on the server.
+Figure~\ref{fig:state_machine} shows the finite-state machine used for order status changes on the server.
 
 \begin{figure}[H]
 \centering
@@ -1159,7 +1159,7 @@ export const getAdminAnalytics = async (req, res, next) => {
 \end{lstlisting}
 
 \section{Implementation and Testing}
-Testing encompassed unit tests for price and coupon calculation algorithms, integration tests for API endpoints against a live MongoDB Atlas replica set, and security validation against token manipulation and privilege escalation attempts.
+Testing covered the most important parts of the system: price and coupon calculations, API endpoints connected to MongoDB Atlas, and security checks for token manipulation and unauthorized admin access.
 
 \begin{table}[H]
 \centering
@@ -1188,7 +1188,7 @@ TC-10 & Order tracking by valid tracking number returns masked order details & P
 % ---------------------------------------------------------
 \chapter{Results and Analysis}
 
-The Orient Computer platform was successfully built, seeded with realistic product inventories across 8 parent categories, and verified across diverse client devices.
+The Orient Computer platform was built and tested with realistic product data across 8 parent categories. I also checked the main pages on different screen sizes to make sure the customer and admin interfaces were usable.
 
 \begin{table}[H]
 \centering
@@ -1206,16 +1206,16 @@ Admin Aggregate Dashboard KPI Calculation & $\sim 12$ KB & 450 \\
 \end{tabularx}
 \end{table}
 
-The empirical benchmarks demonstrate that API response latencies remain well under the targeted 3-second ceiling under realistic domestic network conditions.
+The benchmark results show that the main API responses stayed below the target limit of 3 seconds under realistic network conditions.
 
 \section{System Features Delivered}
 All five primary objectives defined in Chapter~1 were delivered:
 \begin{itemize}
-    \item \textbf{Customer Storefront:} Fully responsive React 18 SPA with 14 pages, dynamic catalog, and multi-step checkout.
+    \item \textbf{Customer Storefront:} Responsive React 18 SPA with 14 pages, dynamic catalog, and multi-step checkout.
     \item \textbf{Localized Payments:} COD, bKash, and Nagad workflows with payment proof submission and admin verification queue.
     \item \textbf{Admin Dashboard:} Operational KPI cards, order management table, low-stock alerts, and product/category CRUD.
     \item \textbf{Security:} bcrypt password hashing, JWT Bearer scheme, role-based guards, Helmet.js HTTP headers.
-    \item \textbf{Guest Checkout:} Seamless implicit account creation allowing checkout without prior registration.
+    \item \textbf{Guest Checkout:} Implicit account creation that allows checkout without prior registration.
 \end{itemize}
 
 \section{Deployment Architecture}
@@ -1249,13 +1249,13 @@ Figure~\ref{fig:deployment} illustrates the production deployment topology acros
 \chapter{Project as Engineering Problem Analysis}
 
 \section{Sustainability of the Project}
-The application codebase is structured according to strict separation of concerns, isolating database schemas, HTTP routing controllers, and business service layers. This modular design ensures straightforward extensibility for future developers. Furthermore, reliance on serverless container infrastructure and shared MongoDB Atlas clusters optimizes compute resource utilization and minimizes idle power consumption.
+The application codebase was organized with separation of concerns in mind. Database schemas, HTTP route controllers, middleware, and business logic were kept in separate files so the project would be easier to understand and extend later. The use of cloud hosting and MongoDB Atlas also reduces the need for maintaining dedicated physical infrastructure for a small business application.
 
 \section{Social and Environmental Considerations}
-By providing Orient Computer with a centralized digital storefront, customers residing across regional districts in Bangladesh can evaluate products and place orders remotely, significantly cutting travel-associated emissions. The platform also accelerates digital literacy among retail staff through an intuitive operational interface.
+By giving Orient Computer a digital storefront, customers from different districts in Bangladesh can check products and place orders without always visiting the showroom. This can reduce unnecessary travel for customers who only need product information or want to confirm availability before buying. The admin dashboard can also help staff become more comfortable with digital order and inventory management.
 
 \section{Ethical and Legal Considerations}
-Customer data is retained in compliance with applicable data handling principles. Passwords are never stored in plain text. Payment screenshots submitted for MFS verification are stored with restricted administrative access only. The platform does not collect analytics data beyond operational necessity.
+Customer data is handled carefully in the system. Passwords are never stored in plain text, and payment screenshots submitted for MFS verification are available only to authorized administrators. The platform avoids collecting unnecessary analytics data beyond what is needed for normal operation.
 
 % ---------------------------------------------------------
 % CHAPTER 8: LESSONS LEARNED
@@ -1264,15 +1264,15 @@ Customer data is retained in compliance with applicable data handling principles
 
 \section{Problems Faced}
 \begin{itemize}
-    \item \textbf{MongoDB Transactions on Standalone Instances:} Multi-document transactions require replica set configurations. Initial local testing failed until fallback sequential error-rollback routines were implemented.
-    \item \textbf{Cart Synchronization Race Conditions:} Merging local guest cart arrays with preexisting server account carts required explicit element-by-element reconciliation to preserve updated stock levels.
-    \item \textbf{Windows Path Separators in Multer:} File uploads produced backslash delimiters on Windows development machines, which were normalized to standard forward slashes for cross-platform URL resolution.
-    \item \textbf{District-wise Delivery Fee Complexity:} Bangladesh's 64 districts required a structured fee matrix. This was eventually modeled as a configuration document in the database rather than hard-coded constants, enabling admin editing without code redeployment.
-    \item \textbf{JWT Storage Security Trade-offs:} Storing JWTs in \texttt{localStorage} exposes tokens to XSS attacks. For the current release, risk is mitigated by strict Content Security Policy headers. Migration to \texttt{HttpOnly} cookies is planned for Phase~2.
+    \item \textbf{MongoDB Transactions on Standalone Instances:} Multi-document transactions require replica set configurations. During local testing, this caused issues, so I added fallback rollback logic for cases where transactions were not available.
+    \item \textbf{Cart Synchronization Race Conditions:} Merging a guest cart from the browser with an existing server-side cart was more complicated than expected. I had to compare items one by one so product quantities and stock limits stayed correct.
+    \item \textbf{Windows Path Separators in Multer:} File uploads produced backslash path separators on Windows. These had to be normalized into forward slashes so uploaded image URLs worked consistently.
+    \item \textbf{District-wise Delivery Fee Complexity:} Bangladesh's 64 districts required a structured delivery fee setup. I first considered hard-coded values, but later moved the fee matrix into the database so admins could update it without changing code.
+    \item \textbf{JWT Storage Security Trade-offs:} Storing JWTs in \texttt{localStorage} is simple, but it can expose tokens if an XSS attack occurs. For the current version, this risk is reduced through security headers and input sanitization. A future version should move authentication to \texttt{HttpOnly} cookies.
 \end{itemize}
 
 \section{Solutions and Retrospective Insights}
-Adopting centralized service modules for pricing and coupon calculations eliminated duplication across controllers. In future iterations, utilizing caching layers (such as Redis) and state-management tools like TanStack React Query will further streamline client-side data fetching. Early investment in an SRS document aligned stakeholder expectations and prevented scope creep during the development sprints.
+One lesson I learned is that shared business rules should be kept in one place. Moving price and coupon calculations into centralized service modules reduced duplicate code and made testing easier. I also learned that writing the SRS before implementation was useful because it clarified the expected features and reduced confusion during development. In future versions, tools such as Redis or TanStack React Query could improve caching and client-side data fetching.
 
 % ---------------------------------------------------------
 % CHAPTER 9: FUTURE WORK & CONCLUSION
@@ -1282,16 +1282,16 @@ Adopting centralized service modules for pricing and coupon calculations elimina
 \section{Future Work}
 Planned enhancements include:
 \begin{enumerate}
-    \item Direct integration with automated payment aggregators (e.g., SSLCommerz, ShurjoPay) to eliminate manual MFS screenshot verification overhead.
-    \item Real-time transactional SMS and email notifications upon order milestone updates using a provider like Twilio or SendGrid.
-    \item An interactive PC Builder utility with automated socket/chipset compatibility checking, targeting DIY PC enthusiast customers.
-    \item Enhanced security migration from localStorage JWT storage to CSRF-protected \texttt{HttpOnly} cookies, eliminating XSS token theft risk.
-    \item A product recommendation engine leveraging collaborative filtering based on order history.
-    \item Progressive Web App (PWA) capabilities enabling offline product browsing and home screen installation.
+    \item Integrate automated payment gateways such as SSLCommerz or ShurjoPay to reduce the need for manual MFS screenshot verification.
+    \item Add SMS and email notifications when order status changes.
+    \item Build an interactive PC Builder tool with compatibility checking for DIY PC customers.
+    \item Move authentication from localStorage JWT storage to CSRF-protected \texttt{HttpOnly} cookies for better protection against token theft.
+    \item Add product recommendations based on order history and browsing behavior.
+    \item Add Progressive Web App (PWA) support for offline browsing and home screen installation.
 \end{enumerate}
 
 \section{Conclusion}
-The Orient Computer e-commerce platform successfully modernizes retail operations for hardware and power electronics distribution in Bangladesh. By combining an intuitive customer storefront with robust administrative controls and localized payment workflows, the project fulfills all academic and industrial objectives established for the internship dissertation. The MERN stack proved a pragmatic and productive foundation, delivering a production-ready, secure, and maintainable full-stack web application within the allotted 13-week development timeline.
+The Orient Computer e-commerce platform shows how a local retail business can move important parts of its sales and order process online. The project combines a customer storefront, localized payment options, and an admin dashboard for managing products, orders, stock, and manual payment verification. Through this work, I was able to apply my academic knowledge to a real business problem and complete the main objectives of the internship. The MERN stack was a practical choice for the timeline because it allowed me to work across the frontend and backend using one main programming language.
 
 % =========================================================
 % BIBLIOGRAPHY

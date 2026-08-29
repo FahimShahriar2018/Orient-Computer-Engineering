@@ -29,8 +29,15 @@ export const getProducts = async (req, res, next) => {
       if (mongoose.Types.ObjectId.isValid(req.query.category)) {
         query.category = req.query.category;
       } else {
-        const catSlug = req.query.category.trim().toLowerCase();
-        const foundCategory = await Category.findOne({ slug: catSlug });
+        const rawCat = req.query.category.trim();
+        const catSlug = rawCat.toLowerCase().replace(/\s+/g, '-');
+        const foundCategory = await Category.findOne({
+          $or: [
+            { slug: catSlug },
+            { slug: rawCat.toLowerCase() },
+            { name: { $regex: new RegExp(`^${rawCat}$`, 'i') } },
+          ],
+        });
         if (foundCategory) {
           query.category = foundCategory._id;
         } else {

@@ -14,6 +14,14 @@ import {
   Sparkles,
   Grid,
   Shield,
+  Sun,
+  Tv,
+  BatteryCharging,
+  Briefcase,
+  ShieldCheck,
+  Building,
+  Tag,
+  AlertCircle,
 } from 'lucide-react';
 import api from '../../services/api';
 
@@ -25,6 +33,11 @@ const ICON_MAP = {
   Monitor: Monitor,
   Network: Network,
   Zap: Zap,
+  Sun: Sun,
+  Tv: Tv,
+  BatteryCharging: BatteryCharging,
+  Briefcase: Briefcase,
+  ShieldCheck: ShieldCheck,
 };
 
 export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
@@ -129,19 +142,27 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
           {/* Right Highlights */}
           <div className="flex items-center space-x-2">
             <Link
+              to="/brand"
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
+            >
+              <Tag className="h-3.5 w-3.5 text-blue-400" />
+              <span>Brands</span>
+            </Link>
+
+            <Link
+              to="/branch"
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
+            >
+              <Building className="h-3.5 w-3.5 text-emerald-400" />
+              <span>Branches</span>
+            </Link>
+
+            <Link
               to="/shop?deals=true"
               className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
             >
               <Flame className="h-3.5 w-3.5 text-amber-400" />
               <span>Flash Deals</span>
-            </Link>
-
-            <Link
-              to="/shop?new=true"
-              className="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs font-semibold transition-colors"
-            >
-              <Zap className="h-3.5 w-3.5 text-blue-400" />
-              <span>New Arrivals</span>
             </Link>
           </div>
         </div>
@@ -157,7 +178,7 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                   <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                     <Cpu className="h-5 w-5" />
                   </div>
-                  <span className="font-heading font-bold text-lg text-white">Departments</span>
+                  <span className="font-heading font-bold text-lg text-white">Navigation & Catalog</span>
                 </div>
                 <button
                   onClick={onCloseMobileMenu}
@@ -178,10 +199,41 @@ export default function CategoryBar({ isMobileMenuOpen, onCloseMobileMenu }) {
                   <span>All Products</span>
                 </Link>
 
+                <Link
+                  to="/brand"
+                  onClick={onCloseMobileMenu}
+                  className="flex items-center space-x-3 p-2.5 rounded-xl text-slate-200 hover:bg-slate-800 hover:text-blue-400 font-semibold"
+                >
+                  <Tag className="h-4 w-4 text-blue-400" />
+                  <span>Authorized Brands</span>
+                </Link>
+
+                <Link
+                  to="/branch"
+                  onClick={onCloseMobileMenu}
+                  className="flex items-center space-x-3 p-2.5 rounded-xl text-slate-200 hover:bg-slate-800 hover:text-blue-400 font-semibold"
+                >
+                  <Building className="h-4 w-4 text-emerald-400" />
+                  <span>Branches & Showrooms</span>
+                </Link>
+
+                <Link
+                  to="/complain"
+                  onClick={onCloseMobileMenu}
+                  className="flex items-center space-x-3 p-2.5 rounded-xl text-red-300 hover:bg-slate-800 hover:text-red-400 font-semibold"
+                >
+                  <AlertCircle className="h-4 w-4 text-red-400" />
+                  <span>Complain Box</span>
+                </Link>
+
+                <div className="pt-2 pb-1 border-t border-slate-800 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Categories
+                </div>
+
                 {categories.map((cat) => {
                   const IconComponent = ICON_MAP[cat.icon] || Cpu;
                   return (
-                    <div key={cat._id} className="py-1">
+                    <div key={cat._id} className="py-0.5">
                       <Link
                         to={`/shop?category=${cat.slug}`}
                         onClick={onCloseMobileMenu}

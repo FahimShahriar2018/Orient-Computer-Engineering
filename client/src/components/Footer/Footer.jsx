@@ -94,17 +94,19 @@ export default function Footer() {
             </Link>
 
             <p className="text-slate-400 leading-relaxed max-w-sm text-xs">
-              Orient Computers & Engineering is Bangladesh's trusted destination for genuine computer hardware, high-end gaming rigs, laptops, and enterprise networking engineering solutions.
+              Orient Computers & Engineering is Bangladesh's premier distributor and importer for Renewable Energy & ESS, 4K Interactive Flat Panels, Online/Offline UPS systems, Industrial Batteries, and Specialized Hardware.
             </p>
 
             <div className="space-y-2 text-slate-300">
               <div className="flex items-start space-x-2.5">
                 <MapPin className="h-4 w-4 text-slate-400 mt-0.5 flex-shrink-0" />
-                <span>Showroom: Orient Engineering Center, Motijheel Commercial Area, Dhaka-1000</span>
+                <span>Head Office: Concord Tower, Suite No. 1401, 113 Kazi Nazrul Islam Avenue, Banglamotor, Dhaka-1000</span>
               </div>
               <div className="flex items-center space-x-2.5">
                 <Phone className="h-4 w-4 text-blue-400 flex-shrink-0" />
-                <span>Hotline: +880 1711-000001 (10 AM - 8 PM)</span>
+                <a href="tel:09642222224" className="hover:text-blue-400 transition-colors font-semibold">
+                  Hotline: 09642222224 (10 AM - 8 PM)
+                </a>
               </div>
               <div className="flex items-center space-x-2.5">
                 <Mail className="h-4 w-4 text-slate-400 flex-shrink-0" />
@@ -116,37 +118,37 @@ export default function Footer() {
           {/* Col 2: Categories */}
           <div className="space-y-3">
             <h4 className="text-slate-100 font-heading font-bold text-sm uppercase tracking-wider">
-              Hardware Catalog
+              Product Solutions
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/shop?category=processors" className="hover:text-blue-400 transition-colors">
-                  Processors (Intel & AMD)
+                <Link to="/shop?category=renewable-energy" className="hover:text-blue-400 transition-colors">
+                  Solar Inverters & ESS
                 </Link>
               </li>
               <li>
-                <Link to="/shop?category=graphics-cards" className="hover:text-blue-400 transition-colors">
-                  Graphics Cards (RTX 40-Series)
+                <Link to="/shop?category=audio-visual" className="hover:text-blue-400 transition-colors">
+                  ViewSonic 4K IFP & Audio-Visual
                 </Link>
               </li>
               <li>
-                <Link to="/shop?category=motherboards" className="hover:text-blue-400 transition-colors">
-                  Motherboards (Z790 & B650)
+                <Link to="/shop?category=ups" className="hover:text-blue-400 transition-colors">
+                  Online & Offline UPS Systems
                 </Link>
               </li>
               <li>
-                <Link to="/shop?category=laptops" className="hover:text-blue-400 transition-colors">
-                  Gaming Laptops & Ultrabooks
+                <Link to="/shop?category=battery" className="hover:text-blue-400 transition-colors">
+                  Deep Cycle & LiFePO4 Batteries
                 </Link>
               </li>
               <li>
-                <Link to="/shop?category=monitors" className="hover:text-blue-400 transition-colors">
-                  4K OLED & Gaming Monitors
+                <Link to="/shop?category=office-equipment" className="hover:text-blue-400 transition-colors">
+                  Banking Currency Counters
                 </Link>
               </li>
               <li>
-                <Link to="/shop?category=networking-engineering" className="hover:text-blue-400 transition-colors">
-                  MikroTik & CCTV Solutions
+                <Link to="/shop?category=pc-component" className="hover:text-blue-400 transition-colors">
+                  Patriot RAM & PC Peripherals
                 </Link>
               </li>
             </ul>
@@ -155,9 +157,24 @@ export default function Footer() {
           {/* Col 3: Customer Care */}
           <div className="space-y-3">
             <h4 className="text-slate-100 font-heading font-bold text-sm uppercase tracking-wider">
-              Customer Service
+              Customer Care & RMA
             </h4>
             <ul className="space-y-2">
+              <li>
+                <Link to="/brand" className="hover:text-blue-400 transition-colors font-medium text-slate-300">
+                  Authorized Brands Directory
+                </Link>
+              </li>
+              <li>
+                <Link to="/branch" className="hover:text-blue-400 transition-colors font-medium text-slate-300">
+                  Showrooms & Branch Locator
+                </Link>
+              </li>
+              <li>
+                <Link to="/complain" className="hover:text-red-400 transition-colors font-medium text-slate-300 flex items-center space-x-1">
+                  <span>Complain & Grievance Box</span>
+                </Link>
+              </li>
               <li>
                 <Link to="/track-order" className="hover:text-blue-400 transition-colors">
                   Track My Order
@@ -165,23 +182,8 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/orders" className="hover:text-blue-400 transition-colors">
-                  My Orders & Receipts
+                  My Orders & Invoices
                 </Link>
-              </li>
-              <li>
-                <span className="hover:text-blue-400 cursor-pointer transition-colors">
-                  Official Brand Warranty Policy
-                </span>
-              </li>
-              <li>
-                <span className="hover:text-blue-400 cursor-pointer transition-colors">
-                  Terms & Delivery Guidelines
-                </span>
-              </li>
-              <li>
-                <span className="hover:text-blue-400 cursor-pointer transition-colors">
-                  EMI & Payment Facilities
-                </span>
               </li>
             </ul>
           </div>

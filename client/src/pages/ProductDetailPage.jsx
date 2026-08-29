@@ -23,6 +23,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
 import { formatPrice, formatDate } from '../utils/formatters';
 import ProductCard from '../components/Product/ProductCard';
+import QuotationModal from '../components/Common/QuotationModal';
 import api from '../services/api';
 
 export default function ProductDetailPage() {
@@ -38,6 +39,7 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('specs'); // 'specs' | 'reviews'
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   // Review form state
   const [rating, setRating] = useState(5);
@@ -244,22 +246,35 @@ export default function ProductDetailPage() {
 
           {/* Pricing Box */}
           <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <div className="flex flex-wrap items-baseline gap-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-white">
-                {formatPrice(finalPrice)}
-              </span>
-              {savings > 0 && (
-                <>
-                  <span className="text-sm sm:text-base text-slate-500 line-through">
-                    Regular: {formatPrice(product.price)}
+            {product.isCallForPrice || product.price === 0 ? (
+              <div>
+                <span className="text-2xl sm:text-3xl font-extrabold text-amber-400 font-heading">
+                  Call For Price
+                </span>
+                <p className="text-xs text-slate-300 mt-1">
+                  Institutional, Enterprise, & Wholesale Custom Pricing available.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-wrap items-baseline gap-3">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-white">
+                    {formatPrice(finalPrice)}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
-                    Save {formatPrice(savings)} ({discountPercent}% OFF)
-                  </span>
-                </>
-              )}
-            </div>
-            <p className="text-[11px] text-slate-400">Price includes all official import duties and VAT.</p>
+                  {savings > 0 && (
+                    <>
+                      <span className="text-sm sm:text-base text-slate-500 line-through">
+                        Regular: {formatPrice(product.price)}
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                        Save {formatPrice(savings)} ({discountPercent}% OFF)
+                      </span>
+                    </>
+                  )}
+                </div>
+                <p className="text-[11px] text-slate-400">Price includes all official import duties and VAT.</p>
+              </>
+            )}
           </div>
 
           {/* Quick Specifications Bullet Points */}
@@ -282,46 +297,67 @@ export default function ProductDetailPage() {
 
           {/* Quantity and Purchase Action Buttons */}
           <div className="space-y-4 pt-2">
-            <div className="flex items-center space-x-4">
-              <span className="text-xs font-semibold text-slate-300">Quantity:</span>
-              <div className="flex items-center space-x-3 bg-slate-900 border border-slate-700 rounded-xl p-1">
+            {product.isCallForPrice || product.price === 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-colors"
+                  onClick={() => setIsQuoteModalOpen(true)}
+                  className="py-3.5 px-6 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm shadow-md flex items-center justify-center space-x-2 transition-colors"
                 >
-                  <Minus className="h-3.5 w-3.5" />
+                  <Sparkles className="h-4 w-4" />
+                  <span>Request Price Quote</span>
                 </button>
-                <span className="text-sm font-bold text-white px-2 min-w-[24px] text-center">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity((q) => Math.min(product.stock || 99, q + 1))}
-                  className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-colors"
+
+                <a
+                  href="tel:09642222224"
+                  className="py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-100 font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors"
                 >
-                  <Plus className="h-3.5 w-3.5" />
-                </button>
+                  <span>Call Hotline: 09642222224</span>
+                </a>
               </div>
-            </div>
+            ) : (
+              <>
+                <div className="flex items-center space-x-4">
+                  <span className="text-xs font-semibold text-slate-300">Quantity:</span>
+                  <div className="flex items-center space-x-3 bg-slate-900 border border-slate-700 rounded-xl p-1">
+                    <button
+                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                      className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-colors"
+                    >
+                      <Minus className="h-3.5 w-3.5" />
+                    </button>
+                    <span className="text-sm font-bold text-white px-2 min-w-[24px] text-center">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity((q) => Math.min(product.stock || 99, q + 1))}
+                      className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-colors"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <button
-                disabled={!inStock}
-                onClick={handleAddToCart}
-                className="py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
-              >
-                <ShoppingCart className="h-4 w-4 text-blue-400" />
-                <span>Add to Cart</span>
-              </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <button
+                    disabled={!inStock}
+                    onClick={handleAddToCart}
+                    className="py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
+                  >
+                    <ShoppingCart className="h-4 w-4 text-blue-400" />
+                    <span>Add to Cart</span>
+                  </button>
 
-              <button
-                disabled={!inStock}
-                onClick={handleBuyNow}
-                className="py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
-              >
-                <Zap className="h-4 w-4" />
-                <span>Buy Now (Instant Checkout)</span>
-              </button>
-            </div>
+                  <button
+                    disabled={!inStock}
+                    onClick={handleBuyNow}
+                    className="py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors disabled:opacity-40"
+                  >
+                    <Zap className="h-4 w-4" />
+                    <span>Buy Now (Instant Checkout)</span>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Official Warranty & Assurances Banner */}
@@ -520,6 +556,12 @@ export default function ProductDetailPage() {
           </div>
         </div>
       )}
+
+      <QuotationModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
+        product={product}
+      />
     </div>
   );
 }

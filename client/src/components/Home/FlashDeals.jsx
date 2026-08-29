@@ -61,8 +61,8 @@ export default function FlashDeals({ dealProduct }) {
   const discountPercent = Math.round((savings / product.price) * 100);
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-10 shadow-sm">
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <section className="relative overflow-hidden rounded-3xl bg-[#0F172A] border border-slate-800 p-5 sm:p-8 lg:p-10 shadow-sm">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
         {/* Left Col: Header & Countdown Clock */}
         <div className="lg:col-span-5 space-y-6">
           <div className="space-y-2">
@@ -108,10 +108,10 @@ export default function FlashDeals({ dealProduct }) {
         </div>
 
         {/* Right Col: Flash Deal Product Showcase */}
-        <div className="lg:col-span-7 rounded-2xl bg-slate-900 border border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center shadow-sm">
+        <div className="lg:col-span-7 rounded-2xl bg-slate-900 border border-slate-800 p-4 sm:p-6 flex flex-col sm:flex-row gap-5 items-center shadow-sm overflow-hidden min-w-0">
           {/* Product Image with Discount Badge */}
-          <div className="relative w-full sm:w-56 h-56 rounded-xl bg-slate-950 overflow-hidden flex items-center justify-center p-3 flex-shrink-0">
-            <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold shadow-sm">
+          <div className="relative w-full sm:w-48 md:w-52 h-48 sm:h-52 rounded-xl bg-slate-950 overflow-hidden flex items-center justify-center p-3 flex-shrink-0">
+            <span className="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 rounded-lg bg-blue-600 text-white text-[11px] font-bold shadow-sm">
               Save {formatPrice(savings)}
             </span>
             <img
@@ -122,7 +122,7 @@ export default function FlashDeals({ dealProduct }) {
           </div>
 
           {/* Product Details & Purchase Controls */}
-          <div className="flex-1 space-y-3 w-full">
+          <div className="flex-1 min-w-0 space-y-2.5 w-full">
             <div className="flex items-center space-x-2 text-xs">
               <span className="font-bold text-blue-400 uppercase tracking-wider">{product.brand}</span>
               <span className="text-slate-600">•</span>
@@ -135,13 +135,13 @@ export default function FlashDeals({ dealProduct }) {
 
             <Link
               to={`/product/${product.slug}`}
-              className="block font-heading font-bold text-base sm:text-lg text-white hover:text-blue-400 transition-colors line-clamp-2 leading-snug"
+              className="block font-heading font-bold text-sm sm:text-base text-white hover:text-blue-400 transition-colors line-clamp-2 leading-snug"
             >
               {product.title}
             </Link>
 
             {/* Quick Specs */}
-            <ul className="text-xs text-slate-300 space-y-1">
+            <ul className="text-[11px] text-slate-300 space-y-1">
               {product.shortSpecs?.slice(0, 2).map((spec, i) => (
                 <li key={i} className="flex items-center space-x-2">
                   <Zap className="h-3 w-3 text-blue-400 flex-shrink-0" />
@@ -151,11 +151,11 @@ export default function FlashDeals({ dealProduct }) {
             </ul>
 
             {/* Price Box */}
-            <div className="pt-2 flex items-baseline space-x-3">
-              <span className="text-2xl font-extrabold text-white">
+            <div className="pt-1 flex flex-wrap items-baseline gap-2">
+              <span className="text-xl sm:text-2xl font-extrabold text-white">
                 {formatPrice(product.discountPrice)}
               </span>
-              <span className="text-sm text-slate-500 line-through">
+              <span className="text-xs text-slate-500 line-through">
                 {formatPrice(product.price)}
               </span>
               <span className="text-xs font-bold text-emerald-400">
@@ -165,9 +165,9 @@ export default function FlashDeals({ dealProduct }) {
 
             {/* Stock Bar */}
             <div className="space-y-1">
-              <div className="flex justify-between text-[11px] text-slate-400">
-                <span>Hurry, only {product.stock} units remaining!</span>
-                <span className="text-blue-400 font-semibold">85% Claimed</span>
+              <div className="flex justify-between items-center text-[11px] text-slate-400 gap-2">
+                <span className="truncate">Hurry, only {product.stock} units remaining!</span>
+                <span className="text-blue-400 font-semibold flex-shrink-0">85% Claimed</span>
               </div>
               <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
                 <div className="h-full rounded-full bg-blue-600 w-[85%]" />
@@ -175,18 +175,18 @@ export default function FlashDeals({ dealProduct }) {
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-2 flex items-center space-x-3">
+            <div className="pt-2 flex items-center gap-2.5 w-full">
               <button
                 onClick={() => addToCart(product, 1, true)}
-                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md flex items-center justify-center space-x-2 transition-colors active:scale-95"
+                className="flex-1 min-w-0 py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-md flex items-center justify-center space-x-1.5 transition-colors active:scale-95 whitespace-nowrap"
               >
-                <ShoppingCart className="h-4 w-4" />
-                <span>Claim Deal Now</span>
+                <ShoppingCart className="h-3.5 w-3.5 flex-shrink-0" />
+                <span className="truncate">Claim Deal Now</span>
               </button>
 
               <Link
                 to={`/product/${product.slug}`}
-                className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors"
+                className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors flex-shrink-0 whitespace-nowrap"
               >
                 Full Specs
               </Link>

@@ -21,6 +21,11 @@ import AccountPage from './pages/AccountPage';
 import OrderDetailPage from './pages/OrderDetailPage';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 
+import BrandPage from './pages/BrandPage';
+import BranchPage from './pages/BranchPage';
+import ComplainPage from './pages/ComplainPage';
+import CategoryLandingPage from './pages/CategoryLandingPage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -35,6 +40,21 @@ export default function App() {
               <Route path="/shop" element={<ShopPage />} />
               <Route path="/product/:idOrSlug" element={<ProductDetailPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
+              <Route path="/brand" element={<BrandPage />} />
+              <Route path="/branch" element={<BranchPage />} />
+              <Route path="/complain" element={<ComplainPage />} />
+
+              {/* Direct Orient Department Routes */}
+              <Route path="/Renewable%20Energy" element={<CategoryLandingPage slug="renewable-energy" />} />
+              <Route path="/Renewable Energy" element={<CategoryLandingPage slug="renewable-energy" />} />
+              <Route path="/renewable-energy" element={<CategoryLandingPage slug="renewable-energy" />} />
+              <Route path="/ups" element={<CategoryLandingPage slug="ups" />} />
+              <Route path="/ips" element={<CategoryLandingPage slug="ips" />} />
+              <Route path="/battery" element={<CategoryLandingPage slug="battery" />} />
+              <Route path="/telecom" element={<CategoryLandingPage slug="telecom" />} />
+              <Route path="/audio-visual" element={<CategoryLandingPage slug="audio-visual" />} />
+              <Route path="/office-equipment" element={<CategoryLandingPage slug="office-equipment" />} />
+              <Route path="/category/:slug" element={<CategoryLandingPage />} />
 
               {/* Cart & Checkout Funnel */}
               <Route path="/cart" element={<CartPage />} />
