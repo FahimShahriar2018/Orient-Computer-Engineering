@@ -13,8 +13,10 @@ import {
   CheckCircle2,
   AlertCircle,
   ChevronRight,
+  LogIn,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { formatPrice } from '../utils/formatters';
 
 const VALID_COUPONS = {
@@ -25,6 +27,7 @@ const VALID_COUPONS = {
 
 export default function CartPage() {
   const navigate = useNavigate();
+  const { user, openAuthModal } = useAuth();
   const {
     cartItems,
     removeFromCart,
@@ -34,6 +37,14 @@ export default function CartPage() {
     itemsPrice,
     shippingPrice,
   } = useCart();
+
+  const handleCheckout = () => {
+    if (!user) {
+      openAuthModal('login');
+      return;
+    }
+    navigate('/checkout');
+  };
 
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null);
@@ -280,11 +291,20 @@ export default function CartPage() {
           </div>
 
           <button
-            onClick={() => navigate('/checkout')}
+            onClick={handleCheckout}
             className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors transform active:scale-[0.98]"
           >
-            <span>Proceed to Checkout</span>
-            <ArrowRight className="h-4 w-4" />
+            {user ? (
+              <>
+                <span>Proceed to Checkout</span>
+                <ArrowRight className="h-4 w-4" />
+              </>
+            ) : (
+              <>
+                <LogIn className="h-4 w-4" />
+                <span>Sign In to Checkout</span>
+              </>
+            )}
           </button>
 
           <Link

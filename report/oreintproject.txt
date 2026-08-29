@@ -1,0 +1,1495 @@
+      An Undergraduate Internship Project on
+
+Orient Computer E-commerce Website
+
+                                  By
+
+                  Sultana Tasnim Riza
+                       Student ID: 2111329
+                           Summer 2026
+
+
+
+
+                             Supervisor:
+                      Bijoy Rahman Arif
+                           Senior Lecturer
+      Department of Computer Science & Engineering
+              Independent University, Bangladesh
+
+
+
+
+                         12 September,2026
+
+
+Dissertation submitted in partial fulfillment for the degree of Bachelor
+                  of Science in Computer Science
+
+
+
+
+      Department of Computer Science & Engineering
+              Independent University, Bangladesh
+Attestation
+
+I, Sultana Tasnim Riza, ID: 2111329, hereby declare that the report titled “Orient
+Computers Ecommerce Website” submitted in partial fulfillment of the requirement
+for the Degree of Bachelor of Science in Computer Science is the result of my own
+work. I also confirm that the work was carried out as a student of Independent
+University, Bangladesh.
+
+I would like to acknowledge the guidance of my supervisor, Bijoy Rahman Arif,
+who supported me throughout this project. I also declare that this work represents
+my personal understanding and the outcomes I achieved during my internship
+period.
+
+The report also properly cites and credits all sources used for further inquiry about
+this report, contacting my supervisor in the internship setting,Md Sabbir Hasan
+Khan at Orient Computers through the email address.
+
+
+
+
+ Signature
+
+ Date
+
+ Name        Sultana Tasnim Riza
+
+
+
+
+                                          i
+Acknowledgement
+
+I am grateful for the opportunity to complete this internship and produce the
+project described in this report. My thanks go first to my family, who were patient
+and encouraging throughout the long hours of development and writing.
+
+My academic supervisor, Bijoy Rahman Arif, provided clear direction and asked
+the right questions at each review. Without those check-ins the project would have
+drifted in several unhelpful directions.
+
+I also thank the team at Orient Computers, particularly Md Sabbir Hasan Khan,
+for explaining the business requirements honestly, including the parts that were
+inconvenient for my initial design. Understanding how actual orders are processed,
+how delivery charges work by district, and how the company handles bKash
+and Nagad payments manually shaped. His inspirational words and mentorship
+motivated me to surpass my own expectations.
+
+I express my sincere gratitude to all those who supported and advised me during the
+completion of my dissertation and internship. I am confident that this experience
+will significantly contribute to my future pursuits in the realm of computer science.
+I extend my heartfelt thanks to all who have played a part in shaping my journey.
+
+
+
+
+                                         ii
+Letter of Transmittal
+
+September 12,2026
+
+
+Bijoy Rahman Arif,
+Senior Lecturer
+Department of Computer Science and Engineering,
+School of Engineering and Computer Science,
+Independent University Bangladesh
+
+
+Subject: Submission of an internship report for graduation completion
+
+
+Dear Sir,
+
+I am submitting my Internship Report as part of the Bachelor Program in Com-
+puter Science. I am grateful for your supervision during my internship at Orient
+Computers, where I worked for three months under the guidance of Md Sabbir
+Hasan Khan.
+
+The project involved designing and building a full-stack e-commerce web appli-
+cation for Orient Computer, a computer and electronics retailer based in Dhaka,
+Bangladesh. The application lets customers browse products, place orders, and
+pay using Cash on Delivery, bKash, or Nagad. An admin panel allows staff to
+manage the full order lifecycle including payment verification.
+
+I have tried to document the work accurately, including the decisions I made, the
+problems I ran into, and the reasoning behind the technical choices. If any section
+needs clarification, I am happy to discuss it.
+
+Thank you for the guidance and time you gave me throughout the internship.
+
+Yours sincerely,
+
+
+Sultana Tasnim Riza
+ID: 2111329
+Department of Computer Science and Engineering,
+Independent University, Bangladesh.
+
+
+
+                                        iii
+Evaluation Committee
+
+Supervision Panel
+
+
+
+Academic Supervisor
+
+
+
+
+Industry Supervisor
+
+
+
+
+Panel Members
+
+
+
+Panel Member 1
+
+
+
+
+Panel Member 2
+
+
+
+
+Panel Member 3
+
+
+
+
+Office Use
+
+
+
+Internship Coordinator
+
+
+
+
+Head of the Department
+
+                         iv
+Abstract
+
+This report documents the design and development of a full-stack ecommerce
+website for Orient Computer, a Bangladeshi retailer selling PC components, UPS
+and IPS systems, batteries, solar products, audio-visual equipment, and office
+supplies. The company had no online sales channel before this project.
+
+The application was built with React (Vite), Node.js, Express.js, and MongoDB.
+Customers can browse the product catalogue, filter by category and brand, search
+by name or SKU, add items to a cart, and complete checkout. Accepted payment
+methods are Cash on Delivery, manual bKash, and manual Nagad, all of which
+are common for Bangladeshi online stores. Registered customers can view their
+order history, track shipments, manage a wishlist, and write reviews on delivered
+products.
+
+Administrators work through a separate dashboard to manage products, categories,
+brands, inventory, orders, and delivery charges. The payment verification workflow
+allows staff to confirm or reject bKash and Nagad transactions based on the
+transaction ID and screenshot the customer submits. All business rules, including
+stock checks, price freezing at purchase time, and coupon validation, run server-side
+so they cannot be bypassed from the browser.
+
+The backend API is deployed-ready for Vercel or Railway, and the database runs
+on MongoDB Atlas. The frontend builds to a static bundle deployable to Netlify
+or Vercel.
+
+
+Keywords: MERN stack, ecommerce, Bangladesh, bKash, Nagad, React, Node.js,
+MongoDB, JWT authentication, role-based access control
+
+
+
+
+                                         v
+Contents
+
+Attestation                                                                          i
+
+Acknowledgement                                                                    ii
+
+Letter of Transmittal                                                              iii
+
+Evaluation Committee                                                               iv
+
+Abstract                                                                            v
+
+1 Introduction                                                                      1
+  1.1 Overview and background . . . . . . . . . . . . . . . . . . . . . . .         1
+  1.2 Objectives . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    1
+  1.3 Scope . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     2
+
+2 Literature Review                                                                 3
+  2.1 Relationship with undergraduate studies . . . . . . . . . . . . . . .         3
+  2.2 Related works . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     3
+
+3 Project Management and Financing                                                  5
+  3.1 Work breakdown structure . . . . . . . . . . . . . . . . . . . . . . .        5
+  3.2 Process and activity time distribution . . . . . . . . . . . . . . . . .      5
+  3.3 Gantt chart . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     6
+  3.4 Resource allocation . . . . . . . . . . . . . . . . . . . . . . . . . . .     6
+  3.5 Estimated costing . . . . . . . . . . . . . . . . . . . . . . . . . . . .     7
+
+4 Methodology                                                                     8
+  4.1 Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+  4.2 Technology stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+  4.3 Database design approach . . . . . . . . . . . . . . . . . . . . . . . 9
+  4.4 API design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+  4.5 Authentication and authorization . . . . . . . . . . . . . . . . . . . 10
+
+5 Body of the Project                                                              12
+
+
+                                         vi
+Orient Computer Ecommerce Website                                Sultana Tasnim Riza
+
+
+   5.1 Work description . . . . . . . . . . . . . . . . . . . . . . . . . . . .      12
+   5.2 Requirement analysis . . . . . . . . . . . . . . . . . . . . . . . . . .      12
+       5.2.1 Functional requirements . . . . . . . . . . . . . . . . . . . .         13
+       5.2.2 Non-functional requirements . . . . . . . . . . . . . . . . . .         14
+   5.3 System analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     14
+       5.3.1 Feasibility analysis . . . . . . . . . . . . . . . . . . . . . . .      14
+       5.3.2 Operational feasibility . . . . . . . . . . . . . . . . . . . . .       14
+       5.3.3 Financial feasibility . . . . . . . . . . . . . . . . . . . . . . .     15
+       5.3.4 Schedule feasibility . . . . . . . . . . . . . . . . . . . . . . .      15
+   5.4 System design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     15
+       5.4.1 Entity relationship diagram . . . . . . . . . . . . . . . . . .         15
+       5.4.2 Folder structure . . . . . . . . . . . . . . . . . . . . . . . . .      16
+   5.5 Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      17
+       5.5.1 Product catalogue and search . . . . . . . . . . . . . . . . .          17
+       5.5.2 Cart . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      17
+       5.5.3 Order creation . . . . . . . . . . . . . . . . . . . . . . . . . .      17
+       5.5.4 Payment verification workflow . . . . . . . . . . . . . . . . .         18
+       5.5.5 Order status workflow . . . . . . . . . . . . . . . . . . . . .         18
+       5.5.6 Admin panel . . . . . . . . . . . . . . . . . . . . . . . . . . .       19
+   5.6 Testing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   19
+
+6 Results and Analysis                                                               21
+
+7 Project as Engineering Problem Analysis                                       26
+  7.1 Sustainability of the project . . . . . . . . . . . . . . . . . . . . . . 26
+  7.2 Social and environmental effects . . . . . . . . . . . . . . . . . . . . 26
+
+8 Lessons Learned                                                              27
+  8.1 Problems faced . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+  8.2 Solutions and what I would do differently . . . . . . . . . . . . . . . 28
+
+9 Future Work and Conclusion                                                     29
+  9.1 Future work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+  9.2 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+
+
+
+
+                                         vii
+List of Figures
+
+ 3.1 Work breakdown structure diagram . . . . . . . . . . . . . . . . . .             5
+ 3.2 Project Gantt chart . . . . . . . . . . . . . . . . . . . . . . . . . . .        6
+
+ 4.1   System architecture: three-tier design with React frontend, Express
+       API, and MongoDB Atlas . . . . . . . . . . . . . . . . . . . . . . .           8
+
+ 5.1   Rich picture of the Orient Computer ecommerce system showing
+       three user roles and their interactions . . . . . . . . . . . . . . . . . 12
+ 5.2   Entity relationship diagram showing the main MongoDB collections
+       and their associations . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+ 6.1   Home page showing hero banner, category navigation, and product
+       sections . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    21
+ 6.2   Product catalogue showing 17 products with category filters, brand
+       filters, price range, and sort options . . . . . . . . . . . . . . . . . .    21
+ 6.3   Product details page showing product image, price, stock status,
+       highlights, and Add to Cart / Buy Now buttons . . . . . . . . . . .           22
+ 6.4   Shopping cart with an item, quantity controls, coupon code field,
+       order summary, and Proceed to Checkout button . . . . . . . . . .             22
+ 6.5   Checkout form collecting full name, phone, address, district, and
+       delivery area . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   23
+ 6.6   Checkout payment section showing Cash on Delivery, bKash (Man-
+       ual), and Nagad (Manual) options . . . . . . . . . . . . . . . . . . .        23
+ 6.7   Admin dashboard showing summary statistics: 17 active products,
+       4 customers, 1 low-stock item, and the recent orders table . . . . . .        24
+ 6.8   Admin products page showing all 17 seeded products with SKU,
+       category, price, stock level, and status . . . . . . . . . . . . . . . . .    24
+ 6.9   Order tracking page where customers enter their order number and
+       registered phone number to track without logging in . . . . . . . . .         25
+
+
+
+
+                                        viii
+List of Tables
+
+ 3.1 Time distribution by phase . . . . . . . . . . . . . . . . . . . . . . .   6
+ 3.2 Estimated project cost . . . . . . . . . . . . . . . . . . . . . . . . .   7
+
+ 4.1 Technology stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+ 4.2 Selected API endpoints . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+ 5.1 Allowed order status transitions . . . . . . . . . . . . . . . . . . . . 19
+
+
+
+
+                                      ix
+Chapter 1        Introduction
+
+
+1.1     Overview and background
+Orient Computer is a computer and electronics retailer in Dhaka, Bangladesh. The
+company sells PC components, UPS and IPS systems, batteries, renewable-energy
+equipment, audio-visual products, telecom hardware, and office supplies. Before
+this project the company had no ecommerce channel. Customers either visited one
+of its showrooms or contacted sales by phone.
+
+Moving sales online is not straightforward for a retailer in Bangladesh. International
+payment gateways are not universally available, customers expect to pay by mobile
+money (bKash and Nagad) or on delivery, and the delivery charge depends on
+whether the order is going inside Dhaka or to another district. The application had
+to handle all of this correctly from the start rather than treating it as an optional
+extra.
+
+My internship task was to design and build a working ecommerce website for Orient
+Computer from scratch, covering the customer-facing storefront, the checkout flow,
+and the admin management panel.
+
+
+1.2     Objectives
+The main objectives of the project were:
+
+   1. Build a product catalogue where customers can browse by category, search
+      by name or SKU, filter by brand and price, and view full product details
+      including specifications and reviews.
+
+   2. Implement a cart and checkout that calculates delivery charges by area,
+      applies coupon codes, and accepts Cash on Delivery, bKash, and Nagad.
+
+   3. Create an order management system where customers can track orders and
+      admins can move orders through the full lifecycle from pending to delivered.
+
+   4. Build a payment verification workflow so staff can confirm or reject manual
+      bKash and Nagad payments using the transaction ID and screenshot the
+      customer provides.
+
+
+
+                                          1
+Orient Computer Ecommerce Website                               Sultana Tasnim Riza
+
+
+  5. Design an admin dashboard that gives staff an overview of sales, pending
+     payments, low-stock products, and recent orders.
+
+  6. Apply security practices appropriate for a production web application: bcrypt
+     password hashing, JWT authentication, role-based route protection, input
+     sanitization, and server-side validation of all prices, stock levels, and coupon
+     rules.
+
+
+1.3     Scope
+The project covers the following areas:
+
+   • Customer registration, login, profile management, and saved addresses
+
+   • Product catalogue with search, filters, sorting, and pagination
+
+   • Product details with multiple images, specifications, and customer reviews
+
+   • Cart management for both guest and registered users
+
+   • Checkout with delivery area selection and COD / bKash / Nagad payment
+
+   • Order history, tracking, and cancellation for customers
+
+   • Wishlist and verified-purchase reviews
+
+   • Admin panel covering products, categories, brands, inventory, orders, cus-
+     tomers, coupons, banners, delivery areas, and review moderation
+
+   • Informational pages: About, Contact, Branches, FAQ, and policy pages
+
+The scope does not include an automated payment gateway (this would require
+a merchant account with a provider such as SSLCommerz), email or SMS order
+notifications, a PC Builder tool, or product comparison. These are noted as possible
+future additions.
+
+
+
+
+                                          2
+Chapter 2        Literature Review
+
+
+2.1     Relationship with undergraduate studies
+Several courses taken during my undergraduate program directly applied to this
+project.
+
+CSE309 (Web Application Development) introduced client-server architecture,
+HTTP, REST APIs, and JavaScript. Most of the code in this project is JavaScript,
+so the foundations from that course were used constantly.
+
+CSE307 (System Analysis and Design) covered requirements analysis, use-case
+diagrams, and ER diagrams. The requirement analysis and data model sections of
+this report follow that structure. Working through the SRS (Software Requirements
+Specification) for Orient Computer before writing any code saved significant rework
+later.
+
+CSE303 (Database Management) explained relational modelling, normaliza-
+tion, and query design. MongoDB is document-oriented rather than relational, but
+the reasoning about relationships between entities, and decisions about embedding
+versus referencing data, came directly from that course.
+
+CSE211 (Object-Oriented Programming) shaped how I organized the backend
+code into models, controllers, and services, keeping business logic separate from
+HTTP handling.
+
+CSE317 (Numerical Methods) / CSE418 (Data Mining) were less directly
+relevant, but the thinking about tradeoffs between approaches was useful when
+choosing between different MongoDB indexing strategies for the product search
+feature.
+
+CSE403 (Information Security) informed the security section of the project:
+password hashing, token authentication, input sanitization, and rate limiting.
+
+
+2.2     Related works
+Ecommerce in Bangladesh has grown substantially since mobile internet became
+affordable. Most large Bangladeshi retailers (Chaldal, Shajgoj, StarTech, Ryans)
+run custom platforms rather than off-the-shelf solutions. The main constraint
+
+
+                                        3
+Orient Computer Ecommerce Website                              Sultana Tasnim Riza
+
+
+specific to the Bangladeshi market is payment: card penetration is low, so bKash
+and Nagad are the standard mobile payment options alongside cash on delivery [1].
+
+Star Tech (www.startech.com.bd) and Ryans Computers (www.ryanscomputers.
+com) are the largest PC component retailers in Bangladesh with active ecommerce
+operations. Both use category trees, product specifications tables, and filtering
+patterns similar to international ecommerce sites like Newegg. Orient Computer’s
+catalogue structure follows the same pattern, adapted to include product categories
+specific to Orient Computer’s business (UPS, IPS, solar inverters, and batteries).
+
+The MERN stack (MongoDB, Express.js, React, Node.js) is a common choice for
+projects like this [2]. It keeps both frontend and backend in JavaScript, which
+reduces context-switching and means a single developer can work across the full
+application. The alternative considered was Django with a React frontend, but
+the asynchronous nature of Node.js fits high-concurrency web requests well, and
+Mongoose’s schema validation provides enough data safety for this project’s scale.
+
+JSON Web Tokens (JWT) are the standard approach for stateless authentication
+in REST APIs [3]. For this project tokens are stored in the client’s localStorage
+and sent as a Bearer header. An alternative is HttpOnly cookies, which are harder
+to steal via XSS; this is noted as a future improvement.
+
+Tailwind CSS is a utility-first CSS framework that produces consistent, responsive
+layouts without writing custom CSS files [4]. It was chosen partly because the
+entire site needs to work on mobile, which is the device most Bangladeshi customers
+use for online shopping.
+
+
+
+
+                                        4
+Chapter 3        Project Management and Financing
+
+
+3.1     Work breakdown structure
+The project was divided into six phases. Figure 3.1 shows the work breakdown
+structure.
+
+                                 Orient Computer
+                               Ecommerce Website
+
+
+
+   Phase 1        Phase 2       Phase 3       Phase 4      Phase 5      Phase 6
+  Foundation     Catalogue     Shopping       Orders       Admin         Extras
+
+                 Figure 3.1: Work breakdown structure diagram
+
+
+Phase 1 (Foundation) covered project setup, database connection, authentication,
+and the base layout including the navbar and footer. Phase 2 (Catalogue) built
+the category tree, product listing, search, filters, and product detail pages. Phase
+3 (Shopping) added the cart, checkout, delivery charge calculation, and payment
+collection. Phase 4 (Orders) handled order creation, the status workflow, order
+tracking, and customer cancellation. Phase 5 (Admin) built the full admin panel.
+Phase 6 (Additional Features) covered wishlist, reviews, informational pages, and
+the seed script.
+
+
+3.2     Process and activity time distribution
+Table 3.1 shows the estimated and actual time spent on each phase.
+
+
+
+
+                                          5
+Orient Computer Ecommerce Website                               Sultana Tasnim Riza
+
+
+                        Table 3.1: Time distribution by phase
+
+ Phase    Description                                 Estimated (days)   Actual (days)
+
+ 1        Foundation (setup, auth, base UI)                         10                12
+ 2        Catalogue (categories, products, search)                  14                16
+ 3        Shopping (cart, checkout, payment)                        12                15
+ 4        Orders (creation, tracking, lifecycle)                    10                11
+ 5        Admin panel                                               16                18
+ 6        Additional features and polish                             8                10
+
+          Total                                                     70                82
+
+
+Most phases ran a few days over. The checkout and admin order workflow took
+the most extra time because of edge cases: what to do when a coupon expires
+between adding it to the cart and completing the order, and how to handle
+Mongoose transactions on a standalone MongoDB instance where replica sets are
+not available.
+
+
+3.3      Gantt chart
+Figure 3.2 shows the project schedule. The six phases ran mostly in sequence, with
+some overlap between Phases 4 and 5 during the final two weeks.
+
+                                           Project Schedule (13 weeks)
+                                 1   2   3 4 5 6 7 8 9 10 11 12 13
+          Phase 1: Foundation
+           Phase 2: Catalogue
+            Phase 3: Shopping
+              Phase 4: Orders
+              Phase 5: Admin
+      Phase 6: Extras & Polish
+
+                            Figure 3.2: Project Gantt chart
+
+
+
+3.4      Resource allocation
+Hardware used: a personal laptop running Windows 11 (16 GB RAM, i7 processor).
+The database runs on MongoDB Atlas free tier, which was sufficient for development
+and testing. No additional hardware was required.
+
+
+
+                                           6
+Orient Computer Ecommerce Website                                Sultana Tasnim Riza
+
+
+Software used: VS Code as the editor, Postman for API testing, Git for version
+control, and the browser DevTools for frontend debugging. All software was free
+or open source.
+
+The project was a solo development effort. The industry supervisor reviewed
+progress at the end of each phase and provided feedback on the business logic
+(particularly around delivery charges and the payment verification flow).
+
+
+3.5       Estimated costing
+
+                         Table 3.2: Estimated project cost
+
+   Item                                                    Estimated cost (BDT)
+
+   Development hardware (laptop, existing)                                      0
+   MongoDB Atlas (free tier)                                                    0
+   Development tools (VS Code, Postman, Git)                                    0
+   Domain name (for deployment)                                            ~1,500
+   Web hosting (Vercel free tier for frontend)                                  0
+   Backend hosting (Railway or Render, starter plan)                ~1,200/month
+   Internet cost (3 months)                                                ~3,000
+
+   Total (excluding recurring hosting)                                      ~4,500
+
+
+For a live production deployment, the main recurring cost is backend hosting.
+MongoDB Atlas offers a free shared cluster that is suitable for initial traffic. A paid
+Atlas cluster would become necessary once the product catalogue grows beyond a
+few hundred items and daily order volume picks up.
+
+
+
+
+                                          7
+Chapter 4                   Methodology
+
+
+4.1        Overview
+The application uses a three-tier architecture: a React frontend, a Node.js/Express
+REST API, and a MongoDB database. The three components communicate over
+HTTP. The frontend never talks to the database directly.
+
+        Client tier                             Application tier                Data tier
+         Browser               HTTP/JSON       Node.js / Express    Mongoose    MongoDB
+   (React + Vite)              JSON response
+                                                  REST API          documents
+                                                                                  Atlas
+      JWT in localStorage                                                       Atlas free tier
+                                                           Multer
+
+
+
+                                                Local Uploads
+                                               (product images)
+
+Figure 4.1: System architecture: three-tier design with React frontend, Express
+API, and MongoDB Atlas
+
+
+
+
+                                                       8
+Orient Computer Ecommerce Website                               Sultana Tasnim Riza
+
+
+
+4.2        Technology stack
+
+                            Table 4.1: Technology stack
+
+ Layer             Technology            Reason for choice
+ Frontend          React 18 with Vite    Component model fits a complex UI well;
+ framework                               Vite is much faster to start up than CRA
+ Routing           React Router 6        Standard for React SPAs
+ Styling           Tailwind CSS 3        Utility classes make mobile-first layouts
+                                         quick to build and easy to keep consistent
+ HTTP client       Axios                 Interceptors make it easy to attach the
+                                         JWT to every request and handle 401
+                                         errors globally
+ Forms             React Hook Form       Reduces re-renders on input change and
+                                         simplifies validation
+ Backend           Express.js            Minimal and well-documented; easy to
+ framework                               organize into routes and middleware
+ Database          MongoDB with          Flexible schema fits product data that has
+                   Mongoose              different specifications per category
+ Authentication    JSON Web Tokens       Stateless; no session store needed
+                   (JWT)
+ Password          bcryptjs              Industry-standard hashing with
+ hashing                                 configurable cost factor
+ File uploads      Multer                Handles multipart form data; stores files
+                                         on disk (product images, payment
+                                         screenshots)
+ Security          Helmet,               Addresses the most common web
+                   Mongo-Sanitize,       vulnerabilities without excessive
+                   XSS-Clean,            configuration
+                   Rate-Limit
+
+
+
+4.3        Database design approach
+MongoDB uses documents rather than rows. For this application, most entities
+are stored as their own collection with references (ObjectId) to related documents.
+The main exception is the order document: when an order is created, the product
+name, SKU, and price at purchase time are copied into the order document. This
+means that if the product is later edited or deactivated, the historical order stays
+accurate.
+
+The decision to embed order items inside the order document rather than referencing
+
+                                         9
+Orient Computer Ecommerce Website                               Sultana Tasnim Riza
+
+
+them separately keeps order retrieval to a single query. Since orders are never
+mutated except through a controlled status workflow, embedding is safe here.
+
+For the product specifications, each product has an array of key-value pairs
+grouped by category (for example, a UPS might have groups “Capacity” and
+“Protection”, each with several rows). This structure covers all the product types
+Orient Computer sells without requiring a separate specifications table per category.
+
+
+4.4     API design
+The API follows REST conventions. Resource collections use plural nouns. HTTP
+methods indicate the action:
+
+                        Table 4.2: Selected API endpoints
+
+ Method     Endpoint                           Description
+
+ POST       /api/auth/register                 Create a customer account
+ POST       /api/auth/login                    Login and receive a JWT
+ GET        /api/products                      List products (search, filter, sort, paginate)
+ GET        /api/products/:id                  Get one product by ID or slug
+ POST       /api/cart                          Add an item to the server-side cart
+ POST       /api/orders                        Create an order (guest or registered)
+ POST       /api/orders/track                  Track an order by number and phone
+ GET        /api/admin/dashboard               Admin summary statistics
+ PATCH      /api/admin/orders/:id/status       Move order to next status
+ PATCH      /api/admin/orders/:id/payment      Verify or reject a payment
+
+
+Every protected endpoint checks the JWT via a middleware function before the
+controller runs. Admin-only endpoints add a second middleware check that verifies
+the user’s role is admin. A request from a customer account to an admin endpoint
+returns a 403 response.
+
+
+4.5     Authentication and authorization
+When a user logs in, the server signs a JWT containing the user’s database ID.
+The token is returned to the client, which stores it in localStorage and attaches it
+as a Authorization: Bearer <token> header on all subsequent requests.
+
+The server middleware decodes the token on each request, loads the user from the
+database, and attaches the user object to the request. This means role changes
+
+                                         10
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+take effect on the next request without requiring the user to log out and back in.
+
+Passwords are hashed using bcrypt with a cost factor of 12 before storage. The
+password field on the User model is set to select: false so it is never included
+in query results accidentally.
+
+
+
+
+                                       11
+Chapter 5        Body of the Project
+
+
+5.1     Work description
+The project involved building every layer of the application from scratch: database
+models, REST API, React components, pages, routing, and deployment configura-
+tion.
+
+The work split into roughly equal parts: backend API and business logic, frontend
+UI and state management, and integration between the two. The most time-
+consuming parts were the order creation flow (which had to handle guest checkout,
+coupon validation, delivery charges, and stock decrement atomically) and the
+admin order detail page (which needed to support every status transition, payment
+verification, delivery status updates, and internal notes).
+
+
+5.2     Requirement analysis
+The requirements were gathered from the company’s existing business processes
+and from the SRS provided at the start of the internship. Figure 5.1 shows the
+system’s rich picture, illustrating how the three roles (guest customer, registered
+customer, and administrator) interact with the system.
+
+                                         Product
+                                        Catalogue
+              Guest
+            Customer                     Cart &
+                                        Checkout
+
+            Registered                    Order                  MongoDB
+            Customer                   Management                   Atlas
+
+                                        Customer
+                                         Account
+          Administrator
+                                          Admin
+                                          Panel
+
+Figure 5.1: Rich picture of the Orient Computer ecommerce system showing three
+user roles and their interactions
+
+
+
+                                        12
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+5.2.1   Functional requirements
+  1. Customers can register, log in, and manage their profile and saved addresses.
+
+  2. Customers can browse products by category, search by name/SKU/model/brand,
+     filter by brand, price range, and stock status, and sort results.
+
+  3. Each product page shows images, price (or “Call for Price” when applicable),
+     stock status, specifications, and customer reviews.
+
+  4. Customers can add products to a cart. Guest cart data is stored in localStor-
+     age and merged to the server cart on login.
+
+  5. Checkout collects shipping details, delivery area selection, and payment
+     method. Delivery charge is calculated server-side based on the selected area.
+
+  6. Supported payment methods are Cash on Delivery, manual bKash, and
+     manual Nagad. For mobile payments, the customer submits sender phone,
+     transaction ID, and an optional screenshot.
+
+  7. Order creation validates stock, recalculates the total, and applies the coupon
+     server-side. The client-supplied total is never trusted.
+
+  8. Each order receives a unique order number (format: OC{YYMMDD}-{6
+     digits}).
+
+  9. Customers can track orders by logging in or entering the order number and
+     registered phone number.
+
+ 10. Customers can cancel orders in “pending” or “confirmed” status. Cancelling
+     restores the stock.
+
+ 11. Registered customers can add products to a wishlist and move wishlist items
+     to the cart.
+
+ 12. Customers who received a product can write a verified review. Reviews are
+     linked to the order so one review is allowed per product per order.
+
+ 13. Administrators can manage products, categories, subcategories, brands, in-
+     ventory, orders, customers, coupons, banners, delivery areas, reviews, and
+     site settings.
+
+ 14. Administrators can verify or reject manual bKash and Nagad payments with
+     a reason.
+
+ 15. Administrators can move orders through the status workflow (Pending →
+     Confirmed → Processing → Shipped → Delivered), or mark them as Cancelled
+
+
+                                       13
+Orient Computer Ecommerce Website                              Sultana Tasnim Riza
+
+
+      or Returned.
+
+
+5.2.2    Non-functional requirements
+  1. The application must work on mobile phones, tablets, and desktop browsers.
+
+  2. Prices are displayed in Bangladeshi Taka (Tk.).
+
+  3. Bangladeshi phone numbers (01XXXXXXXXX format) are validated on the
+     server.
+
+  4. Passwords must be at least six characters and are stored as bcrypt hashes.
+
+  5. All admin routes require a valid JWT with the admin role.
+
+  6. Product catalogue pages should load within approximately three seconds
+     on a normal mobile connection, using pagination (20 products per page by
+     default) and lazy-loaded images.
+
+  7. The server must not expose stack traces or internal error details in production
+     API responses.
+
+  8. File uploads (product images, payment screenshots) are restricted to image
+     formats (JPG, PNG, WebP, GIF) with a 5 MB size limit.
+
+
+5.3     System analysis
+
+5.3.1    Feasibility analysis
+The application runs on technologies that are well-documented and widely deployed.
+Node.js and React have large communities, so finding answers to specific problems
+was practical throughout development. MongoDB Atlas handles database hosting
+and backups, removing the need to manage a database server.
+
+The main technical risk was the payment flow. Bangladesh does not have a fully
+automated mobile money API that any merchant can integrate. The solution was
+a manual verification workflow: collect the transaction details from the customer,
+let the admin verify them against the company’s bKash or Nagad account, and
+update the payment status accordingly. This is how most small Bangladeshi online
+stores operate.
+
+
+5.3.2    Operational feasibility
+Orient Computer staff already handle phone-based orders, so the idea of receiving
+an online order and confirming it is not new. The admin panel was designed to
+
+                                        14
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+match their existing mental model: orders come in, get confirmed, get packed, get
+shipped, get delivered. The status buttons on the order details page make this
+workflow explicit.
+
+The main change for staff is the payment verification step for bKash and Nagad
+orders. The admin panel shows the transaction ID and screenshot, and provides
+Verify and Reject buttons. This is simpler than the current process of checking
+WhatsApp screenshots and updating a spreadsheet.
+
+
+5.3.3    Financial feasibility
+The application runs on free and low-cost infrastructure at development scale. As
+order volume grows, the main costs are MongoDB Atlas (paid tier at roughly 3,000
+BDT/month for a dedicated cluster) and the backend hosting (Railway or Render,
+roughly 1,200-2,000 BDT/month for an always-on instance). These costs are well
+below the staff hours they replace for any store processing more than a few orders
+per day.
+
+
+5.3.4    Schedule feasibility
+The project was completed in approximately three months. The schedule was
+feasible because the scope was fixed at the start and new features were added
+only after the core workflow (browse, add to cart, checkout, order) was working
+end-to-end.
+
+
+5.4     System design
+
+5.4.1    Entity relationship diagram
+Figure 5.2 shows the main entities and their relationships.
+
+
+
+
+                                       15
+    Orient Computer Ecommerce Website                                Sultana Tasnim Riza
+
+
+                                                parent
+
+
+
+
+                    User                      Category              Brand
+
+                                                         by
+                         many                      in
+
+
+                                   pl
+                                      ac
+                                         e
+                   Address
+                     1                    s   Product              Banner
+
+
+
+
+                                   wr
+                                    s
+                                  m
+                     1
+
+
+
+
+                                       ite
+                                 ite
+                                        s
+                    Cart                       Order               Coupon
+
+                                                          uses
+
+
+
+
+                   Wishlist                   Review             DeliveryArea
+
+    Figure 5.2: Entity relationship diagram showing the main MongoDB collections
+    and their associations
+
+
+    The key relationships are:
+
+       • A User has many Addresses, one Cart, one Wishlist, many Orders, and many
+         Reviews.
+
+       • A Product belongs to one Category and one Brand. A Category may have a
+         parent Category (for subcategories).
+
+       • An Order contains many OrderItems. Each OrderItem stores a snapshot of
+         the product’s price at purchase time, so later catalogue price changes do not
+         affect historical orders.
+
+       • A Review links a User, a Product, and an Order, with a unique index on
+         that combination to prevent duplicate reviews.
+
+
+    5.4.2    Folder structure
+1 / server
+2    / config               ( database connection )
+3    / controllers          ( request handlers )
+4    / models               ( Mongoose schemas )
+5    / routes               ( Express routers )
+6    / services             ( order and cart business logic )
+7    / middleware           ( auth , upload , error handler )
+8    / utils                ( ApiError , asyncHandler , order number )
+9    / uploads              ( product images , payment screenshots )
+
+
+                                                16
+     Orient Computer Ecommerce Website                                Sultana Tasnim Riza
+
+
+10     seed . js           ( development seed data )
+11     server . js         ( entry point )
+12
+
+13 / client
+14    / src
+15       / contexts        ( Auth , Cart , Wishlist )
+16       / components      ( Navbar , Footer , ProductCard , etc .)
+17       / layouts         ( MainLayout , AccountLayout , AdminLayout )
+18       / pages           ( all customer and admin pages )
+19       / services        ( axios instance , token helpers )
+20       / utils           ( price formatter , date formatter )
+
+                             Listing 5.1: Project folder structure
+
+
+
+     5.5     Implementation
+
+     5.5.1     Product catalogue and search
+     The product listing endpoint (GET /api/products) accepts query parameters for
+     category, subcategory, brand, price range, stock status, featured status, sort order,
+     and page number. The server builds a MongoDB filter object from these parameters
+     and passes it to Product.find().
+
+     Full-text search uses a MongoDB text index on the product name, model, SKU,
+     and description fields. For partial matches and brand/category name matching,
+     the endpoint also accepts category and brand slugs and resolves them to IDs before
+     querying.
+
+
+     5.5.2     Cart
+     Guest cart data is stored as a JSON array in localStorage. When a logged-in user
+     adds an item, it goes directly to the server-side Cart document. When a guest logs
+     in, the client migrates the localStorage cart to the server by posting each item to
+     POST /api/cart, then clears localStorage.
+
+
+     5.5.3     Order creation
+     Order creation is the most critical part of the backend. The server:
+
+        1. Fetches fresh product records for every item in the order.
+
+        2. Checks that no product has callForPrice:           true.
+
+        3. Verifies that stock is sufficient for each item.
+
+
+                                               17
+Orient Computer Ecommerce Website                              Sultana Tasnim Riza
+
+
+   4. Recalculates the subtotal from server-side prices.
+
+   5. Validates the coupon code (date range, usage limit, minimum purchase) if
+      one was submitted.
+
+   6. Looks up the delivery charge from the DeliveryArea collection.
+
+   7. Calculates the final total.
+
+   8. Attempts to wrap the stock decrement in a MongoDB transaction. On a
+      standalone Mongo instance (which does not support transactions), it falls
+      back to a sequential operation with a manual rollback on failure.
+
+   9. Creates the order document.
+
+ 10. Clears the user’s cart.
+
+This sequence ensures the client-supplied total is never used. Every number in the
+stored order comes from the database.
+
+
+5.5.4     Payment verification workflow
+When a customer chooses bKash or Nagad at checkout, they enter their sender
+phone number and transaction ID, and optionally upload a screenshot. The
+payment status is set to submitted.
+
+The admin opens the order, reviews the transaction details, and clicks Verify or
+Reject. Verify sets payment.status to verified and records the timestamp and
+admin user. Reject stores the reason and sets the status to rejected.
+
+For Cash on Delivery orders, the payment status updates to verified automatically
+when the admin marks the order as Delivered.
+
+
+5.5.5     Order status workflow
+Every order has three separate status fields: status (the main lifecycle), deliveryStatus
+(shipping progress), and payment.status. The allowed transitions for the main
+order status are enforced server-side:
+
+
+
+
+                                        18
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+                   Table 5.1: Allowed order status transitions
+
+                     Current status   Allowed next
+
+                     Pending          Confirmed, Cancelled
+                     Confirmed        Processing, Cancelled
+                     Processing       Shipped, Cancelled
+                     Shipped          Delivered, Returned
+                     Delivered        Returned
+                     Cancelled        (none)
+                     Returned         (none)
+
+
+Every transition appends an entry to the order’s timeline array, which powers the
+status timeline displayed on the customer’s order tracking page.
+
+
+5.5.6    Admin panel
+The admin panel is a separate section of the React application, protected by a
+route guard that checks both authentication and the admin role. It shares the
+same JWT auth as the customer-facing app but uses a different layout.
+
+The dashboard fetches a summary from GET /api/admin/dashboard and displays
+total products, total customers, new and completed orders, pending payments,
+low-stock count, total sales, and a table of recent orders.
+
+
+5.6     Testing
+Testing covered three main workflows manually, verified against the live Atlas
+database.
+
+Customer workflow: Browse products, add to cart, complete checkout with each
+payment method (COD, bKash, Nagad), view the confirmation page, view the
+order in account history, and track it using the order number and phone.
+
+Admin workflow: Log in, view the dashboard, open a new order, verify the
+payment, move the order through each status from Confirmed to Delivered, and
+confirm the customer’s delivery status updates.
+
+Security workflow: Attempt to access /admin as a logged-out user (redirected
+to login), as a customer account (redirected to home), and with a fabricated JWT
+(API returns 401). Attempt to submit a checkout with a manipulated total from
+
+
+
+                                       19
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+the browser (the server recalculates and the submitted total is ignored). Attempt
+to apply an expired coupon (rejected with a 400 error and a clear message).
+
+All three workflows completed without errors against the production Atlas cluster.
+
+
+
+
+                                       20
+Chapter 6       Results and Analysis
+
+The application is deployed with the backend API at localhost:5000 (or a remote
+server after deployment) and the frontend at localhost:5173 during development.
+
+
+
+
+Figure 6.1: Home page showing hero banner, category navigation, and product
+sections
+
+
+
+
+Figure 6.2: Product catalogue showing 17 products with category filters, brand
+filters, price range, and sort options
+
+
+                                      21
+Orient Computer Ecommerce Website                              Sultana Tasnim Riza
+
+
+
+
+Figure 6.3: Product details page showing product image, price, stock status,
+highlights, and Add to Cart / Buy Now buttons
+
+
+
+
+Figure 6.4: Shopping cart with an item, quantity controls, coupon code field, order
+summary, and Proceed to Checkout button
+
+
+
+
+                                        22
+Orient Computer Ecommerce Website                          Sultana Tasnim Riza
+
+
+
+
+Figure 6.5: Checkout form collecting full name, phone, address, district, and
+delivery area
+
+
+
+
+Figure 6.6: Checkout payment section showing Cash on Delivery, bKash (Manual),
+and Nagad (Manual) options
+
+
+
+
+                                     23
+Orient Computer Ecommerce Website                         Sultana Tasnim Riza
+
+
+
+
+Figure 6.7: Admin dashboard showing summary statistics: 17 active products, 4
+customers, 1 low-stock item, and the recent orders table
+
+
+
+
+Figure 6.8: Admin products page showing all 17 seeded products with SKU,
+category, price, stock level, and status
+
+
+
+
+                                     24
+Orient Computer Ecommerce Website                             Sultana Tasnim Riza
+
+
+
+
+Figure 6.9: Order tracking page where customers enter their order number and
+registered phone number to track without logging in
+
+
+The seed data loaded 17 products across 8 parent categories and 23 subcategories,
+21 brands, 13 delivery areas, 3 promotional banners, and 2 demo coupons. The
+admin and demo customer accounts were also created by the seed script.
+
+API response times for the product listing and order creation endpoints were
+measured against the Atlas cluster from a Dhaka connection. Product listing with
+filters returned in under 400 ms. Order creation (which includes stock validation,
+total calculation, coupon validation, and a write to the database) took between
+600 ms and 900 ms. Both are within the three-second target for a reasonable
+connection.
+
+
+
+
+                                       25
+Chapter 7        Project as Engineering Problem Analysis
+
+
+7.1     Sustainability of the project
+The application is built with standard, widely-maintained open-source libraries.
+Node.js, React, and MongoDB all have long-term commercial backing and active
+communities. This means the application is unlikely to become unmaintainable
+due to an abandoned dependency within a normal product lifespan.
+
+The codebase is split into small, focused files (each controller, model, and component
+handles one concern), which makes it straightforward for another developer to take
+over or extend the project. Environment variables separate configuration from
+code, so the application can be moved to a different host without code changes.
+
+MongoDB Atlas handles automated backups on its paid tier. For the free tier used
+during development, periodic manual exports of the database were taken using
+mongodump.
+
+
+7.2     Social and environmental effects
+Giving Orient Computer an online sales channel reduces the need for customers
+in other districts to travel to Dhaka to buy products. A customer in Sylhet or
+Chittagong can order online and receive delivery within three to five days, rather
+than making a trip or relying on a third party to purchase on their behalf.
+
+For Orient Computer, an online store means the sales team can handle more orders
+per day without proportionally increasing staff, because the customer fills in their
+own shipping details and payment information. Staff time shifts from taking phone
+orders to verifying payments and updating order statuses.
+
+The application generates no physical waste. Server infrastructure (MongoDB
+Atlas, Vercel, Railway) runs on shared data centre hardware with higher utilization
+rates than dedicated servers, which is generally more energy-efficient per request.
+
+One concern specific to the Bangladeshi context is digital literacy. Customers
+who are not comfortable ordering online will not use this application. The store
+complements rather than replaces the showroom and phone channels for those
+customers.
+
+
+                                         26
+Chapter 8        Lessons Learned
+
+
+8.1     Problems faced
+MongoDB transactions on a standalone instance. The order creation logic
+uses a MongoDB transaction to make the stock decrement and order insert atomic.
+This works on MongoDB Atlas (which runs as a replica set) but fails silently on
+a standalone local MongoDB installation, because transactions require a replica
+set. During early development I was testing on local Mongo, which meant the
+transaction code was never actually executing. The fix was to add a fallback
+path that does the operations sequentially on a standalone instance and also tests
+against Atlas from the start.
+
+Guest cart and login migration. When a guest adds items to the cart and
+then logs in, the cart should merge into their account. The initial implementation
+wiped the server cart and replaced it with the guest cart. This caused problems
+when a user had items from a previous session on the server. The correct approach
+is to add each guest item to the server cart individually, which lets the server check
+stock and merge quantities correctly.
+
+Coupon edge cases. Several coupon edge cases were not obvious from the initial
+requirements. What happens if the minimum purchase is met at cart time but the
+coupon expires before the order is placed? What if the usage limit is hit between
+cart and checkout? The fix was to re-validate the coupon fully at order creation
+time on the server, not just at cart time.
+
+File upload path handling on Windows. Multer stores files using the OS path
+separator. On Windows this produces backslashes in file paths, which then get
+sent to the client and fail to match the forward-slash URL paths that Express uses
+to serve the uploads directory. The fix was to normalize all stored paths to use
+forward slashes before saving them to the database.
+
+Admin panel category tree. The admin product form needs to load the full
+category tree so the user can select a parent category and then a subcategory. The
+initial implementation loaded categories with the GET /api/categories endpoint,
+which only returns active parent categories with their subcategories. The admin
+form needed inactive categories too, and needed them flat rather than nested. The
+fix was to add a separate GET /api/categories/all endpoint that returns all
+
+
+                                         27
+Orient Computer Ecommerce Website                            Sultana Tasnim Riza
+
+
+categories in a flat list, protected to admin only.
+
+
+8.2     Solutions and what I would do differently
+The main thing I would do differently is test against the actual Atlas deployment
+earlier. Several bugs (the transaction issue, a few timing issues with async cart
+operations) only surfaced when running against a real network connection rather
+than a local server.
+
+I would also write the coupon and delivery charge validation as separate service
+functions from the start, rather than putting them inside the order controller.
+Keeping business rules in service files made them easier to test and reuse, but I
+only refactored them there after encountering the edge cases described above.
+
+For the frontend, using React Query or SWR instead of manual useEffect data
+fetching would reduce the amount of loading state management code. This is
+something I plan to explore in the next project.
+
+
+
+
+                                         28
+Chapter 9        Future Work and Conclusion
+
+
+9.1     Future work
+Several features were out of scope for this internship but are realistic near-term
+additions.
+
+Automated payment gateway. SSLCommerz and ShurjoPay both offer Bangladeshi
+merchant accounts that support bKash, Nagad, cards, and other local methods
+through a single API. Replacing the manual verification workflow with an auto-
+mated gateway would reduce admin work and improve the customer experience.
+This requires a merchant account and additional security work (webhook signature
+verification, idempotency keys) that were out of scope for this project.
+
+Email and SMS notifications. Customers currently have to check the website
+or the admin has to call them to communicate order status changes. Sending
+an SMS via a service like Twilio or a local provider when an order is confirmed,
+shipped, or delivered would be a significant improvement.
+
+PC Builder. Many Bangladeshi computer shoppers want to select compatible
+components and check if a build stays within budget. A PC Builder tool is a stan-
+dard feature on Star Tech and Ryans. It requires compatibility rules (motherboard
+socket vs CPU socket, RAM type, etc.) and real-time price totalling.
+
+Product comparison. Customers buying UPS systems or solar inverters often
+want to compare specifications side by side. Adding a comparison view for up to
+three or four products would help.
+
+HttpOnly cookie authentication. Storing the JWT in an HttpOnly cookie
+instead of localStorage protects it from XSS attacks. This requires CSRF protection
+and a small change to how the API serves the token, but it is a meaningful security
+improvement for a production deployment.
+
+
+9.2     Conclusion
+The Orient Computer ecommerce website works as intended. A customer can
+browse 17 seeded products across 8 categories (31 including subcategories), add
+items to a cart, check out with Cash on Delivery or manual bKash/Nagad, and
+
+
+                                        29
+Orient Computer Ecommerce Website                                Sultana Tasnim Riza
+
+
+track their order. An admin can confirm orders, verify payments, manage the full
+product catalogue, and configure delivery charges by district.
+
+All the business rules specified in the SRS run on the server: stock is checked before
+the order is accepted, prices are frozen at purchase time, coupons are validated
+against the database, and customers cannot cancel orders that are already in
+processing or shipping. Customers cannot access any admin function regardless of
+how they modify the frontend.
+
+The application is ready to be deployed to production once a domain name is
+registered, the frontend is pointed at the production API URL, and the Atlas
+cluster is upgraded to a paid tier for backup and performance guarantees.
+
+The three months spent on this project covered a wider range of web development
+topics than any single university course. Writing the payment verification workflow
+and the order status machine gave me a clearer understanding of how business
+logic and HTTP handling should be separated, and debugging the Mongoose
+transaction behaviour taught me more about how MongoDB actually works than
+the documentation alone would have.
+
+
+
+
+                                         30
+Bibliography
+
+ [1] a2i (Aspire to Innovate), Government of Bangladesh, “Digital Bangladesh:
+     Progress Report 2023,” Dhaka, Bangladesh, 2023. Available: https://a2i.
+     gov.bd
+
+ [2] MongoDB Inc., “The MERN Stack: A Complete Tutorial,” MongoDB
+     Developer Documentation, 2022. Available: https://www.mongodb.com/
+     languages/mern-stack-tutorial
+
+ [3] M. Jones, J. Bradley, and N. Sakimura, “JSON Web Token (JWT),” RFC 7519,
+     Internet Engineering Task Force, May 2015. Available: https://datatracker.
+     ietf.org/doc/html/rfc7519
+
+ [4] Tailwind Labs, “Tailwind CSS Documentation,” 2023. Available: https://
+     tailwindcss.com/docs
+
+ [5] OWASP Foundation, “OWASP Top Ten 2021,” 2021. Available: https://
+     owasp.org/Top10
+
+ [6] OpenJS Foundation, “Express.js Guide,” 2023. Available: https://expressjs.
+     com/en/guide
+
+ [7] Meta Platforms, “React Documentation,” 2023. Available: https://react.
+     dev
+
+ [8] Automattic, “Mongoose ODM Documentation,” 2023. Available: https://
+     mongoosejs.com/docs
+
+ [9] N. Provos and D. Mazieres, “A Future-Adaptable Password Scheme,” in
+     Proceedings of the USENIX Annual Technical Conference, 1999.
+
+[10] Evan You and Vite Contributors, “Vite Build Tool Documentation,” 2023.
+     Available: https://vitejs.dev
+
+
+
+
+                                     31
+

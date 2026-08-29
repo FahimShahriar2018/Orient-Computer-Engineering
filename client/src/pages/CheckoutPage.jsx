@@ -106,6 +106,54 @@ export default function CheckoutPage() {
     );
   }
 
+  // Auth wall — guest users must sign in before they can checkout
+  if (!user) {
+    return (
+      <div className="max-w-md mx-auto px-4 py-20 flex flex-col items-center text-center space-y-6">
+        <div className="h-20 w-20 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+          <LogIn className="h-10 w-10" />
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-2xl font-heading font-extrabold text-white">Sign In to Continue</h2>
+          <p className="text-sm text-slate-400 max-w-sm">
+            Your cart items are saved. Please sign in or create an account to complete your purchase.
+          </p>
+        </div>
+
+        <div className="w-full space-y-3">
+          <button
+            onClick={() => openAuthModal('login')}
+            className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center space-x-2 transition-colors shadow-sm"
+          >
+            <LogIn className="h-4 w-4" />
+            <span>Sign In to Your Account</span>
+          </button>
+
+          <button
+            onClick={() => openAuthModal('register')}
+            className="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm flex items-center justify-center space-x-2 transition-colors"
+          >
+            <UserPlus className="h-4 w-4" />
+            <span>Create a New Account</span>
+          </button>
+
+          <Link
+            to="/cart"
+            className="block text-center text-xs text-slate-400 hover:text-blue-400 transition-colors pt-1"
+          >
+            ← Back to Cart
+          </Link>
+        </div>
+
+        <div className="flex items-center space-x-2 text-[11px] text-slate-500 pt-2">
+          <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+          <span>Your cart items will be preserved after sign in</span>
+        </div>
+      </div>
+    );
+  }
+
   // Calculate delivery fee
   const getDeliveryFee = () => {
     switch (deliveryMethod) {

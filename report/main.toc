@@ -1,0 +1,55 @@
+\contentsline {chapter}{Attestation}{i}{chapter*.1}%
+\contentsline {chapter}{Acknowledgement}{ii}{chapter*.2}%
+\contentsline {chapter}{Letter of Transmittal}{iii}{chapter*.3}%
+\contentsline {chapter}{Evaluation Committee}{iv}{chapter*.4}%
+\contentsline {chapter}{Abstract}{v}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Overview and Background}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objectives}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Scope}{2}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Literature Review}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Relationship with Undergraduate Studies}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}E-Commerce Context in Bangladesh}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Related Works and Technical Landscape}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Existing Website Analysis}{4}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Competitive Analysis}{6}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Project Management and Financing}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Work Breakdown Structure}{7}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Process and Activity Time Distribution}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Gantt Chart}{8}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Resource Allocation and Estimated Costing}{8}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Methodology}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architecture Overview}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Technology Stack}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Database Design and API Structure}{10}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Body of the Project}{12}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Work Description}{12}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Requirement Analysis}{12}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Functional Requirements}{12}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Non-Functional Requirements}{13}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}System Analysis and Feasibility}{13}{section.5.3}%
+\contentsline {section}{\numberline {5.4}System Design and Data Modeling}{13}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}MongoDB Collection Schema Summary}{14}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.5}UI Page Mockups}{14}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Order State Machine}{18}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Key Code Implementations}{19}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}User Schema with bcrypt Password Hashing}{19}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}JWT Authentication Middleware}{20}{subsection.5.7.2}%
+\contentsline {subsection}{\numberline {5.7.3}Product Schema with Virtuals and Text Index}{21}{subsection.5.7.3}%
+\contentsline {subsection}{\numberline {5.7.4}Order Creation with Guest Checkout and Atomic Stock Decrement}{22}{subsection.5.7.4}%
+\contentsline {subsection}{\numberline {5.7.5}Admin Analytics Aggregation Pipeline}{23}{subsection.5.7.5}%
+\contentsline {section}{\numberline {5.8}Implementation and Testing}{24}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Results and Analysis}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}System Features Delivered}{26}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Deployment Architecture}{26}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Project as Engineering Problem Analysis}{28}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Sustainability of the Project}{28}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Social and Environmental Considerations}{28}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Ethical and Legal Considerations}{28}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Lessons Learned}{29}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Problems Faced}{29}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Solutions and Retrospective Insights}{29}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Future Work and Conclusion}{30}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Future Work}{30}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Conclusion}{30}{section.9.2}%
+\contentsline {chapter}{Bibliography}{31}{chapter*.34}%

@@ -9,12 +9,15 @@ import {
   ArrowRight,
   ShieldCheck,
   Truck,
+  LogIn,
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
 import { formatPrice } from '../../utils/formatters';
 
 export default function CartDrawer() {
   const navigate = useNavigate();
+  const { user, openAuthModal } = useAuth();
   const {
     cartItems,
     isDrawerOpen,
@@ -30,6 +33,11 @@ export default function CartDrawer() {
   if (!isDrawerOpen) return null;
 
   const handleCheckoutClick = () => {
+    if (!user) {
+      // Guest — prompt sign in, keep drawer open so cart is preserved
+      openAuthModal('login');
+      return;
+    }
     closeDrawer();
     navigate('/checkout');
   };
@@ -195,8 +203,17 @@ export default function CartDrawer() {
                   onClick={handleCheckoutClick}
                   className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-sm flex items-center justify-center space-x-2 transition-colors transform active:scale-[0.99]"
                 >
-                  <span>Proceed to Checkout</span>
-                  <ArrowRight className="h-4 w-4" />
+                  {user ? (
+                    <>
+                      <span>Proceed to Checkout</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      <LogIn className="h-4 w-4" />
+                      <span>Sign In to Checkout</span>
+                    </>
+                  )}
                 </button>
 
                 <button
